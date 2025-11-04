@@ -3,6 +3,8 @@ import json
 import pathlib
 import time
 
+use_local_codegen = False
+
 # thanks chatgpt
 integral_types = [
     # Core integral types
@@ -141,10 +143,17 @@ field_blacklist = [
 
 def generate() -> None:
     fetch_time = time.strftime("%a, %d %b %Y %X +0000", time.gmtime())
+    parent_dir = pathlib.Path(__file__).resolve().parent
+
 
     print("fetching codegen and enum data...")
     # fetch codegen data
-    codegen = json.loads(requests.get("https://prevter.github.io/bindings-meta/CodegenData-2.2074.json").text)
+    codegen = None
+    if use_local_codegen:
+        with open(parent_dir / "../build/bindings/bindings/Geode/CodegenData.json", "r") as codegen_file:
+            codegen = json.load(codegen_file)
+    else:
+        codegen = json.loads(requests.get("https://prevter.github.io/bindings-meta/CodegenData-2.2074.json").text)
 
     # fetch enum data
     raw_enum_data = requests.get("https://raw.githubusercontent.com/geode-sdk/bindings/refs/heads/main/bindings/include/Geode/Enums.hpp").text
@@ -200,6 +209,8 @@ def generate() -> None:
 
         source_output += f"devtools::registerNode<{class_name}>([]({class_name}* node) {{\n"
 
+        source_output += f"    devtools::label(\"Members for {class_name}:\");\n"
+
         for field in class_data["fields"]:
             field_name: str = field["name"]
             field_type: str = field["type"]
@@ -242,7 +253,6 @@ def generate() -> None:
 
     print("writing...")
 
-    parent_dir = pathlib.Path(__file__).resolve().parent
     with open(parent_dir / "generated.cpp", "w") as file:
         file.write(template.format(source_output=source_output, fetch_time=fetch_time))
 
