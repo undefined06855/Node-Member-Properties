@@ -1,12 +1,13 @@
 #include <geode.devtools/include/API.hpp>
 
-// compiled at Tue, 04 Nov 2025 22:49:31 +0000
+// compiled at Tue, 04 Nov 2025 23:29:31 +0000
 
 $on_mod(Loaded) {
     devtools::waitForDevTools([] {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCObject>) {
 devtools::registerNode<cocos2d::CCObject>([](cocos2d::CCObject* node) {
+    devtools::label("Members for cocos2d::CCObject:");
     devtools::property("m_uID", node->m_uID);
     devtools::property("m_nLuaID", node->m_nLuaID);
     devtools::property("m_nTag", node->m_nTag);
@@ -23,6 +24,7 @@ devtools::registerNode<cocos2d::CCObject>([](cocos2d::CCObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCAction>) {
 devtools::registerNode<cocos2d::CCAction>([](cocos2d::CCAction* node) {
+    devtools::label("Members for cocos2d::CCAction:");
     devtools::property("m_nTag", node->m_nTag);
     devtools::property("m_fSpeedMod", node->m_fSpeedMod);
     devtools::label(fmt::format("cocos2d::CCNode* m_pOriginalTarget at {}", (void*)node->m_pOriginalTarget).c_str());
@@ -32,12 +34,14 @@ devtools::registerNode<cocos2d::CCAction>([](cocos2d::CCAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCFiniteTimeAction>) {
 devtools::registerNode<cocos2d::CCFiniteTimeAction>([](cocos2d::CCFiniteTimeAction* node) {
+    devtools::label("Members for cocos2d::CCFiniteTimeAction:");
     devtools::property("m_fDuration", node->m_fDuration);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCActionInterval>) {
 devtools::registerNode<cocos2d::CCActionInterval>([](cocos2d::CCActionInterval* node) {
+    devtools::label("Members for cocos2d::CCActionInterval:");
     devtools::property("m_elapsed", node->m_elapsed);
     devtools::property("m_bFirstTick", node->m_bFirstTick);
 });
@@ -45,11 +49,13 @@ devtools::registerNode<cocos2d::CCActionInterval>([](cocos2d::CCActionInterval* 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCNodeRGBA>) {
 devtools::registerNode<cocos2d::CCNodeRGBA>([](cocos2d::CCNodeRGBA* node) {
+    devtools::label("Members for cocos2d::CCNodeRGBA:");
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCMotionStreak>) {
 devtools::registerNode<cocos2d::CCMotionStreak>([](cocos2d::CCMotionStreak* node) {
+    devtools::label("Members for cocos2d::CCMotionStreak:");
     devtools::property("m_bFastMode", node->m_bFastMode);
     devtools::property("m_bStartingPositionInitialized", node->m_bStartingPositionInitialized);
     devtools::property("m_bStroke", node->m_bStroke);
@@ -78,12 +84,14 @@ devtools::registerNode<cocos2d::CCMotionStreak>([](cocos2d::CCMotionStreak* node
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCSet>) {
 devtools::registerNode<cocos2d::CCSet>([](cocos2d::CCSet* node) {
+    devtools::label("Members for cocos2d::CCSet:");
     devtools::label("gd::set<cocos2d::CCObject*> m_pSet");
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCParticleSystem>) {
 devtools::registerNode<cocos2d::CCParticleSystem>([](cocos2d::CCParticleSystem* node) {
+    devtools::label("Members for cocos2d::CCParticleSystem:");
     devtools::property("m_sPlistFile", node->m_sPlistFile);
     devtools::property("m_fElapsed", node->m_fElapsed);
     devtools::property("m_fEmitCounter", node->m_fEmitCounter);
@@ -164,6 +172,7 @@ devtools::registerNode<cocos2d::CCParticleSystem>([](cocos2d::CCParticleSystem* 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCParticleSystemQuad>) {
 devtools::registerNode<cocos2d::CCParticleSystemQuad>([](cocos2d::CCParticleSystemQuad* node) {
+    devtools::label("Members for cocos2d::CCParticleSystemQuad:");
     devtools::property("m_tTextureRect", node->m_tTextureRect);
     devtools::property("m_tQuadColor", node->m_tQuadColor);
     devtools::property("m_uParticleIdx", node->m_uParticleIdx);
@@ -176,6 +185,7 @@ devtools::registerNode<cocos2d::CCParticleSystemQuad>([](cocos2d::CCParticleSyst
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCLayer>) {
 devtools::registerNode<cocos2d::CCLayer>([](cocos2d::CCLayer* node) {
+    devtools::label("Members for cocos2d::CCLayer:");
     devtools::property("m_bTouchEnabled", node->m_bTouchEnabled);
     devtools::property("m_bAccelerometerEnabled", node->m_bAccelerometerEnabled);
     devtools::property("m_bKeypadEnabled", node->m_bKeypadEnabled);
@@ -192,11 +202,13 @@ devtools::registerNode<cocos2d::CCLayer>([](cocos2d::CCLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCLayerRGBA>) {
 devtools::registerNode<cocos2d::CCLayerRGBA>([](cocos2d::CCLayerRGBA* node) {
+    devtools::label("Members for cocos2d::CCLayerRGBA:");
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCLayerColor>) {
 devtools::registerNode<cocos2d::CCLayerColor>([](cocos2d::CCLayerColor* node) {
+    devtools::label("Members for cocos2d::CCLayerColor:");
     devtools::label("std::array<cocos2d::ccVertex2F, 4> m_pSquareVertices");
     devtools::label("std::array<cocos2d::ccColor4F, 4> m_pSquareColors");
     devtools::label("cocos2d::ccBlendFunc m_tBlendFunc");
@@ -205,6 +217,7 @@ devtools::registerNode<cocos2d::CCLayerColor>([](cocos2d::CCLayerColor* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCLayerGradient>) {
 devtools::registerNode<cocos2d::CCLayerGradient>([](cocos2d::CCLayerGradient* node) {
+    devtools::label("Members for cocos2d::CCLayerGradient:");
     devtools::property("m_startColor", node->m_startColor);
     devtools::property("m_endColor", node->m_endColor);
     devtools::property("m_AlongVector", node->m_AlongVector);
@@ -214,12 +227,14 @@ devtools::registerNode<cocos2d::CCLayerGradient>([](cocos2d::CCLayerGradient* no
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCMouseDispatcher>) {
 devtools::registerNode<cocos2d::CCMouseDispatcher>([](cocos2d::CCMouseDispatcher* node) {
+    devtools::label("Members for cocos2d::CCMouseDispatcher:");
     devtools::label(fmt::format("cocos2d::CCArray* m_pMouseHandlers at {}", (void*)node->m_pMouseHandlers).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCTouchHandler>) {
 devtools::registerNode<cocos2d::CCTouchHandler>([](cocos2d::CCTouchHandler* node) {
+    devtools::label("Members for cocos2d::CCTouchHandler:");
     devtools::property("m_nPriority", node->m_nPriority);
     devtools::property("m_nEnabledSelectors", node->m_nEnabledSelectors);
     devtools::label(fmt::format("cocos2d::CCTouchDelegate* m_pDelegate at {}", (void*)node->m_pDelegate).c_str());
@@ -228,6 +243,7 @@ devtools::registerNode<cocos2d::CCTouchHandler>([](cocos2d::CCTouchHandler* node
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCTargetedTouchHandler>) {
 devtools::registerNode<cocos2d::CCTargetedTouchHandler>([](cocos2d::CCTargetedTouchHandler* node) {
+    devtools::label("Members for cocos2d::CCTargetedTouchHandler:");
     devtools::property("m_bSwallowsTouches", node->m_bSwallowsTouches);
     devtools::label(fmt::format("cocos2d::CCSet* m_pClaimedTouches at {}", (void*)node->m_pClaimedTouches).c_str());
 });
@@ -235,6 +251,7 @@ devtools::registerNode<cocos2d::CCTargetedTouchHandler>([](cocos2d::CCTargetedTo
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCTouch>) {
 devtools::registerNode<cocos2d::CCTouch>([](cocos2d::CCTouch* node) {
+    devtools::label("Members for cocos2d::CCTouch:");
     devtools::property("m_nId", node->m_nId);
     devtools::property("m_startPointCaptured", node->m_startPointCaptured);
     devtools::property("m_startPoint", node->m_startPoint);
@@ -245,6 +262,7 @@ devtools::registerNode<cocos2d::CCTouch>([](cocos2d::CCTouch* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCTouchDispatcher>) {
 devtools::registerNode<cocos2d::CCTouchDispatcher>([](cocos2d::CCTouchDispatcher* node) {
+    devtools::label("Members for cocos2d::CCTouchDispatcher:");
     devtools::property("m_bToQuit", node->m_bToQuit);
     devtools::property("m_bDispatchEvents", node->m_bDispatchEvents);
     devtools::property("m_targetPrio", node->m_targetPrio);
@@ -256,12 +274,14 @@ devtools::registerNode<cocos2d::CCTouchDispatcher>([](cocos2d::CCTouchDispatcher
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCMouseHandler>) {
 devtools::registerNode<cocos2d::CCMouseHandler>([](cocos2d::CCMouseHandler* node) {
+    devtools::label("Members for cocos2d::CCMouseHandler:");
     devtools::label(fmt::format("cocos2d::CCMouseDelegate* m_pDelegate at {}", (void*)node->m_pDelegate).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCKeyboardDispatcher>) {
 devtools::registerNode<cocos2d::CCKeyboardDispatcher>([](cocos2d::CCKeyboardDispatcher* node) {
+    devtools::label("Members for cocos2d::CCKeyboardDispatcher:");
     devtools::property("m_bShiftPressed", node->m_bShiftPressed);
     devtools::property("m_bControlPressed", node->m_bControlPressed);
     devtools::property("m_bAltPressed", node->m_bAltPressed);
@@ -273,12 +293,14 @@ devtools::registerNode<cocos2d::CCKeyboardDispatcher>([](cocos2d::CCKeyboardDisp
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCKeypadDispatcher>) {
 devtools::registerNode<cocos2d::CCKeypadDispatcher>([](cocos2d::CCKeypadDispatcher* node) {
+    devtools::label("Members for cocos2d::CCKeypadDispatcher:");
     devtools::label(fmt::format("cocos2d::CCArray* m_pDelegates at {}", (void*)node->m_pDelegates).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCSprite>) {
 devtools::registerNode<cocos2d::CCSprite>([](cocos2d::CCSprite* node) {
+    devtools::label("Members for cocos2d::CCSprite:");
     devtools::property("m_uAtlasIndex", node->m_uAtlasIndex);
     devtools::property("m_bDirty", node->m_bDirty);
     devtools::property("m_bRecursiveDirty", node->m_bRecursiveDirty);
@@ -312,6 +334,7 @@ devtools::registerNode<cocos2d::CCSprite>([](cocos2d::CCSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCSpriteBatchNode>) {
 devtools::registerNode<cocos2d::CCSpriteBatchNode>([](cocos2d::CCSpriteBatchNode* node) {
+    devtools::label("Members for cocos2d::CCSpriteBatchNode:");
     devtools::property("m_bManualSortChildren", node->m_bManualSortChildren);
     devtools::property("m_bManualSortAllChildrenDirty", node->m_bManualSortAllChildrenDirty);
     devtools::label(fmt::format("cocos2d::CCTextureAtlas* m_pobTextureAtlas at {}", (void*)node->m_pobTextureAtlas).c_str());
@@ -322,6 +345,7 @@ devtools::registerNode<cocos2d::CCSpriteBatchNode>([](cocos2d::CCSpriteBatchNode
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCLabelBMFont>) {
 devtools::registerNode<cocos2d::CCLabelBMFont>([](cocos2d::CCLabelBMFont* node) {
+    devtools::label("Members for cocos2d::CCLabelBMFont:");
     devtools::property("m_sFntFile", node->m_sFntFile);
     devtools::property("m_sInitialStringUTF8", node->m_sInitialStringUTF8);
     devtools::property("m_fWidth", node->m_fWidth);
@@ -348,6 +372,7 @@ devtools::registerNode<cocos2d::CCLabelBMFont>([](cocos2d::CCLabelBMFont* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCAnimate>) {
 devtools::registerNode<cocos2d::CCAnimate>([](cocos2d::CCAnimate* node) {
+    devtools::label("Members for cocos2d::CCAnimate:");
     devtools::property("m_nNextFrame", node->m_nNextFrame);
     devtools::property("m_uExecutedLoops", node->m_uExecutedLoops);
     devtools::property("m_bRecenterFrames", node->m_bRecenterFrames);
@@ -359,12 +384,14 @@ devtools::registerNode<cocos2d::CCAnimate>([](cocos2d::CCAnimate* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCArray>) {
 devtools::registerNode<cocos2d::CCArray>([](cocos2d::CCArray* node) {
+    devtools::label("Members for cocos2d::CCArray:");
     devtools::label(fmt::format("cocos2d::ccArray* data at {}", (void*)node->data).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCDictionary>) {
 devtools::registerNode<cocos2d::CCDictionary>([](cocos2d::CCDictionary* node) {
+    devtools::label("Members for cocos2d::CCDictionary:");
     devtools::property("m_eDictType", node->m_eDictType);
     devtools::label(fmt::format("cocos2d::CCDictElement* m_pElements at {}", (void*)node->m_pElements).c_str());
 });
@@ -372,6 +399,7 @@ devtools::registerNode<cocos2d::CCDictionary>([](cocos2d::CCDictionary* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCDrawNode>) {
 devtools::registerNode<cocos2d::CCDrawNode>([](cocos2d::CCDrawNode* node) {
+    devtools::label("Members for cocos2d::CCDrawNode:");
     devtools::property("m_uVao", node->m_uVao);
     devtools::property("m_uVbo", node->m_uVbo);
     devtools::property("m_uBufferCapacity", node->m_uBufferCapacity);
@@ -390,12 +418,14 @@ devtools::registerNode<cocos2d::CCDrawNode>([](cocos2d::CCDrawNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCString>) {
 devtools::registerNode<cocos2d::CCString>([](cocos2d::CCString* node) {
+    devtools::label("Members for cocos2d::CCString:");
     devtools::property("m_sString", node->m_sString);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCMenuItem>) {
 devtools::registerNode<cocos2d::CCMenuItem>([](cocos2d::CCMenuItem* node) {
+    devtools::label("Members for cocos2d::CCMenuItem:");
     devtools::property("m_bSelected", node->m_bSelected);
     devtools::property("m_bEnabled", node->m_bEnabled);
     devtools::property("m_nScriptTapHandler", node->m_nScriptTapHandler);
@@ -407,6 +437,7 @@ devtools::registerNode<cocos2d::CCMenuItem>([](cocos2d::CCMenuItem* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCMenuItemSprite>) {
 devtools::registerNode<cocos2d::CCMenuItemSprite>([](cocos2d::CCMenuItemSprite* node) {
+    devtools::label("Members for cocos2d::CCMenuItemSprite:");
     devtools::label(fmt::format("cocos2d::CCNode* m_pNormalImage at {}", (void*)node->m_pNormalImage).c_str());
     devtools::label(fmt::format("cocos2d::CCNode* m_pSelectedImage at {}", (void*)node->m_pSelectedImage).c_str());
     devtools::label(fmt::format("cocos2d::CCNode* m_pDisabledImage at {}", (void*)node->m_pDisabledImage).c_str());
@@ -415,6 +446,7 @@ devtools::registerNode<cocos2d::CCMenuItemSprite>([](cocos2d::CCMenuItemSprite* 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCMenu>) {
 devtools::registerNode<cocos2d::CCMenu>([](cocos2d::CCMenu* node) {
+    devtools::label("Members for cocos2d::CCMenu:");
     devtools::property("m_bEnabled", node->m_bEnabled);
     devtools::label("cocos2d::tCCMenuState m_eState");
     devtools::label(fmt::format("cocos2d::CCMenuItem* m_pSelectedItem at {}", (void*)node->m_pSelectedItem).c_str());
@@ -423,6 +455,7 @@ devtools::registerNode<cocos2d::CCMenu>([](cocos2d::CCMenu* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::extension::CCHttpClient>) {
 devtools::registerNode<cocos2d::extension::CCHttpClient>([](cocos2d::extension::CCHttpClient* node) {
+    devtools::label("Members for cocos2d::extension::CCHttpClient:");
     devtools::property("_timeoutForConnect", node->_timeoutForConnect);
     devtools::property("_timeoutForRead", node->_timeoutForRead);
 });
@@ -430,6 +463,7 @@ devtools::registerNode<cocos2d::extension::CCHttpClient>([](cocos2d::extension::
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::extension::CCHttpRequest>) {
 devtools::registerNode<cocos2d::extension::CCHttpRequest>([](cocos2d::extension::CCHttpRequest* node) {
+    devtools::label("Members for cocos2d::extension::CCHttpRequest:");
     devtools::property("_requestType", node->_requestType);
     devtools::property("_url", node->_url);
     devtools::property("_tag", node->_tag);
@@ -448,6 +482,7 @@ devtools::registerNode<cocos2d::extension::CCHttpRequest>([](cocos2d::extension:
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::extension::CCHttpResponse>) {
 devtools::registerNode<cocos2d::extension::CCHttpResponse>([](cocos2d::extension::CCHttpResponse* node) {
+    devtools::label("Members for cocos2d::extension::CCHttpResponse:");
     devtools::property("_succeed", node->_succeed);
     devtools::property("_responseCode", node->_responseCode);
     devtools::property("_errorBuffer", node->_errorBuffer);
@@ -459,6 +494,7 @@ devtools::registerNode<cocos2d::extension::CCHttpResponse>([](cocos2d::extension
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCLightning>) {
 devtools::registerNode<cocos2d::CCLightning>([](cocos2d::CCLightning* node) {
+    devtools::label("Members for cocos2d::CCLightning:");
     devtools::property("m_strikePoint", node->m_strikePoint);
     devtools::property("m_strikePoint2", node->m_strikePoint2);
     devtools::property("m_split", node->m_split);
@@ -484,6 +520,7 @@ devtools::registerNode<cocos2d::CCLightning>([](cocos2d::CCLightning* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODSound>) {
 devtools::registerNode<FMODSound>([](FMODSound* node) {
+    devtools::label("Members for FMODSound:");
     devtools::property("m_filePath", node->m_filePath);
     devtools::property("m_length", node->m_length);
     devtools::property("m_playCount", node->m_playCount);
@@ -495,6 +532,7 @@ devtools::registerNode<FMODSound>([](FMODSound* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AdvancedFollowInstance>) {
 devtools::registerNode<AdvancedFollowInstance>([](AdvancedFollowInstance* node) {
+    devtools::label("Members for AdvancedFollowInstance:");
     devtools::property("m_group", node->m_group);
     devtools::property("m_objectKey", node->m_objectKey);
     devtools::property("m_controlId", node->m_controlId);
@@ -510,6 +548,7 @@ devtools::registerNode<AdvancedFollowInstance>([](AdvancedFollowInstance* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SFXTriggerInstance>) {
 devtools::registerNode<SFXTriggerInstance>([](SFXTriggerInstance* node) {
+    devtools::label("Members for SFXTriggerInstance:");
     devtools::property("m_groupID1", node->m_groupID1);
     devtools::property("m_groupID2", node->m_groupID2);
     devtools::property("m_controlID", node->m_controlID);
@@ -519,6 +558,7 @@ devtools::registerNode<SFXTriggerInstance>([](SFXTriggerInstance* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EventTriggerInstance>) {
 devtools::registerNode<EventTriggerInstance>([](EventTriggerInstance* node) {
+    devtools::label("Members for EventTriggerInstance:");
     devtools::property("m_targetID", node->m_targetID);
     devtools::property("m_uniqueID", node->m_uniqueID);
     devtools::property("m_controlID", node->m_controlID);
@@ -529,6 +569,7 @@ devtools::registerNode<EventTriggerInstance>([](EventTriggerInstance* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SongChannelState>) {
 devtools::registerNode<SongChannelState>([](SongChannelState* node) {
+    devtools::label("Members for SongChannelState:");
     devtools::property("m_unkDouble1", node->m_unkDouble1);
     devtools::property("m_unkDouble2", node->m_unkDouble2);
     devtools::label(fmt::format("SongTriggerGameObject* m_songTriggerGameObject1 at {}", (void*)node->m_songTriggerGameObject1).c_str());
@@ -538,6 +579,7 @@ devtools::registerNode<SongChannelState>([](SongChannelState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SongTriggerState>) {
 devtools::registerNode<SongTriggerState>([](SongTriggerState* node) {
+    devtools::label("Members for SongTriggerState:");
     devtools::property("m_unkDouble", node->m_unkDouble);
     devtools::label(fmt::format("SongTriggerGameObject* m_songTriggerGameObject at {}", (void*)node->m_songTriggerGameObject).c_str());
 });
@@ -545,6 +587,7 @@ devtools::registerNode<SongTriggerState>([](SongTriggerState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SFXStateContainer>) {
 devtools::registerNode<SFXStateContainer>([](SFXStateContainer* node) {
+    devtools::label("Members for SFXStateContainer:");
     devtools::property("m_unkDouble1", node->m_unkDouble1);
     devtools::property("m_unkDouble2", node->m_unkDouble2);
     devtools::property("m_unkFloat1", node->m_unkFloat1);
@@ -555,6 +598,7 @@ devtools::registerNode<SFXStateContainer>([](SFXStateContainer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SFXTriggerState>) {
 devtools::registerNode<SFXTriggerState>([](SFXTriggerState* node) {
+    devtools::label("Members for SFXTriggerState:");
     devtools::property("m_unkInt1", node->m_unkInt1);
     devtools::property("m_unkDouble1", node->m_unkDouble1);
     devtools::property("m_unkDouble2", node->m_unkDouble2);
@@ -574,6 +618,7 @@ devtools::registerNode<SFXTriggerState>([](SFXTriggerState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ChanceObject>) {
 devtools::registerNode<ChanceObject>([](ChanceObject* node) {
+    devtools::label("Members for ChanceObject:");
     devtools::property("m_groupID", node->m_groupID);
     devtools::property("m_oldGroupID", node->m_oldGroupID);
     devtools::property("m_chance", node->m_chance);
@@ -583,6 +628,7 @@ devtools::registerNode<ChanceObject>([](ChanceObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SmartPrefabResult>) {
 devtools::registerNode<SmartPrefabResult>([](SmartPrefabResult* node) {
+    devtools::label("Members for SmartPrefabResult:");
     devtools::property("m_binaryKey", node->m_binaryKey);
     devtools::property("m_prefabKey", node->m_prefabKey);
     devtools::property("m_prefabCount", node->m_prefabCount);
@@ -597,6 +643,7 @@ devtools::registerNode<SmartPrefabResult>([](SmartPrefabResult* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameObjectPhysics>) {
 devtools::registerNode<GameObjectPhysics>([](GameObjectPhysics* node) {
+    devtools::label("Members for GameObjectPhysics:");
     devtools::property("m_unkPoint1", node->m_unkPoint1);
     devtools::property("m_unkPoint2", node->m_unkPoint2);
     devtools::property("m_unkFloat1", node->m_unkFloat1);
@@ -610,6 +657,7 @@ devtools::registerNode<GameObjectPhysics>([](GameObjectPhysics* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DynamicObjectAction>) {
 devtools::registerNode<DynamicObjectAction>([](DynamicObjectAction* node) {
+    devtools::label("Members for DynamicObjectAction:");
     devtools::property("m_unkFloat1", node->m_unkFloat1);
     devtools::property("m_unkFloat2", node->m_unkFloat2);
     devtools::property("m_unkFloat3", node->m_unkFloat3);
@@ -633,6 +681,7 @@ devtools::registerNode<DynamicObjectAction>([](DynamicObjectAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJTransformState>) {
 devtools::registerNode<GJTransformState>([](GJTransformState* node) {
+    devtools::label("Members for GJTransformState:");
     devtools::property("m_scaleX", node->m_scaleX);
     devtools::property("m_scaleY", node->m_scaleY);
     devtools::property("m_angleX", node->m_angleX);
@@ -653,6 +702,7 @@ devtools::registerNode<GJTransformState>([](GJTransformState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CAState>) {
 devtools::registerNode<CAState>([](CAState* node) {
+    devtools::label("Members for CAState:");
     devtools::property("m_fromColor", node->m_fromColor);
     devtools::property("m_toColor", node->m_toColor);
     devtools::property("m_color", node->m_color);
@@ -675,6 +725,7 @@ devtools::registerNode<CAState>([](CAState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJPointDouble>) {
 devtools::registerNode<GJPointDouble>([](GJPointDouble* node) {
+    devtools::label("Members for GJPointDouble:");
     devtools::property("m_x", node->m_x);
     devtools::property("m_y", node->m_y);
 });
@@ -682,6 +733,7 @@ devtools::registerNode<GJPointDouble>([](GJPointDouble* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SavedObjectStateRef>) {
 devtools::registerNode<SavedObjectStateRef>([](SavedObjectStateRef* node) {
+    devtools::label("Members for SavedObjectStateRef:");
     devtools::property("m_positionX", node->m_positionX);
     devtools::property("m_positionY", node->m_positionY);
     devtools::property("m_rotationXOffset", node->m_rotationXOffset);
@@ -696,6 +748,7 @@ devtools::registerNode<SavedObjectStateRef>([](SavedObjectStateRef* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SavedActiveObjectState>) {
 devtools::registerNode<SavedActiveObjectState>([](SavedActiveObjectState* node) {
+    devtools::label("Members for SavedActiveObjectState:");
     devtools::property("m_activatedByPlayer1", node->m_activatedByPlayer1);
     devtools::property("m_activatedByPlayer2", node->m_activatedByPlayer2);
     devtools::label(fmt::format("GameObject* m_gameObject at {}", (void*)node->m_gameObject).c_str());
@@ -704,6 +757,7 @@ devtools::registerNode<SavedActiveObjectState>([](SavedActiveObjectState* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SavedSpecialObjectState>) {
 devtools::registerNode<SavedSpecialObjectState>([](SavedSpecialObjectState* node) {
+    devtools::label("Members for SavedSpecialObjectState:");
     devtools::property("m_animationID", node->m_animationID);
     devtools::label(fmt::format("GameObject* m_gameObject at {}", (void*)node->m_gameObject).c_str());
 });
@@ -711,6 +765,7 @@ devtools::registerNode<SavedSpecialObjectState>([](SavedSpecialObjectState* node
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SequenceTriggerState>) {
 devtools::registerNode<SequenceTriggerState>([](SequenceTriggerState* node) {
+    devtools::label("Members for SequenceTriggerState:");
     devtools::label("gd::unordered_map<int,float> m_unkUnorderedMap1");
     devtools::label("gd::unordered_map<int,int> m_unkUnorderedMap2");
 });
@@ -718,6 +773,7 @@ devtools::registerNode<SequenceTriggerState>([](SequenceTriggerState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODSoundTween>) {
 devtools::registerNode<FMODSoundTween>([](FMODSoundTween* node) {
+    devtools::label("Members for FMODSoundTween:");
     devtools::property("m_interval", node->m_interval);
     devtools::property("m_duration", node->m_duration);
     devtools::property("m_start", node->m_start);
@@ -729,6 +785,7 @@ devtools::registerNode<FMODSoundTween>([](FMODSoundTween* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODQueuedMusic>) {
 devtools::registerNode<FMODQueuedMusic>([](FMODQueuedMusic* node) {
+    devtools::label("Members for FMODQueuedMusic:");
     devtools::property("m_filePath", node->m_filePath);
     devtools::property("m_pitch", node->m_pitch);
     devtools::property("m_unkFloat2", node->m_unkFloat2);
@@ -750,6 +807,7 @@ devtools::registerNode<FMODQueuedMusic>([](FMODQueuedMusic* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SoundStateContainer>) {
 devtools::registerNode<SoundStateContainer>([](SoundStateContainer* node) {
+    devtools::label("Members for SoundStateContainer:");
     devtools::property("m_fadePointCount", node->m_fadePointCount);
     devtools::property("m_currentOffset", node->m_currentOffset);
     devtools::property("m_loopStartMs", node->m_loopStartMs);
@@ -765,6 +823,7 @@ devtools::registerNode<SoundStateContainer>([](SoundStateContainer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODSoundState>) {
 devtools::registerNode<FMODSoundState>([](FMODSoundState* node) {
+    devtools::label("Members for FMODSoundState:");
     devtools::property("m_filePath", node->m_filePath);
     devtools::property("m_speed", node->m_speed);
     devtools::property("m_unkFloat1", node->m_unkFloat1);
@@ -786,6 +845,7 @@ devtools::registerNode<FMODSoundState>([](FMODSoundState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TimerItem>) {
 devtools::registerNode<TimerItem>([](TimerItem* node) {
+    devtools::label("Members for TimerItem:");
     devtools::property("m_itemID", node->m_itemID);
     devtools::property("m_time", node->m_time);
     devtools::property("m_active", node->m_active);
@@ -803,6 +863,7 @@ devtools::registerNode<TimerItem>([](TimerItem* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EnterEffectAnimValue>) {
 devtools::registerNode<EnterEffectAnimValue>([](EnterEffectAnimValue* node) {
+    devtools::label("Members for EnterEffectAnimValue:");
     devtools::property("m_key", node->m_key);
     devtools::property("m_value", node->m_value);
     devtools::property("m_distance", node->m_distance);
@@ -836,6 +897,7 @@ devtools::registerNode<EnterEffectAnimValue>([](EnterEffectAnimValue* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DynamicMoveCalculation>) {
 devtools::registerNode<DynamicMoveCalculation>([](DynamicMoveCalculation* node) {
+    devtools::label("Members for DynamicMoveCalculation:");
     devtools::property("m_offset", node->m_offset);
     devtools::label(fmt::format("CCMoveCNode* m_moveNode at {}", (void*)node->m_moveNode).c_str());
     devtools::label(fmt::format("GameObject* m_gameObject at {}", (void*)node->m_gameObject).c_str());
@@ -844,6 +906,7 @@ devtools::registerNode<DynamicMoveCalculation>([](DynamicMoveCalculation* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, tk_spline>) {
 devtools::registerNode<tk_spline>([](tk_spline* node) {
+    devtools::label("Members for tk_spline:");
     devtools::property("m_c0", node->m_c0);
     devtools::property("m_type", node->m_type);
     devtools::property("m_left", node->m_left);
@@ -861,6 +924,7 @@ devtools::registerNode<tk_spline>([](tk_spline* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJDropDownLayer>) {
 devtools::registerNode<GJDropDownLayer>([](GJDropDownLayer* node) {
+    devtools::label("Members for GJDropDownLayer:");
     devtools::property("m_endPosition", node->m_endPosition);
     devtools::property("m_startPosition", node->m_startPosition);
     devtools::property("m_closeOnHide", node->m_closeOnHide);
@@ -874,6 +938,7 @@ devtools::registerNode<GJDropDownLayer>([](GJDropDownLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AccountHelpLayer>) {
 devtools::registerNode<AccountHelpLayer>([](AccountHelpLayer* node) {
+    devtools::label("Members for AccountHelpLayer:");
     devtools::property("m_unk290", node->m_unk290);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_loginStatusLabel at {}", (void*)node->m_loginStatusLabel).c_str());
     devtools::label(fmt::format("TextArea* m_textArea at {}", (void*)node->m_textArea).c_str());
@@ -884,6 +949,7 @@ devtools::registerNode<AccountHelpLayer>([](AccountHelpLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AccountLayer>) {
 devtools::registerNode<AccountLayer>([](AccountLayer* node) {
+    devtools::label("Members for AccountLayer:");
     devtools::property("m_accountHelpRelated", node->m_accountHelpRelated);
     devtools::property("m_isLoggedIn", node->m_isLoggedIn);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_linkedAccountTitle at {}", (void*)node->m_linkedAccountTitle).c_str());
@@ -900,6 +966,7 @@ devtools::registerNode<AccountLayer>([](AccountLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FLAlertLayer>) {
 devtools::registerNode<FLAlertLayer>([](FLAlertLayer* node) {
+    devtools::label("Members for FLAlertLayer:");
     devtools::property("m_reverseKeyBack", node->m_reverseKeyBack);
     devtools::property("m_color", node->m_color);
     devtools::property("m_ZOrder", node->m_ZOrder);
@@ -922,6 +989,7 @@ devtools::registerNode<FLAlertLayer>([](FLAlertLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AccountLoginLayer>) {
 devtools::registerNode<AccountLoginLayer>([](AccountLoginLayer* node) {
+    devtools::label("Members for AccountLoginLayer:");
     devtools::property("m_username", node->m_username);
     devtools::property("m_password", node->m_password);
     devtools::label(fmt::format("CCTextInputNode* m_usernameInput at {}", (void*)node->m_usernameInput).c_str());
@@ -934,6 +1002,7 @@ devtools::registerNode<AccountLoginLayer>([](AccountLoginLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AccountRegisterLayer>) {
 devtools::registerNode<AccountRegisterLayer>([](AccountRegisterLayer* node) {
+    devtools::label("Members for AccountRegisterLayer:");
     devtools::property("m_lockInput", node->m_lockInput);
     devtools::label(fmt::format("CCTextInputNode* m_usernameField at {}", (void*)node->m_usernameField).c_str());
     devtools::label(fmt::format("CCTextInputNode* m_passwordField at {}", (void*)node->m_passwordField).c_str());
@@ -951,6 +1020,7 @@ devtools::registerNode<AccountRegisterLayer>([](AccountRegisterLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AchievementBar>) {
 devtools::registerNode<AchievementBar>([](AchievementBar* node) {
+    devtools::label("Members for AchievementBar:");
     devtools::property("m_unkUnused", node->m_unkUnused);
     devtools::label(fmt::format("cocos2d::CCLayerColor* m_layerColor at {}", (void*)node->m_layerColor).c_str());
     devtools::label(fmt::format("cocos2d::CCScene* m_nextScene at {}", (void*)node->m_nextScene).c_str());
@@ -965,6 +1035,7 @@ devtools::registerNode<AchievementBar>([](AchievementBar* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCIndexPath>) {
 devtools::registerNode<CCIndexPath>([](CCIndexPath* node) {
+    devtools::label("Members for CCIndexPath:");
     devtools::property("m_row", node->m_row);
     devtools::property("m_section", node->m_section);
 });
@@ -972,6 +1043,7 @@ devtools::registerNode<CCIndexPath>([](CCIndexPath* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TableViewCell>) {
 devtools::registerNode<TableViewCell>([](TableViewCell* node) {
+    devtools::label("Members for TableViewCell:");
     devtools::property("m_cellIdentifier", node->m_cellIdentifier);
     devtools::property("m_width", node->m_width);
     devtools::property("m_height", node->m_height);
@@ -1021,6 +1093,7 @@ devtools::registerNode<TableViewCell>([](TableViewCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AchievementManager>) {
 devtools::registerNode<AchievementManager>([](AchievementManager* node) {
+    devtools::label("Members for AchievementManager:");
     devtools::property("m_dontNotify", node->m_dontNotify);
     devtools::property("m_order", node->m_order);
     devtools::label(fmt::format("cocos2d::CCArray* m_allAchievements at {}", (void*)node->m_allAchievements).c_str());
@@ -1035,6 +1108,7 @@ devtools::registerNode<AchievementManager>([](AchievementManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AchievementNotifier>) {
 devtools::registerNode<AchievementNotifier>([](AchievementNotifier* node) {
+    devtools::label("Members for AchievementNotifier:");
     devtools::label(fmt::format("cocos2d::CCScene* m_nextScene at {}", (void*)node->m_nextScene).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_achievementBarArray at {}", (void*)node->m_achievementBarArray).c_str());
     devtools::label(fmt::format("AchievementBar* m_activeAchievementBar at {}", (void*)node->m_activeAchievementBar).c_str());
@@ -1043,6 +1117,7 @@ devtools::registerNode<AchievementNotifier>([](AchievementNotifier* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AchievementsLayer>) {
 devtools::registerNode<AchievementsLayer>([](AchievementsLayer* node) {
+    devtools::label("Members for AchievementsLayer:");
     devtools::property("m_currentPage", node->m_currentPage);
     devtools::property("m_unkPoint", node->m_unkPoint);
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_nextPageButton at {}", (void*)node->m_nextPageButton).c_str());
@@ -1053,6 +1128,7 @@ devtools::registerNode<AchievementsLayer>([](AchievementsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCSpritePlus>) {
 devtools::registerNode<CCSpritePlus>([](CCSpritePlus* node) {
+    devtools::label("Members for CCSpritePlus:");
     devtools::property("m_hasFollower", node->m_hasFollower);
     devtools::property("m_propagateScaleChanges", node->m_propagateScaleChanges);
     devtools::property("m_propagateFlipChanges", node->m_propagateFlipChanges);
@@ -1063,6 +1139,7 @@ devtools::registerNode<CCSpritePlus>([](CCSpritePlus* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameObject>) {
 devtools::registerNode<GameObject>([](GameObject* node) {
+    devtools::label("Members for GameObject:");
     devtools::property("m_someOtherIndex", node->m_someOtherIndex);
     devtools::property("m_innerSectionIndex", node->m_innerSectionIndex);
     devtools::property("m_outerSectionIndex", node->m_outerSectionIndex);
@@ -1408,6 +1485,7 @@ devtools::registerNode<GameObject>([](GameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EnhancedGameObject>) {
 devtools::registerNode<EnhancedGameObject>([](EnhancedGameObject* node) {
+    devtools::label("Members for EnhancedGameObject:");
     devtools::property("m_poweredOn", node->m_poweredOn);
     devtools::property("m_state", node->m_state);
     devtools::property("m_animationRandomizedStartValue", node->m_animationRandomizedStartValue);
@@ -1452,6 +1530,7 @@ devtools::registerNode<EnhancedGameObject>([](EnhancedGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EffectGameObject>) {
 devtools::registerNode<EffectGameObject>([](EffectGameObject* node) {
+    devtools::label("Members for EffectGameObject:");
     devtools::property("m_unknownBool", node->m_unknownBool);
     devtools::property("m_triggerTargetColor", node->m_triggerTargetColor);
     devtools::property("m_duration", node->m_duration);
@@ -1608,6 +1687,7 @@ devtools::registerNode<EffectGameObject>([](EffectGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AdvancedFollowTriggerObject>) {
 devtools::registerNode<AdvancedFollowTriggerObject>([](AdvancedFollowTriggerObject* node) {
+    devtools::label("Members for AdvancedFollowTriggerObject:");
     devtools::property("m_delay", node->m_delay);
     devtools::property("m_delayVariance", node->m_delayVariance);
     devtools::property("m_startSpeed", node->m_startSpeed);
@@ -1677,6 +1757,7 @@ devtools::registerNode<AdvancedFollowTriggerObject>([](AdvancedFollowTriggerObje
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AdvancedFollowEditObject>) {
 devtools::registerNode<AdvancedFollowEditObject>([](AdvancedFollowEditObject* node) {
+    devtools::label("Members for AdvancedFollowEditObject:");
     devtools::property("m_modX", node->m_modX);
     devtools::property("m_modXVariance", node->m_modXVariance);
     devtools::property("m_modY", node->m_modY);
@@ -1687,6 +1768,7 @@ devtools::registerNode<AdvancedFollowEditObject>([](AdvancedFollowEditObject* no
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AdvFollowSetup>) {
 devtools::registerNode<AdvFollowSetup>([](AdvFollowSetup* node) {
+    devtools::label("Members for AdvFollowSetup:");
     devtools::property("m_delay", node->m_delay);
     devtools::label("gd::unordered_set<int> m_centerIDs");
     devtools::label("gd::unordered_set<int> m_groupIDs");
@@ -1696,6 +1778,7 @@ devtools::registerNode<AdvFollowSetup>([](AdvFollowSetup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AnimatedGameObject>) {
 devtools::registerNode<AnimatedGameObject>([](AnimatedGameObject* node) {
+    devtools::label("Members for AnimatedGameObject:");
     devtools::property("m_finishedAnimating", node->m_finishedAnimating);
     devtools::property("m_playingAnimation", node->m_playingAnimation);
     devtools::property("m_currentAnimation", node->m_currentAnimation);
@@ -1709,6 +1792,7 @@ devtools::registerNode<AnimatedGameObject>([](AnimatedGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCAnimatedSprite>) {
 devtools::registerNode<CCAnimatedSprite>([](CCAnimatedSprite* node) {
+    devtools::label("Members for CCAnimatedSprite:");
     devtools::property("m_unkString1", node->m_unkString1);
     devtools::property("m_activeTween", node->m_activeTween);
     devtools::enumerable("m_spriteMode", node->m_spriteMode, {
@@ -1726,6 +1810,7 @@ devtools::registerNode<CCAnimatedSprite>([](CCAnimatedSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AnimatedShopKeeper>) {
 devtools::registerNode<AnimatedShopKeeper>([](AnimatedShopKeeper* node) {
+    devtools::label("Members for AnimatedShopKeeper:");
     devtools::enumerable("m_type", node->m_type, {
         { ShopType::Normal, "ShopType::Normal" },
         { ShopType::Secret, "ShopType::Secret" },
@@ -1745,6 +1830,7 @@ devtools::registerNode<AnimatedShopKeeper>([](AnimatedShopKeeper* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AppDelegate>) {
 devtools::registerNode<AppDelegate>([](AppDelegate* node) {
+    devtools::label("Members for AppDelegate:");
     devtools::property("m_glViewSetup", node->m_glViewSetup);
     devtools::property("m_gamePaused", node->m_gamePaused);
     devtools::property("m_loadingFinished", node->m_loadingFinished);
@@ -1760,18 +1846,21 @@ devtools::registerNode<AppDelegate>([](AppDelegate* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ArtistCell>) {
 devtools::registerNode<ArtistCell>([](ArtistCell* node) {
+    devtools::label("Members for ArtistCell:");
     devtools::label(fmt::format("SongInfoObject* m_songInfo at {}", (void*)node->m_songInfo).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ArtTriggerGameObject>) {
 devtools::registerNode<ArtTriggerGameObject>([](ArtTriggerGameObject* node) {
+    devtools::label("Members for ArtTriggerGameObject:");
     devtools::property("m_artIndex", node->m_artIndex);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AudioAssetsBrowser>) {
 devtools::registerNode<AudioAssetsBrowser>([](AudioAssetsBrowser* node) {
+    devtools::label("Members for AudioAssetsBrowser:");
     devtools::label(fmt::format("cocos2d::CCArray* m_songInfoObjects at {}", (void*)node->m_songInfoObjects).c_str());
     devtools::label(fmt::format("GJCommentListLayer* m_songList at {}", (void*)node->m_songList).c_str());
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_pageIndicatorLabel at {}", (void*)node->m_pageIndicatorLabel).c_str());
@@ -1783,6 +1872,7 @@ devtools::registerNode<AudioAssetsBrowser>([](AudioAssetsBrowser* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AudioEffectsLayer>) {
 devtools::registerNode<AudioEffectsLayer>([](AudioEffectsLayer* node) {
+    devtools::label("Members for AudioEffectsLayer:");
     devtools::property("m_timeElapsed", node->m_timeElapsed);
     devtools::property("m_audioPulseMod", node->m_audioPulseMod);
     devtools::property("m_goingDown", node->m_goingDown);
@@ -1796,6 +1886,7 @@ devtools::registerNode<AudioEffectsLayer>([](AudioEffectsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AudioLineGuideGameObject>) {
 devtools::registerNode<AudioLineGuideGameObject>([](AudioLineGuideGameObject* node) {
+    devtools::label("Members for AudioLineGuideGameObject:");
     devtools::property("m_beatsPerMinute", node->m_beatsPerMinute);
     devtools::property("m_beatsPerBar", node->m_beatsPerBar);
     devtools::enumerable("m_speed", node->m_speed, {
@@ -1811,12 +1902,14 @@ devtools::registerNode<AudioLineGuideGameObject>([](AudioLineGuideGameObject* no
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, BitmapFontCache>) {
 devtools::registerNode<BitmapFontCache>([](BitmapFontCache* node) {
+    devtools::label("Members for BitmapFontCache:");
     devtools::label(fmt::format("cocos2d::CCDictionary* m_cache at {}", (void*)node->m_cache).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, BonusDropdown>) {
 devtools::registerNode<BonusDropdown>([](BonusDropdown* node) {
+    devtools::label("Members for BonusDropdown:");
     devtools::property("m_yPosition", node->m_yPosition);
     devtools::label(fmt::format("cocos2d::CCLayerColor* m_layerColor at {}", (void*)node->m_layerColor).c_str());
     devtools::label(fmt::format("cocos2d::CCScene* m_scene at {}", (void*)node->m_scene).c_str());
@@ -1825,6 +1918,7 @@ devtools::registerNode<BonusDropdown>([](BonusDropdown* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, BoomListView>) {
 devtools::registerNode<BoomListView>([](BoomListView* node) {
+    devtools::label("Members for BoomListView:");
     devtools::enumerable("m_type", node->m_type, {
         { BoomListType::Default, "BoomListType::Default" },
         { BoomListType::User, "BoomListType::User" },
@@ -1872,6 +1966,7 @@ devtools::registerNode<BoomListView>([](BoomListView* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, BoomScrollLayer>) {
 devtools::registerNode<BoomScrollLayer>([](BoomScrollLayer* node) {
+    devtools::label("Members for BoomScrollLayer:");
     devtools::property("m_slowPage", node->m_slowPage);
     devtools::property("m_touchX", node->m_touchX);
     devtools::property("m_touchQuotient", node->m_touchQuotient);
@@ -1913,6 +2008,7 @@ devtools::registerNode<BoomScrollLayer>([](BoomScrollLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, BrowseSmartTemplateLayer>) {
 devtools::registerNode<BrowseSmartTemplateLayer>([](BrowseSmartTemplateLayer* node) {
+    devtools::label("Members for BrowseSmartTemplateLayer:");
     devtools::property("m_page", node->m_page);
     devtools::label(fmt::format("GJSmartTemplate* m_template at {}", (void*)node->m_template).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_pages at {}", (void*)node->m_pages).c_str());
@@ -1924,6 +2020,7 @@ devtools::registerNode<BrowseSmartTemplateLayer>([](BrowseSmartTemplateLayer* no
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, BrowseSmartKeyLayer>) {
 devtools::registerNode<BrowseSmartKeyLayer>([](BrowseSmartKeyLayer* node) {
+    devtools::label("Members for BrowseSmartKeyLayer:");
     devtools::property("m_prefabKey", node->m_prefabKey);
     devtools::property("m_templatePage", node->m_templatePage);
 });
@@ -1931,6 +2028,7 @@ devtools::registerNode<BrowseSmartKeyLayer>([](BrowseSmartKeyLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ButtonSprite>) {
 devtools::registerNode<ButtonSprite>([](ButtonSprite* node) {
+    devtools::label("Members for ButtonSprite:");
     devtools::property("m_mode", node->m_mode);
     devtools::property("m_width", node->m_width);
     devtools::property("m_unkFloat", node->m_unkFloat);
@@ -1949,6 +2047,7 @@ devtools::registerNode<ButtonSprite>([](ButtonSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CameraTriggerGameObject>) {
 devtools::registerNode<CameraTriggerGameObject>([](CameraTriggerGameObject* node) {
+    devtools::label("Members for CameraTriggerGameObject:");
     devtools::property("m_exitStatic", node->m_exitStatic);
     devtools::property("m_followObject", node->m_followObject);
     devtools::property("m_followEasing", node->m_followEasing);
@@ -1962,12 +2061,14 @@ devtools::registerNode<CameraTriggerGameObject>([](CameraTriggerGameObject* node
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCAlertCircle>) {
 devtools::registerNode<CCAlertCircle>([](CCAlertCircle* node) {
+    devtools::label("Members for CCAlertCircle:");
     devtools::label(fmt::format("CCCircleAlert* m_circleAlert at {}", (void*)node->m_circleAlert).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCAnimateFrameCache>) {
 devtools::registerNode<CCAnimateFrameCache>([](CCAnimateFrameCache* node) {
+    devtools::label("Members for CCAnimateFrameCache:");
     devtools::label(fmt::format("cocos2d::CCDictionary* m_animateFrames at {}", (void*)node->m_animateFrames).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_unk040 at {}", (void*)node->m_unk040).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_animateDescriptions at {}", (void*)node->m_animateDescriptions).c_str());
@@ -1976,6 +2077,7 @@ devtools::registerNode<CCAnimateFrameCache>([](CCAnimateFrameCache* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCBlockLayer>) {
 devtools::registerNode<CCBlockLayer>([](CCBlockLayer* node) {
+    devtools::label("Members for CCBlockLayer:");
     devtools::property("m_closeOnHide", node->m_closeOnHide);
     devtools::property("m_forcePrioRegistered", node->m_forcePrioRegistered);
 });
@@ -1983,6 +2085,7 @@ devtools::registerNode<CCBlockLayer>([](CCBlockLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCCircleWave>) {
 devtools::registerNode<CCCircleWave>([](CCCircleWave* node) {
+    devtools::label("Members for CCCircleWave:");
     devtools::property("m_width", node->m_width);
     devtools::property("m_radius", node->m_radius);
     devtools::property("m_opacity", node->m_opacity);
@@ -2002,6 +2105,7 @@ devtools::registerNode<CCCircleWave>([](CCCircleWave* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCCountdown>) {
 devtools::registerNode<CCCountdown>([](CCCountdown* node) {
+    devtools::label("Members for CCCountdown:");
     devtools::property("m_unk260", node->m_unk260);
     devtools::property("m_seconds", node->m_seconds);
     devtools::label(fmt::format("cocos2d::CCProgressTimer* m_progressTimer at {}", (void*)node->m_progressTimer).c_str());
@@ -2013,6 +2117,7 @@ devtools::registerNode<CCCountdown>([](CCCountdown* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCCounterLabel>) {
 devtools::registerNode<CCCounterLabel>([](CCCounterLabel* node) {
+    devtools::label("Members for CCCounterLabel:");
     devtools::property("m_stepSize", node->m_stepSize);
     devtools::property("m_targetCount", node->m_targetCount);
     devtools::property("m_currentCount", node->m_currentCount);
@@ -2028,6 +2133,7 @@ devtools::registerNode<CCCounterLabel>([](CCCounterLabel* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCLightFlash>) {
 devtools::registerNode<CCLightFlash>([](CCLightFlash* node) {
+    devtools::label("Members for CCLightFlash:");
     devtools::property("m_dontFadeOut", node->m_dontFadeOut);
     devtools::property("m_layerColorZOrder", node->m_layerColorZOrder);
     devtools::label(fmt::format("cocos2d::CCArray* m_lightStripArray at {}", (void*)node->m_lightStripArray).c_str());
@@ -2038,6 +2144,7 @@ devtools::registerNode<CCLightFlash>([](CCLightFlash* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCLightStrip>) {
 devtools::registerNode<CCLightStrip>([](CCLightStrip* node) {
+    devtools::label("Members for CCLightStrip:");
     devtools::property("m_objectWidth", node->m_objectWidth);
     devtools::property("m_toWidth", node->m_toWidth);
     devtools::property("m_toHeight", node->m_toHeight);
@@ -2051,6 +2158,7 @@ devtools::registerNode<CCLightStrip>([](CCLightStrip* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCMenuItemSpriteExtra>) {
 devtools::registerNode<CCMenuItemSpriteExtra>([](CCMenuItemSpriteExtra* node) {
+    devtools::label("Members for CCMenuItemSpriteExtra:");
     devtools::property("m_scaleMultiplier", node->m_scaleMultiplier);
     devtools::property("m_baseScale", node->m_baseScale);
     devtools::property("m_animationEnabled", node->m_animationEnabled);
@@ -2087,6 +2195,7 @@ devtools::registerNode<CCMenuItemSpriteExtra>([](CCMenuItemSpriteExtra* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCMenuItemToggler>) {
 devtools::registerNode<CCMenuItemToggler>([](CCMenuItemToggler* node) {
+    devtools::label("Members for CCMenuItemToggler:");
     devtools::property("m_toggled", node->m_toggled);
     devtools::property("m_notClickable", node->m_notClickable);
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_offButton at {}", (void*)node->m_offButton).c_str());
@@ -2096,6 +2205,7 @@ devtools::registerNode<CCMenuItemToggler>([](CCMenuItemToggler* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCMoveCNode>) {
 devtools::registerNode<CCMoveCNode>([](CCMoveCNode* node) {
+    devtools::label("Members for CCMoveCNode:");
     devtools::property("m_unk038", node->m_unk038);
     devtools::property("m_unk040", node->m_unk040);
     devtools::property("m_unk048", node->m_unk048);
@@ -2126,6 +2236,7 @@ devtools::registerNode<CCMoveCNode>([](CCMoveCNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCPartAnimSprite>) {
 devtools::registerNode<CCPartAnimSprite>([](CCPartAnimSprite* node) {
+    devtools::label("Members for CCPartAnimSprite:");
     devtools::property("m_hasChanged", node->m_hasChanged);
     devtools::property("m_unkSize", node->m_unkSize);
     devtools::label(fmt::format("cocos2d::CCDictionary* m_spritePartIDs at {}", (void*)node->m_spritePartIDs).c_str());
@@ -2136,6 +2247,7 @@ devtools::registerNode<CCPartAnimSprite>([](CCPartAnimSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCScrollLayerExt>) {
 devtools::registerNode<CCScrollLayerExt>([](CCScrollLayerExt* node) {
+    devtools::label("Members for CCScrollLayerExt:");
     devtools::property("m_touchPosition", node->m_touchPosition);
     devtools::property("m_touchStartPosition", node->m_touchStartPosition);
     devtools::property("m_touchDown", node->m_touchDown);
@@ -2161,6 +2273,7 @@ devtools::registerNode<CCScrollLayerExt>([](CCScrollLayerExt* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCSpriteWithHue>) {
 devtools::registerNode<CCSpriteWithHue>([](CCSpriteWithHue* node) {
+    devtools::label("Members for CCSpriteWithHue:");
     devtools::property("m_hue", node->m_hue);
     devtools::property("m_uHueLoc", node->m_uHueLoc);
     devtools::property("m_uAlphaLoc", node->m_uAlphaLoc);
@@ -2172,6 +2285,7 @@ devtools::registerNode<CCSpriteWithHue>([](CCSpriteWithHue* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCSpritePart>) {
 devtools::registerNode<CCSpritePart>([](CCSpritePart* node) {
+    devtools::label("Members for CCSpritePart:");
     devtools::property("m_isBeingUsed", node->m_isBeingUsed);
     devtools::property("m_spriteFrameName", node->m_spriteFrameName);
     devtools::label(fmt::format("SpritePartDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
@@ -2180,6 +2294,7 @@ devtools::registerNode<CCSpritePart>([](CCSpritePart* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCTextInputNode>) {
 devtools::registerNode<CCTextInputNode>([](CCTextInputNode* node) {
+    devtools::label("Members for CCTextInputNode:");
     devtools::property("m_numberInput", node->m_numberInput);
     devtools::property("m_caption", node->m_caption);
     devtools::property("m_unknown1", node->m_unknown1);
@@ -2215,6 +2330,7 @@ devtools::registerNode<CCTextInputNode>([](CCTextInputNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCURLObject>) {
 devtools::registerNode<CCURLObject>([](CCURLObject* node) {
+    devtools::label("Members for CCURLObject:");
     devtools::property("m_name", node->m_name);
     devtools::property("m_url", node->m_url);
 });
@@ -2222,6 +2338,7 @@ devtools::registerNode<CCURLObject>([](CCURLObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ChallengesPage>) {
 devtools::registerNode<ChallengesPage>([](ChallengesPage* node) {
+    devtools::label("Members for ChallengesPage:");
     devtools::property("m_triedToLoad", node->m_triedToLoad);
     devtools::property("m_unkBool", node->m_unkBool);
     devtools::label(fmt::format("cocos2d::CCArray* m_dots at {}", (void*)node->m_dots).c_str());
@@ -2234,6 +2351,7 @@ devtools::registerNode<ChallengesPage>([](ChallengesPage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJChallengeItem>) {
 devtools::registerNode<GJChallengeItem>([](GJChallengeItem* node) {
+    devtools::label("Members for GJChallengeItem:");
     devtools::enumerable("m_challengeType", node->m_challengeType, {
         { GJChallengeType::Unknown, "GJChallengeType::Unknown" },
         { GJChallengeType::Orbs, "GJChallengeType::Orbs" },
@@ -2253,6 +2371,7 @@ devtools::registerNode<GJChallengeItem>([](GJChallengeItem* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ChallengeNode>) {
 devtools::registerNode<ChallengeNode>([](ChallengeNode* node) {
+    devtools::label("Members for ChallengeNode:");
     devtools::property("m_unkPoint", node->m_unkPoint);
     devtools::property("m_unloaded", node->m_unloaded);
     devtools::label(fmt::format("ChallengesPage* m_challengesPage at {}", (void*)node->m_challengesPage).c_str());
@@ -2263,12 +2382,14 @@ devtools::registerNode<ChallengeNode>([](ChallengeNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ChanceTriggerGameObject>) {
 devtools::registerNode<ChanceTriggerGameObject>([](ChanceTriggerGameObject* node) {
+    devtools::label("Members for ChanceTriggerGameObject:");
     devtools::label("gd::vector<ChanceObject> m_chanceObjects");
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CharacterColorPage>) {
 devtools::registerNode<CharacterColorPage>([](CharacterColorPage* node) {
+    devtools::label("Members for CharacterColorPage:");
     devtools::property("m_colorMode", node->m_colorMode);
     devtools::property("m_height", node->m_height);
     devtools::property("m_width", node->m_width);
@@ -2284,6 +2405,7 @@ devtools::registerNode<CharacterColorPage>([](CharacterColorPage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CheckpointGameObject>) {
 devtools::registerNode<CheckpointGameObject>([](CheckpointGameObject* node) {
+    devtools::label("Members for CheckpointGameObject:");
     devtools::property("m_checkpointActivated", node->m_checkpointActivated);
     devtools::property("m_respawnID", node->m_respawnID);
 });
@@ -2291,6 +2413,7 @@ devtools::registerNode<CheckpointGameObject>([](CheckpointGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EnterEffectInstance>) {
 devtools::registerNode<EnterEffectInstance>([](EnterEffectInstance* node) {
+    devtools::label("Members for EnterEffectInstance:");
     devtools::property("m_length", node->m_length);
     devtools::property("m_lengthVariance", node->m_lengthVariance);
     devtools::property("m_offset", node->m_offset);
@@ -2341,6 +2464,7 @@ devtools::registerNode<EnterEffectInstance>([](EnterEffectInstance* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJValueTween>) {
 devtools::registerNode<GJValueTween>([](GJValueTween* node) {
+    devtools::label("Members for GJValueTween:");
     devtools::property("m_fromValue", node->m_fromValue);
     devtools::property("m_toValue", node->m_toValue);
     devtools::property("m_duration", node->m_duration);
@@ -2357,6 +2481,7 @@ devtools::registerNode<GJValueTween>([](GJValueTween* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJGameState>) {
 devtools::registerNode<GJGameState>([](GJGameState* node) {
+    devtools::label("Members for GJGameState:");
     devtools::property("m_cameraZoom", node->m_cameraZoom);
     devtools::property("m_targetCameraZoom", node->m_targetCameraZoom);
     devtools::property("m_cameraOffset", node->m_cameraOffset);
@@ -2522,6 +2647,7 @@ devtools::registerNode<GJGameState>([](GJGameState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJShaderState>) {
 devtools::registerNode<GJShaderState>([](GJShaderState* node) {
+    devtools::label("Members for GJShaderState:");
     devtools::property("m_time", node->m_time);
     devtools::property("m_prevTime", node->m_prevTime);
     devtools::property("m_startTime", node->m_startTime);
@@ -2676,6 +2802,7 @@ devtools::registerNode<GJShaderState>([](GJShaderState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODAudioState>) {
 devtools::registerNode<FMODAudioState>([](FMODAudioState* node) {
+    devtools::label("Members for FMODAudioState:");
     devtools::property("m_interval", node->m_interval);
     devtools::property("m_elapsed", node->m_elapsed);
     devtools::property("m_unkUint64_1", node->m_unkUint64_1);
@@ -2700,6 +2827,7 @@ devtools::registerNode<FMODAudioState>([](FMODAudioState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PulseEffectAction>) {
 devtools::registerNode<PulseEffectAction>([](PulseEffectAction* node) {
+    devtools::label("Members for PulseEffectAction:");
     devtools::property("m_disabled", node->m_disabled);
     devtools::property("m_fadeInTime", node->m_fadeInTime);
     devtools::property("m_holdTime", node->m_holdTime);
@@ -2726,6 +2854,7 @@ devtools::registerNode<PulseEffectAction>([](PulseEffectAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CountTriggerAction>) {
 devtools::registerNode<CountTriggerAction>([](CountTriggerAction* node) {
+    devtools::label("Members for CountTriggerAction:");
     devtools::property("m_disabled", node->m_disabled);
     devtools::property("m_previousCount", node->m_previousCount);
     devtools::property("m_targetCount", node->m_targetCount);
@@ -2741,6 +2870,7 @@ devtools::registerNode<CountTriggerAction>([](CountTriggerAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, OpacityEffectAction>) {
 devtools::registerNode<OpacityEffectAction>([](OpacityEffectAction* node) {
+    devtools::label("Members for OpacityEffectAction:");
     devtools::property("m_duration", node->m_duration);
     devtools::property("m_fromValue", node->m_fromValue);
     devtools::property("m_toValue", node->m_toValue);
@@ -2758,6 +2888,7 @@ devtools::registerNode<OpacityEffectAction>([](OpacityEffectAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TouchToggleAction>) {
 devtools::registerNode<TouchToggleAction>([](TouchToggleAction* node) {
+    devtools::label("Members for TouchToggleAction:");
     devtools::property("m_disabled", node->m_disabled);
     devtools::property("m_targetGroupID", node->m_targetGroupID);
     devtools::property("m_holdMode", node->m_holdMode);
@@ -2780,6 +2911,7 @@ devtools::registerNode<TouchToggleAction>([](TouchToggleAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CollisionTriggerAction>) {
 devtools::registerNode<CollisionTriggerAction>([](CollisionTriggerAction* node) {
+    devtools::label("Members for CollisionTriggerAction:");
     devtools::property("m_disabled", node->m_disabled);
     devtools::property("m_blockAID", node->m_blockAID);
     devtools::property("m_blockBID", node->m_blockBID);
@@ -2794,6 +2926,7 @@ devtools::registerNode<CollisionTriggerAction>([](CollisionTriggerAction* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ToggleTriggerAction>) {
 devtools::registerNode<ToggleTriggerAction>([](ToggleTriggerAction* node) {
+    devtools::label("Members for ToggleTriggerAction:");
     devtools::property("m_disabled", node->m_disabled);
     devtools::property("m_targetGroupID", node->m_targetGroupID);
     devtools::property("m_activateGroup", node->m_activateGroup);
@@ -2805,6 +2938,7 @@ devtools::registerNode<ToggleTriggerAction>([](ToggleTriggerAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SpawnTriggerAction>) {
 devtools::registerNode<SpawnTriggerAction>([](SpawnTriggerAction* node) {
+    devtools::label("Members for SpawnTriggerAction:");
     devtools::property("m_finished", node->m_finished);
     devtools::property("m_disabled", node->m_disabled);
     devtools::property("m_duration", node->m_duration);
@@ -2820,6 +2954,7 @@ devtools::registerNode<SpawnTriggerAction>([](SpawnTriggerAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, KeyframeObject>) {
 devtools::registerNode<KeyframeObject>([](KeyframeObject* node) {
+    devtools::label("Members for KeyframeObject:");
     devtools::property("m_unk000", node->m_unk000);
     devtools::property("m_unk008", node->m_unk008);
     devtools::property("m_unk00c", node->m_unk00c);
@@ -2847,6 +2982,7 @@ devtools::registerNode<KeyframeObject>([](KeyframeObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GroupCommandObject2>) {
 devtools::registerNode<GroupCommandObject2>([](GroupCommandObject2* node) {
+    devtools::label("Members for GroupCommandObject2:");
     devtools::property("m_groupCommandUniqueID", node->m_groupCommandUniqueID);
     devtools::property("m_moveOffset", node->m_moveOffset);
     devtools::enumerable("m_easingType", node->m_easingType, {
@@ -2950,6 +3086,7 @@ devtools::registerNode<GroupCommandObject2>([](GroupCommandObject2* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TimerTriggerAction>) {
 devtools::registerNode<TimerTriggerAction>([](TimerTriggerAction* node) {
+    devtools::label("Members for TimerTriggerAction:");
     devtools::property("m_disabled", node->m_disabled);
     devtools::property("m_time", node->m_time);
     devtools::property("m_targetTime", node->m_targetTime);
@@ -2964,6 +3101,7 @@ devtools::registerNode<TimerTriggerAction>([](TimerTriggerAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EffectManagerState>) {
 devtools::registerNode<EffectManagerState>([](EffectManagerState* node) {
+    devtools::label("Members for EffectManagerState:");
     devtools::label("gd::vector<CAState> m_unkVecCAState");
     devtools::label("gd::vector<PulseEffectAction> m_unkVecPulseEffectAction");
     devtools::label("gd::unordered_map<int,gd::vector<PulseEffectAction>> m_unorderedMapInt_vectorPulseEffectAction");
@@ -2987,6 +3125,7 @@ devtools::registerNode<EffectManagerState>([](EffectManagerState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CheckpointObject>) {
 devtools::registerNode<CheckpointObject>([](CheckpointObject* node) {
+    devtools::label("Members for CheckpointObject:");
     devtools::property("m_unke78", node->m_unke78);
     devtools::property("m_unke7c", node->m_unke7c);
     devtools::property("m_unke80", node->m_unke80);
@@ -3013,6 +3152,7 @@ devtools::registerNode<CheckpointObject>([](CheckpointObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CollisionBlockPopup>) {
 devtools::registerNode<CollisionBlockPopup>([](CollisionBlockPopup* node) {
+    devtools::label("Members for CollisionBlockPopup:");
     devtools::property("m_blockID", node->m_blockID);
     devtools::property("m_dynamicBlock", node->m_dynamicBlock);
     devtools::property("m_disableDelegate", node->m_disableDelegate);
@@ -3024,6 +3164,7 @@ devtools::registerNode<CollisionBlockPopup>([](CollisionBlockPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ColorAction>) {
 devtools::registerNode<ColorAction>([](ColorAction* node) {
+    devtools::label("Members for ColorAction:");
     devtools::property("m_stepFinished", node->m_stepFinished);
     devtools::property("m_paused", node->m_paused);
     devtools::property("m_color", node->m_color);
@@ -3054,6 +3195,7 @@ devtools::registerNode<ColorAction>([](ColorAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ColorAction2>) {
 devtools::registerNode<ColorAction2>([](ColorAction2* node) {
+    devtools::label("Members for ColorAction2:");
     devtools::property("m_stepFinished", node->m_stepFinished);
     devtools::property("m_paused", node->m_paused);
     devtools::property("m_color", node->m_color);
@@ -3082,6 +3224,7 @@ devtools::registerNode<ColorAction2>([](ColorAction2* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ColorActionSprite>) {
 devtools::registerNode<ColorActionSprite>([](ColorActionSprite* node) {
+    devtools::label("Members for ColorActionSprite:");
     devtools::property("m_opacity", node->m_opacity);
     devtools::property("m_color", node->m_color);
     devtools::property("m_copyColor", node->m_copyColor);
@@ -3093,6 +3236,7 @@ devtools::registerNode<ColorActionSprite>([](ColorActionSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ColorChannelSprite>) {
 devtools::registerNode<ColorChannelSprite>([](ColorChannelSprite* node) {
+    devtools::label("Members for ColorChannelSprite:");
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_copyLabel at {}", (void*)node->m_copyLabel).c_str());
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_opacityLabel at {}", (void*)node->m_opacityLabel).c_str());
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_blendingLabel at {}", (void*)node->m_blendingLabel).c_str());
@@ -3101,6 +3245,7 @@ devtools::registerNode<ColorChannelSprite>([](ColorChannelSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ColorSelectLiveOverlay>) {
 devtools::registerNode<ColorSelectLiveOverlay>([](ColorSelectLiveOverlay* node) {
+    devtools::label("Members for ColorSelectLiveOverlay:");
     devtools::property("m_mainColor", node->m_mainColor);
     devtools::property("m_detailColor", node->m_detailColor);
     devtools::property("m_targetColor", node->m_targetColor);
@@ -3137,6 +3282,7 @@ devtools::registerNode<ColorSelectLiveOverlay>([](ColorSelectLiveOverlay* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupTriggerPopup>) {
 devtools::registerNode<SetupTriggerPopup>([](SetupTriggerPopup* node) {
+    devtools::label("Members for SetupTriggerPopup:");
     devtools::property("m_touchTriggered", node->m_touchTriggered);
     devtools::property("m_spawnTriggered", node->m_spawnTriggered);
     devtools::property("m_multiTriggered", node->m_multiTriggered);
@@ -3202,6 +3348,7 @@ devtools::registerNode<SetupTriggerPopup>([](SetupTriggerPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ColorSelectPopup>) {
 devtools::registerNode<ColorSelectPopup>([](ColorSelectPopup* node) {
+    devtools::label("Members for ColorSelectPopup:");
     devtools::property("m_unk3c0", node->m_unk3c0);
     devtools::property("m_originalColor", node->m_originalColor);
     devtools::property("m_currentColor", node->m_currentColor);
@@ -3248,6 +3395,7 @@ devtools::registerNode<ColorSelectPopup>([](ColorSelectPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CommentCell>) {
 devtools::registerNode<CommentCell>([](CommentCell* node) {
+    devtools::label("Members for CommentCell:");
     devtools::property("m_accountComment", node->m_accountComment);
     devtools::property("m_unk259", node->m_unk259);
     devtools::property("m_compactMode", node->m_compactMode);
@@ -3259,6 +3407,7 @@ devtools::registerNode<CommentCell>([](CommentCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CommunityCreditNode>) {
 devtools::registerNode<CommunityCreditNode>([](CommunityCreditNode* node) {
+    devtools::label("Members for CommunityCreditNode:");
     devtools::property("m_unlockType", node->m_unlockType);
     devtools::property("m_iconID", node->m_iconID);
     devtools::property("m_unknown", node->m_unknown);
@@ -3268,6 +3417,7 @@ devtools::registerNode<CommunityCreditNode>([](CommunityCreditNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CommunityCreditsPage>) {
 devtools::registerNode<CommunityCreditsPage>([](CommunityCreditsPage* node) {
+    devtools::label("Members for CommunityCreditsPage:");
     devtools::property("m_page", node->m_page);
     devtools::label(fmt::format("cocos2d::CCDictionary* m_pageObjects at {}", (void*)node->m_pageObjects).c_str());
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_prevButton at {}", (void*)node->m_prevButton).c_str());
@@ -3277,6 +3427,7 @@ devtools::registerNode<CommunityCreditsPage>([](CommunityCreditsPage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ConfigureHSVWidget>) {
 devtools::registerNode<ConfigureHSVWidget>([](ConfigureHSVWidget* node) {
+    devtools::label("Members for ConfigureHSVWidget:");
     devtools::property("m_mixed", node->m_mixed);
     devtools::property("m_addInputs", node->m_addInputs);
     devtools::property("m_updating", node->m_updating);
@@ -3294,6 +3445,7 @@ devtools::registerNode<ConfigureHSVWidget>([](ConfigureHSVWidget* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ConfigureValuePopup>) {
 devtools::registerNode<ConfigureValuePopup>([](ConfigureValuePopup* node) {
+    devtools::label("Members for ConfigureValuePopup:");
     devtools::property("m_value", node->m_value);
     devtools::property("m_minimum", node->m_minimum);
     devtools::property("m_maximum", node->m_maximum);
@@ -3307,6 +3459,7 @@ devtools::registerNode<ConfigureValuePopup>([](ConfigureValuePopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CountTriggerGameObject>) {
 devtools::registerNode<CountTriggerGameObject>([](CountTriggerGameObject* node) {
+    devtools::label("Members for CountTriggerGameObject:");
     devtools::property("m_pickupCount", node->m_pickupCount);
     devtools::property("m_pickupTriggerMode", node->m_pickupTriggerMode);
     devtools::property("m_multiActivate", node->m_multiActivate);
@@ -3317,6 +3470,7 @@ devtools::registerNode<CountTriggerGameObject>([](CountTriggerGameObject* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CreateGuidelinesLayer>) {
 devtools::registerNode<CreateGuidelinesLayer>([](CreateGuidelinesLayer* node) {
+    devtools::label("Members for CreateGuidelinesLayer:");
     devtools::property("m_elapsed", node->m_elapsed);
     devtools::property("m_recording", node->m_recording);
     devtools::property("m_unk2b5", node->m_unk2b5);
@@ -3333,6 +3487,7 @@ devtools::registerNode<CreateGuidelinesLayer>([](CreateGuidelinesLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CreateMenuItem>) {
 devtools::registerNode<CreateMenuItem>([](CreateMenuItem* node) {
+    devtools::label("Members for CreateMenuItem:");
     devtools::property("m_spriteFileName", node->m_spriteFileName);
     devtools::property("m_objectID", node->m_objectID);
     devtools::property("m_pageIndex", node->m_pageIndex);
@@ -3342,6 +3497,7 @@ devtools::registerNode<CreateMenuItem>([](CreateMenuItem* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CreateParticlePopup>) {
 devtools::registerNode<CreateParticlePopup>([](CreateParticlePopup* node) {
+    devtools::label("Members for CreateParticlePopup:");
     devtools::property("m_disableTextDelegate", node->m_disableTextDelegate);
     devtools::property("m_touchID", node->m_touchID);
     devtools::property("m_touchDelta", node->m_touchDelta);
@@ -3387,6 +3543,7 @@ devtools::registerNode<CreateParticlePopup>([](CreateParticlePopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CreatorLayer>) {
 devtools::registerNode<CreatorLayer>([](CreatorLayer* node) {
+    devtools::label("Members for CreatorLayer:");
     devtools::property("m_vaultDialogIndex", node->m_vaultDialogIndex);
     devtools::property("m_versusDialogIndex", node->m_versusDialogIndex);
     devtools::label(fmt::format("cocos2d::CCSprite* m_secretDoorSprite at {}", (void*)node->m_secretDoorSprite).c_str());
@@ -3396,6 +3553,7 @@ devtools::registerNode<CreatorLayer>([](CreatorLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CurrencyRewardLayer>) {
 devtools::registerNode<CurrencyRewardLayer>([](CurrencyRewardLayer* node) {
+    devtools::label("Members for CurrencyRewardLayer:");
     devtools::property("m_orbs", node->m_orbs);
     devtools::property("m_stars", node->m_stars);
     devtools::property("m_moons", node->m_moons);
@@ -3440,6 +3598,7 @@ devtools::registerNode<CurrencyRewardLayer>([](CurrencyRewardLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CurrencySprite>) {
 devtools::registerNode<CurrencySprite>([](CurrencySprite* node) {
+    devtools::label("Members for CurrencySprite:");
     devtools::property("m_unkFloat1", node->m_unkFloat1);
     devtools::property("m_unkFloat2", node->m_unkFloat2);
     devtools::property("m_unkFloat3", node->m_unkFloat3);
@@ -3472,6 +3631,7 @@ devtools::registerNode<CurrencySprite>([](CurrencySprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CustomizeObjectLayer>) {
 devtools::registerNode<CustomizeObjectLayer>([](CustomizeObjectLayer* node) {
+    devtools::label("Members for CustomizeObjectLayer:");
     devtools::property("m_selectedMode", node->m_selectedMode);
     devtools::property("m_customColorChannel", node->m_customColorChannel);
     devtools::property("m_hasBaseColor", node->m_hasBaseColor);
@@ -3512,6 +3672,7 @@ devtools::registerNode<CustomizeObjectLayer>([](CustomizeObjectLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CustomizeObjectSettingsPopup>) {
 devtools::registerNode<CustomizeObjectSettingsPopup>([](CustomizeObjectSettingsPopup* node) {
+    devtools::label("Members for CustomizeObjectSettingsPopup:");
     devtools::property("m_settingsChanged", node->m_settingsChanged);
     devtools::label(fmt::format("CustomizeObjectLayer* m_customizeLayer at {}", (void*)node->m_customizeLayer).c_str());
 });
@@ -3519,12 +3680,14 @@ devtools::registerNode<CustomizeObjectSettingsPopup>([](CustomizeObjectSettingsP
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CustomListView>) {
 devtools::registerNode<CustomListView>([](CustomListView* node) {
+    devtools::label("Members for CustomListView:");
     devtools::property("m_cellMode", node->m_cellMode);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CustomSongCell>) {
 devtools::registerNode<CustomSongCell>([](CustomSongCell* node) {
+    devtools::label("Members for CustomSongCell:");
     devtools::property("m_selected", node->m_selected);
     devtools::label(fmt::format("SongInfoObject* m_songInfoObject at {}", (void*)node->m_songInfoObject).c_str());
 });
@@ -3532,6 +3695,7 @@ devtools::registerNode<CustomSongCell>([](CustomSongCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CustomSFXCell>) {
 devtools::registerNode<CustomSFXCell>([](CustomSFXCell* node) {
+    devtools::label("Members for CustomSFXCell:");
     devtools::property("m_selected", node->m_selected);
     devtools::property("m_compactMode", node->m_compactMode);
     devtools::label(fmt::format("SFXInfoObject* m_sfxObject at {}", (void*)node->m_sfxObject).c_str());
@@ -3540,6 +3704,7 @@ devtools::registerNode<CustomSFXCell>([](CustomSFXCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CustomSFXWidget>) {
 devtools::registerNode<CustomSFXWidget>([](CustomSFXWidget* node) {
+    devtools::label("Members for CustomSFXWidget:");
     devtools::property("m_showDelete", node->m_showDelete);
     devtools::property("m_showPlay", node->m_showPlay);
     devtools::property("m_showDownload", node->m_showDownload);
@@ -3566,6 +3731,7 @@ devtools::registerNode<CustomSFXWidget>([](CustomSFXWidget* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CustomSongLayer>) {
 devtools::registerNode<CustomSongLayer>([](CustomSongLayer* node) {
+    devtools::label("Members for CustomSongLayer:");
     devtools::label(fmt::format("CustomSongDelegate* m_songDelegate at {}", (void*)node->m_songDelegate).c_str());
     devtools::label(fmt::format("CCTextInputNode* m_songIDInput at {}", (void*)node->m_songIDInput).c_str());
     devtools::label(fmt::format("CustomSongWidget* m_songWidget at {}", (void*)node->m_songWidget).c_str());
@@ -3575,6 +3741,7 @@ devtools::registerNode<CustomSongLayer>([](CustomSongLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJAssetDownloadAction>) {
 devtools::registerNode<GJAssetDownloadAction>([](GJAssetDownloadAction* node) {
+    devtools::label("Members for GJAssetDownloadAction:");
     devtools::property("m_id", node->m_id);
     devtools::enumerable("m_assetType", node->m_assetType, {
         { GJAssetType::Song, "GJAssetType::Song" },
@@ -3586,6 +3753,7 @@ devtools::registerNode<GJAssetDownloadAction>([](GJAssetDownloadAction* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CustomSongWidget>) {
 devtools::registerNode<CustomSongWidget>([](CustomSongWidget* node) {
+    devtools::label("Members for CustomSongWidget:");
     devtools::property("m_showSelectSongBtn", node->m_showSelectSongBtn);
     devtools::property("m_showPlayMusicBtn", node->m_showPlayMusicBtn);
     devtools::property("m_showDownloadBtn", node->m_showDownloadBtn);
@@ -3628,6 +3796,7 @@ devtools::registerNode<CustomSongWidget>([](CustomSongWidget* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DailyLevelNode>) {
 devtools::registerNode<DailyLevelNode>([](DailyLevelNode* node) {
+    devtools::label("Members for DailyLevelNode:");
     devtools::property("m_unkPoint", node->m_unkPoint);
     devtools::property("m_unkBool", node->m_unkBool);
     devtools::property("m_needsDownloading", node->m_needsDownloading);
@@ -3640,6 +3809,7 @@ devtools::registerNode<DailyLevelNode>([](DailyLevelNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DailyLevelPage>) {
 devtools::registerNode<DailyLevelPage>([](DailyLevelPage* node) {
+    devtools::label("Members for DailyLevelPage:");
     devtools::property("m_gettingDailyStatus", node->m_gettingDailyStatus);
     devtools::property("m_downloadStarted", node->m_downloadStarted);
     devtools::enumerable("m_type", node->m_type, {
@@ -3657,6 +3827,7 @@ devtools::registerNode<DailyLevelPage>([](DailyLevelPage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, RingObject>) {
 devtools::registerNode<RingObject>([](RingObject* node) {
+    devtools::label("Members for RingObject:");
     devtools::property("m_claimTouch", node->m_claimTouch);
     devtools::property("m_isSpawnOnly", node->m_isSpawnOnly);
 });
@@ -3664,6 +3835,7 @@ devtools::registerNode<RingObject>([](RingObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DashRingObject>) {
 devtools::registerNode<DashRingObject>([](DashRingObject* node) {
+    devtools::label("Members for DashRingObject:");
     devtools::property("m_dashSpeed", node->m_dashSpeed);
     devtools::property("m_endBoost", node->m_endBoost);
     devtools::property("m_maxDuration", node->m_maxDuration);
@@ -3674,6 +3846,7 @@ devtools::registerNode<DashRingObject>([](DashRingObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DelayedSpawnNode>) {
 devtools::registerNode<DelayedSpawnNode>([](DelayedSpawnNode* node) {
+    devtools::label("Members for DelayedSpawnNode:");
     devtools::property("m_spawnDelay", node->m_spawnDelay);
     devtools::label(fmt::format("EffectGameObject* m_gameObject at {}", (void*)node->m_gameObject).c_str());
 });
@@ -3681,6 +3854,7 @@ devtools::registerNode<DelayedSpawnNode>([](DelayedSpawnNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DemonFilterSelectLayer>) {
 devtools::registerNode<DemonFilterSelectLayer>([](DemonFilterSelectLayer* node) {
+    devtools::label("Members for DemonFilterSelectLayer:");
     devtools::property("m_currentDemon", node->m_currentDemon);
     devtools::label(fmt::format("cocos2d::CCArray* m_demons at {}", (void*)node->m_demons).c_str());
     devtools::label(fmt::format("void* m_unkPtr at {}", (void*)node->m_unkPtr).c_str());
@@ -3690,6 +3864,7 @@ devtools::registerNode<DemonFilterSelectLayer>([](DemonFilterSelectLayer* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DialogLayer>) {
 devtools::registerNode<DialogLayer>([](DialogLayer* node) {
+    devtools::label("Members for DialogLayer:");
     devtools::property("m_animateTime", node->m_animateTime);
     devtools::property("m_touchID", node->m_touchID);
     devtools::property("m_animating", node->m_animating);
@@ -3716,6 +3891,7 @@ devtools::registerNode<DialogLayer>([](DialogLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DialogObject>) {
 devtools::registerNode<DialogObject>([](DialogObject* node) {
+    devtools::label("Members for DialogObject:");
     devtools::property("m_text", node->m_text);
     devtools::property("m_character", node->m_character);
     devtools::property("m_characterFrame", node->m_characterFrame);
@@ -3727,6 +3903,7 @@ devtools::registerNode<DialogObject>([](DialogObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DrawGridLayer>) {
 devtools::registerNode<DrawGridLayer>([](DrawGridLayer* node) {
+    devtools::label("Members for DrawGridLayer:");
     devtools::property("m_musicTime", node->m_musicTime);
     devtools::property("m_playbackTime", node->m_playbackTime);
     devtools::property("m_oldPlaybackTime", node->m_oldPlaybackTime);
@@ -3759,18 +3936,21 @@ devtools::registerNode<DrawGridLayer>([](DrawGridLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DungeonBarsSprite>) {
 devtools::registerNode<DungeonBarsSprite>([](DungeonBarsSprite* node) {
+    devtools::label("Members for DungeonBarsSprite:");
     devtools::label(fmt::format("cocos2d::CCSprite* m_barsSprite at {}", (void*)node->m_barsSprite).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DynamicBitset>) {
 devtools::registerNode<DynamicBitset>([](DynamicBitset* node) {
+    devtools::label("Members for DynamicBitset:");
     devtools::label("gd::vector<unsigned int> m_bits");
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EditButtonBar>) {
 devtools::registerNode<EditButtonBar>([](EditButtonBar* node) {
+    devtools::label("Members for EditButtonBar:");
     devtools::property("m_position", node->m_position);
     devtools::property("m_tabIndex", node->m_tabIndex);
     devtools::property("m_hasCreateItems", node->m_hasCreateItems);
@@ -3782,6 +3962,7 @@ devtools::registerNode<EditButtonBar>([](EditButtonBar* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EditLevelLayer>) {
 devtools::registerNode<EditLevelLayer>([](EditLevelLayer* node) {
+    devtools::label("Members for EditLevelLayer:");
     devtools::property("m_exiting", node->m_exiting);
     devtools::enumerable("m_levelType", node->m_levelType, {
         { GJLevelType::Default, "GJLevelType::Default" },
@@ -3801,6 +3982,7 @@ devtools::registerNode<EditLevelLayer>([](EditLevelLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJOptionsLayer>) {
 devtools::registerNode<GJOptionsLayer>([](GJOptionsLayer* node) {
+    devtools::label("Members for GJOptionsLayer:");
     devtools::property("m_gap", node->m_gap);
     devtools::property("m_page", node->m_page);
     devtools::property("m_togglesPerPage", node->m_togglesPerPage);
@@ -3818,6 +4000,7 @@ devtools::registerNode<GJOptionsLayer>([](GJOptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EditorOptionsLayer>) {
 devtools::registerNode<EditorOptionsLayer>([](EditorOptionsLayer* node) {
+    devtools::label("Members for EditorOptionsLayer:");
     devtools::property("m_buttonsPerRow", node->m_buttonsPerRow);
     devtools::property("m_buttonRows", node->m_buttonRows);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_buttonsPerRowLabel at {}", (void*)node->m_buttonsPerRowLabel).c_str());
@@ -3827,6 +4010,7 @@ devtools::registerNode<EditorOptionsLayer>([](EditorOptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EditorPauseLayer>) {
 devtools::registerNode<EditorPauseLayer>([](EditorPauseLayer* node) {
+    devtools::label("Members for EditorPauseLayer:");
     devtools::property("m_saved", node->m_saved);
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_guidelinesOffButton at {}", (void*)node->m_guidelinesOffButton).c_str());
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_guidelinesOnButton at {}", (void*)node->m_guidelinesOnButton).c_str());
@@ -3836,6 +4020,7 @@ devtools::registerNode<EditorPauseLayer>([](EditorPauseLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameObjectEditorState>) {
 devtools::registerNode<GameObjectEditorState>([](GameObjectEditorState* node) {
+    devtools::label("Members for GameObjectEditorState:");
     devtools::property("m_position", node->m_position);
     devtools::property("m_scaleX", node->m_scaleX);
     devtools::property("m_scaleY", node->m_scaleY);
@@ -3846,6 +4031,7 @@ devtools::registerNode<GameObjectEditorState>([](GameObjectEditorState* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EditorUI>) {
 devtools::registerNode<EditorUI>([](EditorUI* node) {
+    devtools::label("Members for EditorUI:");
     devtools::property("m_isPlayingMusic", node->m_isPlayingMusic);
     devtools::property("m_alertShown", node->m_alertShown);
     devtools::property("m_gridSize", node->m_gridSize);
@@ -3981,6 +4167,7 @@ devtools::registerNode<EditorUI>([](EditorUI* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EndLevelLayer>) {
 devtools::registerNode<EndLevelLayer>([](EndLevelLayer* node) {
+    devtools::label("Members for EndLevelLayer:");
     devtools::property("m_notLocal", node->m_notLocal);
     devtools::property("m_coinsVerified", node->m_coinsVerified);
     devtools::property("m_unknown3", node->m_unknown3);
@@ -4004,6 +4191,7 @@ devtools::registerNode<EndLevelLayer>([](EndLevelLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EndPortalObject>) {
 devtools::registerNode<EndPortalObject>([](EndPortalObject* node) {
+    devtools::label("Members for EndPortalObject:");
     devtools::property("m_flippedX", node->m_flippedX);
     devtools::property("m_startPosHeightRelated", node->m_startPosHeightRelated);
     devtools::label(fmt::format("cocos2d::CCSprite* m_gradientBar at {}", (void*)node->m_gradientBar).c_str());
@@ -4012,6 +4200,7 @@ devtools::registerNode<EndPortalObject>([](EndPortalObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EndTriggerGameObject>) {
 devtools::registerNode<EndTriggerGameObject>([](EndTriggerGameObject* node) {
+    devtools::label("Members for EndTriggerGameObject:");
     devtools::property("m_noEffects", node->m_noEffects);
     devtools::property("m_noSFX", node->m_noSFX);
     devtools::property("m_instant", node->m_instant);
@@ -4020,6 +4209,7 @@ devtools::registerNode<EndTriggerGameObject>([](EndTriggerGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EnhancedTriggerObject>) {
 devtools::registerNode<EnhancedTriggerObject>([](EnhancedTriggerObject* node) {
+    devtools::label("Members for EnhancedTriggerObject:");
     devtools::property("m_minXID", node->m_minXID);
     devtools::property("m_minYID", node->m_minYID);
     devtools::property("m_maxXID", node->m_maxXID);
@@ -4029,6 +4219,7 @@ devtools::registerNode<EnhancedTriggerObject>([](EnhancedTriggerObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EnterEffectObject>) {
 devtools::registerNode<EnterEffectObject>([](EnterEffectObject* node) {
+    devtools::label("Members for EnterEffectObject:");
     devtools::property("m_enterType", node->m_enterType);
     devtools::property("m_length", node->m_length);
     devtools::property("m_lengthVariance", node->m_lengthVariance);
@@ -4131,6 +4322,7 @@ devtools::registerNode<EnterEffectObject>([](EnterEffectObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, EventLinkTrigger>) {
 devtools::registerNode<EventLinkTrigger>([](EventLinkTrigger* node) {
+    devtools::label("Members for EventLinkTrigger:");
     devtools::property("m_resetRemap", node->m_resetRemap);
     devtools::property("m_extraID", node->m_extraID);
     devtools::property("m_extraID2", node->m_extraID2);
@@ -4140,6 +4332,7 @@ devtools::registerNode<EventLinkTrigger>([](EventLinkTrigger* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ExplodeItemNode>) {
 devtools::registerNode<ExplodeItemNode>([](ExplodeItemNode* node) {
+    devtools::label("Members for ExplodeItemNode:");
     devtools::property("m_unk1", node->m_unk1);
     devtools::property("m_floorHeight", node->m_floorHeight);
     devtools::property("m_noGravity", node->m_noGravity);
@@ -4150,6 +4343,7 @@ devtools::registerNode<ExplodeItemNode>([](ExplodeItemNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ExplodeItemSprite>) {
 devtools::registerNode<ExplodeItemSprite>([](ExplodeItemSprite* node) {
+    devtools::label("Members for ExplodeItemSprite:");
     devtools::property("m_xVelocity", node->m_xVelocity);
     devtools::property("m_yVelocity", node->m_yVelocity);
     devtools::property("m_timeRemaining", node->m_timeRemaining);
@@ -4161,12 +4355,14 @@ devtools::registerNode<ExplodeItemSprite>([](ExplodeItemSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ExtendedLayer>) {
 devtools::registerNode<ExtendedLayer>([](ExtendedLayer* node) {
+    devtools::label("Members for ExtendedLayer:");
     devtools::label(fmt::format("BoomScrollLayerDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GManager>) {
 devtools::registerNode<GManager>([](GManager* node) {
+    devtools::label("Members for GManager:");
     devtools::property("m_fileName", node->m_fileName);
     devtools::property("m_setup", node->m_setup);
     devtools::property("m_saved", node->m_saved);
@@ -4176,12 +4372,14 @@ devtools::registerNode<GManager>([](GManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FileSaveManager>) {
 devtools::registerNode<FileSaveManager>([](FileSaveManager* node) {
+    devtools::label("Members for FileSaveManager:");
     devtools::label(fmt::format("cocos2d::CCDictionary* m_storeData at {}", (void*)node->m_storeData).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FindBPMLayer>) {
 devtools::registerNode<FindBPMLayer>([](FindBPMLayer* node) {
+    devtools::label("Members for FindBPMLayer:");
     devtools::property("m_songID", node->m_songID);
     devtools::property("m_startOffset", node->m_startOffset);
     devtools::property("m_beats", node->m_beats);
@@ -4192,6 +4390,7 @@ devtools::registerNode<FindBPMLayer>([](FindBPMLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetIDPopup>) {
 devtools::registerNode<SetIDPopup>([](SetIDPopup* node) {
+    devtools::label("Members for SetIDPopup:");
     devtools::property("m_value", node->m_value);
     devtools::property("m_disableDelegate", node->m_disableDelegate);
     devtools::property("m_cancelled", node->m_cancelled);
@@ -4205,12 +4404,14 @@ devtools::registerNode<SetIDPopup>([](SetIDPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FindObjectPopup>) {
 devtools::registerNode<FindObjectPopup>([](FindObjectPopup* node) {
+    devtools::label("Members for FindObjectPopup:");
     devtools::property("m_unknownBool", node->m_unknownBool);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODMusic>) {
 devtools::registerNode<FMODMusic>([](FMODMusic* node) {
+    devtools::label("Members for FMODMusic:");
     devtools::property("m_channelID", node->m_channelID);
     devtools::property("m_filePath", node->m_filePath);
     devtools::property("m_ogg", node->m_ogg);
@@ -4221,6 +4422,7 @@ devtools::registerNode<FMODMusic>([](FMODMusic* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODQueuedEffect>) {
 devtools::registerNode<FMODQueuedEffect>([](FMODQueuedEffect* node) {
+    devtools::label("Members for FMODQueuedEffect:");
     devtools::property("m_filePath", node->m_filePath);
     devtools::property("m_speed", node->m_speed);
     devtools::property("m_unk024", node->m_unk024);
@@ -4246,6 +4448,7 @@ devtools::registerNode<FMODQueuedEffect>([](FMODQueuedEffect* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODAudioEngine>) {
 devtools::registerNode<FMODAudioEngine>([](FMODAudioEngine* node) {
+    devtools::label("Members for FMODAudioEngine:");
     devtools::property("m_musicVolume", node->m_musicVolume);
     devtools::property("m_sfxVolume", node->m_sfxVolume);
     devtools::property("m_backgroundMusicFade", node->m_backgroundMusicFade);
@@ -4319,12 +4522,14 @@ devtools::registerNode<FMODAudioEngine>([](FMODAudioEngine* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODLevelVisualizer>) {
 devtools::registerNode<FMODLevelVisualizer>([](FMODLevelVisualizer* node) {
+    devtools::label("Members for FMODLevelVisualizer:");
     devtools::property("m_width", node->m_width);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FollowRewardPage>) {
 devtools::registerNode<FollowRewardPage>([](FollowRewardPage* node) {
+    devtools::label("Members for FollowRewardPage:");
     devtools::property("m_videoPlaying", node->m_videoPlaying);
     devtools::label(fmt::format("cocos2d::CCArray* m_chests at {}", (void*)node->m_chests).c_str());
 });
@@ -4332,12 +4537,14 @@ devtools::registerNode<FollowRewardPage>([](FollowRewardPage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FontObject>) {
 devtools::registerNode<FontObject>([](FontObject* node) {
+    devtools::label("Members for FontObject:");
     devtools::label("std::array<int, 300> m_hugeIntArray");
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ForceBlockGameObject>) {
 devtools::registerNode<ForceBlockGameObject>([](ForceBlockGameObject* node) {
+    devtools::label("Members for ForceBlockGameObject:");
     devtools::property("m_force", node->m_force);
     devtools::property("m_minForce", node->m_minForce);
     devtools::property("m_maxForce", node->m_maxForce);
@@ -4349,6 +4556,7 @@ devtools::registerNode<ForceBlockGameObject>([](ForceBlockGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FRequestProfilePage>) {
 devtools::registerNode<FRequestProfilePage>([](FRequestProfilePage* node) {
+    devtools::label("Members for FRequestProfilePage:");
     devtools::property("m_sent", node->m_sent);
     devtools::property("m_key", node->m_key);
     devtools::property("m_itemCount", node->m_itemCount);
@@ -4370,6 +4578,7 @@ devtools::registerNode<FRequestProfilePage>([](FRequestProfilePage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FriendRequestPopup>) {
 devtools::registerNode<FriendRequestPopup>([](FriendRequestPopup* node) {
+    devtools::label("Members for FriendRequestPopup:");
     devtools::label(fmt::format("void* m_unk at {}", (void*)node->m_unk).c_str());
     devtools::label(fmt::format("GJFriendRequest* m_request at {}", (void*)node->m_request).c_str());
     devtools::label(fmt::format("LoadingCircle* m_circle at {}", (void*)node->m_circle).c_str());
@@ -4380,6 +4589,7 @@ devtools::registerNode<FriendRequestPopup>([](FriendRequestPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FriendsProfilePage>) {
 devtools::registerNode<FriendsProfilePage>([](FriendsProfilePage* node) {
+    devtools::label("Members for FriendsProfilePage:");
     devtools::enumerable("m_type", node->m_type, {
         { UserListType::Friends, "UserListType::Friends" },
         { UserListType::Blocked, "UserListType::Blocked" },
@@ -4396,6 +4606,7 @@ devtools::registerNode<FriendsProfilePage>([](FriendsProfilePage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameCell>) {
 devtools::registerNode<GameCell>([](GameCell* node) {
+    devtools::label("Members for GameCell:");
     devtools::property("m_gameLink", node->m_gameLink);
     devtools::label(fmt::format("void* m_unk230 at {}", (void*)node->m_unk230).c_str());
 });
@@ -4403,12 +4614,14 @@ devtools::registerNode<GameCell>([](GameCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameEffectsManager>) {
 devtools::registerNode<GameEffectsManager>([](GameEffectsManager* node) {
+    devtools::label("Members for GameEffectsManager:");
     devtools::label(fmt::format("PlayLayer* m_playLayer at {}", (void*)node->m_playLayer).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameLevelManager>) {
 devtools::registerNode<GameLevelManager>([](GameLevelManager* node) {
+    devtools::label("Members for GameLevelManager:");
     devtools::property("m_dailyTimeLeft", node->m_dailyTimeLeft);
     devtools::property("m_dailyID", node->m_dailyID);
     devtools::property("m_activeDailyID", node->m_activeDailyID);
@@ -4531,12 +4744,14 @@ devtools::registerNode<GameLevelManager>([](GameLevelManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameLevelOptionsLayer>) {
 devtools::registerNode<GameLevelOptionsLayer>([](GameLevelOptionsLayer* node) {
+    devtools::label("Members for GameLevelOptionsLayer:");
     devtools::label(fmt::format("GJGameLevel* m_level at {}", (void*)node->m_level).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UIButtonConfig>) {
 devtools::registerNode<UIButtonConfig>([](UIButtonConfig* node) {
+    devtools::label("Members for UIButtonConfig:");
     devtools::property("m_width", node->m_width);
     devtools::property("m_height", node->m_height);
     devtools::property("m_deadzone", node->m_deadzone);
@@ -4554,6 +4769,7 @@ devtools::registerNode<UIButtonConfig>([](UIButtonConfig* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameManager>) {
 devtools::registerNode<GameManager>([](GameManager* node) {
+    devtools::label("Members for GameManager:");
     devtools::property("m_switchModes", node->m_switchModes);
     devtools::property("m_toFullscreen", node->m_toFullscreen);
     devtools::property("m_reloading", node->m_reloading);
@@ -4809,6 +5025,7 @@ devtools::registerNode<GameManager>([](GameManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameObjectCopy>) {
 devtools::registerNode<GameObjectCopy>([](GameObjectCopy* node) {
+    devtools::label("Members for GameObjectCopy:");
     devtools::property("m_position", node->m_position);
     devtools::property("m_rotationX", node->m_rotationX);
     devtools::property("m_rotationY", node->m_rotationY);
@@ -4822,6 +5039,7 @@ devtools::registerNode<GameObjectCopy>([](GameObjectCopy* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameOptionsLayer>) {
 devtools::registerNode<GameOptionsLayer>([](GameOptionsLayer* node) {
+    devtools::label("Members for GameOptionsLayer:");
     devtools::property("m_practiceDialogIndex", node->m_practiceDialogIndex);
     devtools::label(fmt::format("GJBaseGameLayer* m_baseGameLayer at {}", (void*)node->m_baseGameLayer).c_str());
 });
@@ -4829,6 +5047,7 @@ devtools::registerNode<GameOptionsLayer>([](GameOptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameOptionsTrigger>) {
 devtools::registerNode<GameOptionsTrigger>([](GameOptionsTrigger* node) {
+    devtools::label("Members for GameOptionsTrigger:");
     devtools::enumerable("m_streakAdditive", node->m_streakAdditive, {
         { GameOptionsSetting::Off, "GameOptionsSetting::Off" },
         { GameOptionsSetting::Disabled, "GameOptionsSetting::Disabled" },
@@ -4900,6 +5119,7 @@ devtools::registerNode<GameOptionsTrigger>([](GameOptionsTrigger* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameStatsManager>) {
 devtools::registerNode<GameStatsManager>([](GameStatsManager* node) {
+    devtools::label("Members for GameStatsManager:");
     devtools::property("m_usePlayerStatsCCDictionary", node->m_usePlayerStatsCCDictionary);
     devtools::property("m_challengeTime", node->m_challengeTime);
     devtools::property("m_skipIncrementChallenge", node->m_skipIncrementChallenge);
@@ -4958,6 +5178,7 @@ devtools::registerNode<GameStatsManager>([](GameStatsManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GauntletLayer>) {
 devtools::registerNode<GauntletLayer>([](GauntletLayer* node) {
+    devtools::label("Members for GauntletLayer:");
     devtools::enumerable("m_gauntletType", node->m_gauntletType, {
         { GauntletType::Fire, "GauntletType::Fire" },
         { GauntletType::Ice, "GauntletType::Ice" },
@@ -5026,6 +5247,7 @@ devtools::registerNode<GauntletLayer>([](GauntletLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GauntletNode>) {
 devtools::registerNode<GauntletNode>([](GauntletNode* node) {
+    devtools::label("Members for GauntletNode:");
     devtools::label(fmt::format("cocos2d::CCNode* m_gauntletInfoNode at {}", (void*)node->m_gauntletInfoNode).c_str());
     devtools::label(fmt::format("cocos2d::CCNode* m_rewardNode at {}", (void*)node->m_rewardNode).c_str());
 });
@@ -5033,6 +5255,7 @@ devtools::registerNode<GauntletNode>([](GauntletNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GauntletSelectLayer>) {
 devtools::registerNode<GauntletSelectLayer>([](GauntletSelectLayer* node) {
+    devtools::label("Members for GauntletSelectLayer:");
     devtools::property("m_exiting", node->m_exiting);
     devtools::property("m_playing", node->m_playing);
     devtools::property("m_playBlocked", node->m_playBlocked);
@@ -5049,6 +5272,7 @@ devtools::registerNode<GauntletSelectLayer>([](GauntletSelectLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GauntletSprite>) {
 devtools::registerNode<GauntletSprite>([](GauntletSprite* node) {
+    devtools::label("Members for GauntletSprite:");
     devtools::enumerable("m_gauntletType", node->m_gauntletType, {
         { GauntletType::Fire, "GauntletType::Fire" },
         { GauntletType::Ice, "GauntletType::Ice" },
@@ -5110,6 +5334,7 @@ devtools::registerNode<GauntletSprite>([](GauntletSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GhostTrailEffect>) {
 devtools::registerNode<GhostTrailEffect>([](GhostTrailEffect* node) {
+    devtools::label("Members for GhostTrailEffect:");
     devtools::property("m_snapshotInterval", node->m_snapshotInterval);
     devtools::property("m_fadeInterval", node->m_fadeInterval);
     devtools::property("m_ghostScale", node->m_ghostScale);
@@ -5129,6 +5354,7 @@ devtools::registerNode<GhostTrailEffect>([](GhostTrailEffect* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJAccountManager>) {
 devtools::registerNode<GJAccountManager>([](GJAccountManager* node) {
+    devtools::label("Members for GJAccountManager:");
     devtools::property("m_username", node->m_username);
     devtools::property("m_accountID", node->m_accountID);
     devtools::property("m_unkInt1", node->m_unkInt1);
@@ -5149,6 +5375,7 @@ devtools::registerNode<GJAccountManager>([](GJAccountManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJAccountSettingsLayer>) {
 devtools::registerNode<GJAccountSettingsLayer>([](GJAccountSettingsLayer* node) {
+    devtools::label("Members for GJAccountSettingsLayer:");
     devtools::property("m_accountID", node->m_accountID);
     devtools::property("m_messageStatus", node->m_messageStatus);
     devtools::property("m_friendStatus", node->m_friendStatus);
@@ -5167,12 +5394,14 @@ devtools::registerNode<GJAccountSettingsLayer>([](GJAccountSettingsLayer* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJActionManager>) {
 devtools::registerNode<GJActionManager>([](GJActionManager* node) {
+    devtools::label("Members for GJActionManager:");
     devtools::label(fmt::format("cocos2d::CCDictionary* m_internalActions at {}", (void*)node->m_internalActions).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PlayerButtonCommand>) {
 devtools::registerNode<PlayerButtonCommand>([](PlayerButtonCommand* node) {
+    devtools::label("Members for PlayerButtonCommand:");
     devtools::enumerable("m_button", node->m_button, {
         { PlayerButton::Jump, "PlayerButton::Jump" },
         { PlayerButton::Left, "PlayerButton::Left" },
@@ -5186,6 +5415,7 @@ devtools::registerNode<PlayerButtonCommand>([](PlayerButtonCommand* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJBaseGameLayer>) {
 devtools::registerNode<GJBaseGameLayer>([](GJBaseGameLayer* node) {
+    devtools::label("Members for GJBaseGameLayer:");
     devtools::enumerable("m_playbackMode", node->m_playbackMode, {
         { PlaybackMode::Not, "PlaybackMode::Not" },
         { PlaybackMode::Playing, "PlaybackMode::Playing" },
@@ -5592,6 +5822,7 @@ devtools::registerNode<GJBaseGameLayer>([](GJBaseGameLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJBigSprite>) {
 devtools::registerNode<GJBigSprite>([](GJBigSprite* node) {
+    devtools::label("Members for GJBigSprite:");
     devtools::property("m_scaleX", node->m_scaleX);
     devtools::property("m_scaleY", node->m_scaleY);
     devtools::property("m_loadSprites", node->m_loadSprites);
@@ -5603,6 +5834,7 @@ devtools::registerNode<GJBigSprite>([](GJBigSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJBigSpriteNode>) {
 devtools::registerNode<GJBigSpriteNode>([](GJBigSpriteNode* node) {
+    devtools::label("Members for GJBigSpriteNode:");
     devtools::property("m_spriteName", node->m_spriteName);
     devtools::property("m_spriteRect", node->m_spriteRect);
     devtools::property("m_spriteVisible", node->m_spriteVisible);
@@ -5612,6 +5844,7 @@ devtools::registerNode<GJBigSpriteNode>([](GJBigSpriteNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJChestSprite>) {
 devtools::registerNode<GJChestSprite>([](GJChestSprite* node) {
+    devtools::label("Members for GJChestSprite:");
     devtools::property("m_chestType", node->m_chestType);
     devtools::enumerable("m_spriteState", node->m_spriteState, {
         { ChestSpriteState::Locked, "ChestSpriteState::Locked" },
@@ -5625,6 +5858,7 @@ devtools::registerNode<GJChestSprite>([](GJChestSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJColorSetupLayer>) {
 devtools::registerNode<GJColorSetupLayer>([](GJColorSetupLayer* node) {
+    devtools::label("Members for GJColorSetupLayer:");
     devtools::property("m_page", node->m_page);
     devtools::property("m_colorsPerPage", node->m_colorsPerPage);
     devtools::property("m_totalPages", node->m_totalPages);
@@ -5643,6 +5877,7 @@ devtools::registerNode<GJColorSetupLayer>([](GJColorSetupLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJComment>) {
 devtools::registerNode<GJComment>([](GJComment* node) {
+    devtools::label("Members for GJComment:");
     devtools::property("m_commentString", node->m_commentString);
     devtools::property("m_userName", node->m_userName);
     devtools::property("m_commentID", node->m_commentID);
@@ -5664,12 +5899,14 @@ devtools::registerNode<GJComment>([](GJComment* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJCommentListLayer>) {
 devtools::registerNode<GJCommentListLayer>([](GJCommentListLayer* node) {
+    devtools::label("Members for GJCommentListLayer:");
     devtools::label(fmt::format("BoomListView* m_list at {}", (void*)node->m_list).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJDifficultySprite>) {
 devtools::registerNode<GJDifficultySprite>([](GJDifficultySprite* node) {
+    devtools::label("Members for GJDifficultySprite:");
     devtools::enumerable("m_featureState", node->m_featureState, {
         { GJFeatureState::None, "GJFeatureState::None" },
         { GJFeatureState::Featured, "GJFeatureState::Featured" },
@@ -5682,6 +5919,7 @@ devtools::registerNode<GJDifficultySprite>([](GJDifficultySprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJEffectManager>) {
 devtools::registerNode<GJEffectManager>([](GJEffectManager* node) {
+    devtools::label("Members for GJEffectManager:");
     devtools::property("m_unk780", node->m_unk780);
     devtools::property("m_unk784", node->m_unk784);
     devtools::property("m_unk788", node->m_unk788);
@@ -5738,6 +5976,7 @@ devtools::registerNode<GJEffectManager>([](GJEffectManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJGroundLayer>) {
 devtools::registerNode<GJGroundLayer>([](GJGroundLayer* node) {
+    devtools::label("Members for GJGroundLayer:");
     devtools::property("m_textureWidth", node->m_textureWidth);
     devtools::property("m_showGround", node->m_showGround);
     devtools::property("m_blendLine", node->m_blendLine);
@@ -5756,6 +5995,7 @@ devtools::registerNode<GJGroundLayer>([](GJGroundLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJFollowCommandLayer>) {
 devtools::registerNode<GJFollowCommandLayer>([](GJFollowCommandLayer* node) {
+    devtools::label("Members for GJFollowCommandLayer:");
     devtools::property("m_moveTime", node->m_moveTime);
     devtools::property("m_xMod", node->m_xMod);
     devtools::property("m_yMod", node->m_yMod);
@@ -5774,6 +6014,7 @@ devtools::registerNode<GJFollowCommandLayer>([](GJFollowCommandLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJFriendRequest>) {
 devtools::registerNode<GJFriendRequest>([](GJFriendRequest* node) {
+    devtools::label("Members for GJFriendRequest:");
     devtools::property("m_requestID", node->m_requestID);
     devtools::property("m_accountID", node->m_accountID);
     devtools::property("m_unusedToAccountID", node->m_unusedToAccountID);
@@ -5785,6 +6026,7 @@ devtools::registerNode<GJFriendRequest>([](GJFriendRequest* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJGameLevel>) {
 devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
+    devtools::label("Members for GJGameLevel:");
     devtools::property("m_levelName", node->m_levelName);
     devtools::property("m_levelDesc", node->m_levelDesc);
     devtools::property("m_levelString", node->m_levelString);
@@ -5919,6 +6161,7 @@ devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJGameLoadingLayer>) {
 devtools::registerNode<GJGameLoadingLayer>([](GJGameLoadingLayer* node) {
+    devtools::label("Members for GJGameLoadingLayer:");
     devtools::property("m_editor", node->m_editor);
     devtools::label(fmt::format("GJGameLevel* m_level at {}", (void*)node->m_level).c_str());
 });
@@ -5926,6 +6169,7 @@ devtools::registerNode<GJGameLoadingLayer>([](GJGameLoadingLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJGarageLayer>) {
 devtools::registerNode<GJGarageLayer>([](GJGarageLayer* node) {
+    devtools::label("Members for GJGarageLayer:");
     devtools::property("m_hasClosed", node->m_hasClosed);
     devtools::enumerable("m_iconType", node->m_iconType, {
         { IconType::Cube, "IconType::Cube" },
@@ -5978,6 +6222,7 @@ devtools::registerNode<GJGarageLayer>([](GJGarageLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJGradientLayer>) {
 devtools::registerNode<GJGradientLayer>([](GJGradientLayer* node) {
+    devtools::label("Members for GJGradientLayer:");
     devtools::property("m_baseColor", node->m_baseColor);
     devtools::property("m_detailColor", node->m_detailColor);
     devtools::property("m_gradientPosition", node->m_gradientPosition);
@@ -5991,6 +6236,7 @@ devtools::registerNode<GJGradientLayer>([](GJGradientLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJHttpResult>) {
 devtools::registerNode<GJHttpResult>([](GJHttpResult* node) {
+    devtools::label("Members for GJHttpResult:");
     devtools::property("m_success", node->m_success);
     devtools::property("m_response", node->m_response);
     devtools::property("m_requestTag", node->m_requestTag);
@@ -6065,6 +6311,7 @@ devtools::registerNode<GJHttpResult>([](GJHttpResult* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJItemIcon>) {
 devtools::registerNode<GJItemIcon>([](GJItemIcon* node) {
+    devtools::label("Members for GJItemIcon:");
     devtools::property("m_iconRequestID", node->m_iconRequestID);
     devtools::property("m_playerSize", node->m_playerSize);
     devtools::property("m_isIcon", node->m_isIcon);
@@ -6092,6 +6339,7 @@ devtools::registerNode<GJItemIcon>([](GJItemIcon* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJLevelList>) {
 devtools::registerNode<GJLevelList>([](GJLevelList* node) {
+    devtools::label("Members for GJLevelList:");
     devtools::property("m_listID", node->m_listID);
     devtools::property("m_listVersion", node->m_listVersion);
     devtools::property("m_downloads", node->m_downloads);
@@ -6133,24 +6381,28 @@ devtools::registerNode<GJLevelList>([](GJLevelList* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJLevelScoreCell>) {
 devtools::registerNode<GJLevelScoreCell>([](GJLevelScoreCell* node) {
+    devtools::label("Members for GJLevelScoreCell:");
     devtools::label(fmt::format("GJUserScore* m_userScore at {}", (void*)node->m_userScore).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJListLayer>) {
 devtools::registerNode<GJListLayer>([](GJListLayer* node) {
+    devtools::label("Members for GJListLayer:");
     devtools::label(fmt::format("BoomListView* m_listView at {}", (void*)node->m_listView).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJLocalLevelScoreCell>) {
 devtools::registerNode<GJLocalLevelScoreCell>([](GJLocalLevelScoreCell* node) {
+    devtools::label("Members for GJLocalLevelScoreCell:");
     devtools::label(fmt::format("GJLocalScore* m_localScore at {}", (void*)node->m_localScore).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJLocalScore>) {
 devtools::registerNode<GJLocalScore>([](GJLocalScore* node) {
+    devtools::label("Members for GJLocalScore:");
     devtools::property("m_points", node->m_points);
     devtools::enumerable("m_type", node->m_type, {
         { LevelLeaderboardType::Friends, "LevelLeaderboardType::Friends" },
@@ -6164,6 +6416,7 @@ devtools::registerNode<GJLocalScore>([](GJLocalScore* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJMapObject>) {
 devtools::registerNode<GJMapObject>([](GJMapObject* node) {
+    devtools::label("Members for GJMapObject:");
     devtools::property("m_jumpStopTime", node->m_jumpStopTime);
     devtools::property("m_objectOrigin", node->m_objectOrigin);
     devtools::property("m_objectOffset", node->m_objectOffset);
@@ -6178,6 +6431,7 @@ devtools::registerNode<GJMapObject>([](GJMapObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJMapPack>) {
 devtools::registerNode<GJMapPack>([](GJMapPack* node) {
+    devtools::label("Members for GJMapPack:");
     devtools::property("m_packID", node->m_packID);
     devtools::enumerable("m_difficulty", node->m_difficulty, {
         { GJDifficulty::NA, "GJDifficulty::NA" },
@@ -6207,6 +6461,7 @@ devtools::registerNode<GJMapPack>([](GJMapPack* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJMessageCell>) {
 devtools::registerNode<GJMessageCell>([](GJMessageCell* node) {
+    devtools::label("Members for GJMessageCell:");
     devtools::label(fmt::format("GJUserMessage* m_message at {}", (void*)node->m_message).c_str());
     devtools::label(fmt::format("UploadActionPopup* m_popup at {}", (void*)node->m_popup).c_str());
     devtools::label(fmt::format("CCMenuItemToggler* m_toggler at {}", (void*)node->m_toggler).c_str());
@@ -6215,6 +6470,7 @@ devtools::registerNode<GJMessageCell>([](GJMessageCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJMessagePopup>) {
 devtools::registerNode<GJMessagePopup>([](GJMessagePopup* node) {
+    devtools::label("Members for GJMessagePopup:");
     devtools::property("m_actionSuccess", node->m_actionSuccess);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_errorLabel at {}", (void*)node->m_errorLabel).c_str());
     devtools::label(fmt::format("GJUserMessage* m_message at {}", (void*)node->m_message).c_str());
@@ -6226,6 +6482,7 @@ devtools::registerNode<GJMessagePopup>([](GJMessagePopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJMGLayer>) {
 devtools::registerNode<GJMGLayer>([](GJMGLayer* node) {
+    devtools::label("Members for GJMGLayer:");
     devtools::property("m_textureWidth", node->m_textureWidth);
     devtools::property("m_showGround", node->m_showGround);
     devtools::property("m_groundWidth", node->m_groundWidth);
@@ -6247,12 +6504,14 @@ devtools::registerNode<GJMGLayer>([](GJMGLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJMoreGamesLayer>) {
 devtools::registerNode<GJMoreGamesLayer>([](GJMoreGamesLayer* node) {
+    devtools::label("Members for GJMoreGamesLayer:");
     devtools::label(fmt::format("cocos2d::CCArray* m_moreGamesList at {}", (void*)node->m_moreGamesList).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJMultiplayerManager>) {
 devtools::registerNode<GJMultiplayerManager>([](GJMultiplayerManager* node) {
+    devtools::label("Members for GJMultiplayerManager:");
     devtools::label(fmt::format("cocos2d::CCDictionary* m_activeDownloads at {}", (void*)node->m_activeDownloads).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_lobbyScores at {}", (void*)node->m_lobbyScores).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_scoreArrays at {}", (void*)node->m_scoreArrays).c_str());
@@ -6264,6 +6523,7 @@ devtools::registerNode<GJMultiplayerManager>([](GJMultiplayerManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJPathPage>) {
 devtools::registerNode<GJPathPage>([](GJPathPage* node) {
+    devtools::label("Members for GJPathPage:");
     devtools::property("m_pathNumber", node->m_pathNumber);
     devtools::property("m_animationPlaying", node->m_animationPlaying);
     devtools::property("m_dialogIndex", node->m_dialogIndex);
@@ -6273,12 +6533,14 @@ devtools::registerNode<GJPathPage>([](GJPathPage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJPathRewardPopup>) {
 devtools::registerNode<GJPathRewardPopup>([](GJPathRewardPopup* node) {
+    devtools::label("Members for GJPathRewardPopup:");
     devtools::property("m_pathNumber", node->m_pathNumber);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJPathsLayer>) {
 devtools::registerNode<GJPathsLayer>([](GJPathsLayer* node) {
+    devtools::label("Members for GJPathsLayer:");
     devtools::property("m_exiting", node->m_exiting);
     devtools::label(fmt::format("cocos2d::CCSprite* m_closeSprite at {}", (void*)node->m_closeSprite).c_str());
 });
@@ -6286,12 +6548,14 @@ devtools::registerNode<GJPathsLayer>([](GJPathsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJPathSprite>) {
 devtools::registerNode<GJPathSprite>([](GJPathSprite* node) {
+    devtools::label("Members for GJPathSprite:");
     devtools::property("m_pathNumber", node->m_pathNumber);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJPFollowCommandLayer>) {
 devtools::registerNode<GJPFollowCommandLayer>([](GJPFollowCommandLayer* node) {
+    devtools::label("Members for GJPFollowCommandLayer:");
     devtools::property("m_moveTime", node->m_moveTime);
     devtools::property("m_delay", node->m_delay);
     devtools::property("m_speed", node->m_speed);
@@ -6312,12 +6576,14 @@ devtools::registerNode<GJPFollowCommandLayer>([](GJPFollowCommandLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJPromoPopup>) {
 devtools::registerNode<GJPromoPopup>([](GJPromoPopup* node) {
+    devtools::label("Members for GJPromoPopup:");
     devtools::property("m_promoFrame", node->m_promoFrame);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJRequestCell>) {
 devtools::registerNode<GJRequestCell>([](GJRequestCell* node) {
+    devtools::label("Members for GJRequestCell:");
     devtools::label(fmt::format("GJUserScore* m_score at {}", (void*)node->m_score).c_str());
     devtools::label(fmt::format("UploadActionPopup* m_popup at {}", (void*)node->m_popup).c_str());
     devtools::label(fmt::format("CCMenuItemToggler* m_toggler at {}", (void*)node->m_toggler).c_str());
@@ -6326,6 +6592,7 @@ devtools::registerNode<GJRequestCell>([](GJRequestCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJRewardItem>) {
 devtools::registerNode<GJRewardItem>([](GJRewardItem* node) {
+    devtools::label("Members for GJRewardItem:");
     devtools::property("m_chestID", node->m_chestID);
     devtools::property("m_timeRemaining", node->m_timeRemaining);
     devtools::enumerable("m_rewardType", node->m_rewardType, {
@@ -6347,6 +6614,7 @@ devtools::registerNode<GJRewardItem>([](GJRewardItem* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJRewardObject>) {
 devtools::registerNode<GJRewardObject>([](GJRewardObject* node) {
+    devtools::label("Members for GJRewardObject:");
     devtools::enumerable("m_specialRewardItem", node->m_specialRewardItem, {
         { SpecialRewardItem::FireShard, "SpecialRewardItem::FireShard" },
         { SpecialRewardItem::IceShard, "SpecialRewardItem::IceShard" },
@@ -6388,6 +6656,7 @@ devtools::registerNode<GJRewardObject>([](GJRewardObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJRobotSprite>) {
 devtools::registerNode<GJRobotSprite>([](GJRobotSprite* node) {
+    devtools::label("Members for GJRobotSprite:");
     devtools::property("m_hasExtra", node->m_hasExtra);
     devtools::property("m_color", node->m_color);
     devtools::property("m_secondColor", node->m_secondColor);
@@ -6418,6 +6687,7 @@ devtools::registerNode<GJRobotSprite>([](GJRobotSprite* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJRotateCommandLayer>) {
 devtools::registerNode<GJRotateCommandLayer>([](GJRotateCommandLayer* node) {
+    devtools::label("Members for GJRotateCommandLayer:");
     devtools::property("m_moveTime", node->m_moveTime);
     devtools::enumerable("m_rotateEasingType", node->m_rotateEasingType, {
         { EasingType::None, "EasingType::None" },
@@ -6467,6 +6737,7 @@ devtools::registerNode<GJRotateCommandLayer>([](GJRotateCommandLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJRotationControl>) {
 devtools::registerNode<GJRotationControl>([](GJRotationControl* node) {
+    devtools::label("Members for GJRotationControl:");
     devtools::property("m_cursorDifference", node->m_cursorDifference);
     devtools::property("m_controlPosition", node->m_controlPosition);
     devtools::property("m_startingRotation", node->m_startingRotation);
@@ -6479,6 +6750,7 @@ devtools::registerNode<GJRotationControl>([](GJRotationControl* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJScaleControl>) {
 devtools::registerNode<GJScaleControl>([](GJScaleControl* node) {
+    devtools::label("Members for GJScaleControl:");
     devtools::property("m_touchID", node->m_touchID);
     devtools::property("m_valueX", node->m_valueX);
     devtools::property("m_valueY", node->m_valueY);
@@ -6504,12 +6776,14 @@ devtools::registerNode<GJScaleControl>([](GJScaleControl* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJScoreCell>) {
 devtools::registerNode<GJScoreCell>([](GJScoreCell* node) {
+    devtools::label("Members for GJScoreCell:");
     devtools::label(fmt::format("GJUserScore* m_score at {}", (void*)node->m_score).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJSearchObject>) {
 devtools::registerNode<GJSearchObject>([](GJSearchObject* node) {
+    devtools::label("Members for GJSearchObject:");
     devtools::enumerable("m_searchType", node->m_searchType, {
         { SearchType::Search, "SearchType::Search" },
         { SearchType::Downloaded, "SearchType::Downloaded" },
@@ -6589,6 +6863,7 @@ devtools::registerNode<GJSearchObject>([](GJSearchObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJShopLayer>) {
 devtools::registerNode<GJShopLayer>([](GJShopLayer* node) {
+    devtools::label("Members for GJShopLayer:");
     devtools::property("m_closing", node->m_closing);
     devtools::enumerable("m_type", node->m_type, {
         { ShopType::Normal, "ShopType::Normal" },
@@ -6613,6 +6888,7 @@ devtools::registerNode<GJShopLayer>([](GJShopLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJSmartBlockPreview>) {
 devtools::registerNode<GJSmartBlockPreview>([](GJSmartBlockPreview* node) {
+    devtools::label("Members for GJSmartBlockPreview:");
     devtools::property("m_prefabKey", node->m_prefabKey);
     devtools::property("m_selected", node->m_selected);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_infoLabel at {}", (void*)node->m_infoLabel).c_str());
@@ -6622,6 +6898,7 @@ devtools::registerNode<GJSmartBlockPreview>([](GJSmartBlockPreview* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJSmartPrefab>) {
 devtools::registerNode<GJSmartPrefab>([](GJSmartPrefab* node) {
+    devtools::label("Members for GJSmartPrefab:");
     devtools::property("m_prefabKey", node->m_prefabKey);
     devtools::property("m_prefabData", node->m_prefabData);
     devtools::property("m_prefabID", node->m_prefabID);
@@ -6631,6 +6908,7 @@ devtools::registerNode<GJSmartPrefab>([](GJSmartPrefab* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJSmartTemplate>) {
 devtools::registerNode<GJSmartTemplate>([](GJSmartTemplate* node) {
+    devtools::label("Members for GJSmartTemplate:");
     devtools::property("m_allowFlipX", node->m_allowFlipX);
     devtools::property("m_allowFlipY", node->m_allowFlipY);
     devtools::property("m_allowRotation", node->m_allowRotation);
@@ -6652,6 +6930,7 @@ devtools::registerNode<GJSmartTemplate>([](GJSmartTemplate* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJSongBrowser>) {
 devtools::registerNode<GJSongBrowser>([](GJSongBrowser* node) {
+    devtools::label("Members for GJSongBrowser:");
     devtools::property("m_page", node->m_page);
     devtools::property("m_songID", node->m_songID);
     devtools::property("m_selected", node->m_selected);
@@ -6666,6 +6945,7 @@ devtools::registerNode<GJSongBrowser>([](GJSongBrowser* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJSpecialColorSelect>) {
 devtools::registerNode<GJSpecialColorSelect>([](GJSpecialColorSelect* node) {
+    devtools::label("Members for GJSpecialColorSelect:");
     devtools::property("m_colorID", node->m_colorID);
     devtools::label(fmt::format("GJSpecialColorSelectDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_buttonSprites at {}", (void*)node->m_buttonSprites).c_str());
@@ -6674,6 +6954,7 @@ devtools::registerNode<GJSpecialColorSelect>([](GJSpecialColorSelect* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJSpriteColor>) {
 devtools::registerNode<GJSpriteColor>([](GJSpriteColor* node) {
+    devtools::label("Members for GJSpriteColor:");
     devtools::property("m_colorID", node->m_colorID);
     devtools::property("m_defaultColorID", node->m_defaultColorID);
     devtools::property("m_opacity", node->m_opacity);
@@ -6687,6 +6968,7 @@ devtools::registerNode<GJSpriteColor>([](GJSpriteColor* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJStoreItem>) {
 devtools::registerNode<GJStoreItem>([](GJStoreItem* node) {
+    devtools::label("Members for GJStoreItem:");
     devtools::enumerable("m_shopType", node->m_shopType, {
         { ShopType::Normal, "ShopType::Normal" },
         { ShopType::Secret, "ShopType::Secret" },
@@ -6704,6 +6986,7 @@ devtools::registerNode<GJStoreItem>([](GJStoreItem* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJTransformControl>) {
 devtools::registerNode<GJTransformControl>([](GJTransformControl* node) {
+    devtools::label("Members for GJTransformControl:");
     devtools::property("m_touchID", node->m_touchID);
     devtools::property("m_transformButtonType", node->m_transformButtonType);
     devtools::property("m_cursorDifference", node->m_cursorDifference);
@@ -6732,6 +7015,7 @@ devtools::registerNode<GJTransformControl>([](GJTransformControl* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJUINode>) {
 devtools::registerNode<GJUINode>([](GJUINode* node) {
+    devtools::label("Members for GJUINode:");
     devtools::property("m_rect", node->m_rect);
     devtools::property("m_touchID", node->m_touchID);
     devtools::property("m_touchDelta", node->m_touchDelta);
@@ -6758,6 +7042,7 @@ devtools::registerNode<GJUINode>([](GJUINode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJUserCell>) {
 devtools::registerNode<GJUserCell>([](GJUserCell* node) {
+    devtools::label("Members for GJUserCell:");
     devtools::label(fmt::format("GJUserScore* m_userScore at {}", (void*)node->m_userScore).c_str());
     devtools::label(fmt::format("UploadActionPopup* m_uploadPopup at {}", (void*)node->m_uploadPopup).c_str());
 });
@@ -6765,6 +7050,7 @@ devtools::registerNode<GJUserCell>([](GJUserCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJUserMessage>) {
 devtools::registerNode<GJUserMessage>([](GJUserMessage* node) {
+    devtools::label("Members for GJUserMessage:");
     devtools::property("m_messageID", node->m_messageID);
     devtools::property("m_accountID", node->m_accountID);
     devtools::property("m_userID", node->m_userID);
@@ -6780,6 +7066,7 @@ devtools::registerNode<GJUserMessage>([](GJUserMessage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJUserScore>) {
 devtools::registerNode<GJUserScore>([](GJUserScore* node) {
+    devtools::label("Members for GJUserScore:");
     devtools::property("m_userName", node->m_userName);
     devtools::property("m_userUDID", node->m_userUDID);
     devtools::property("m_scoreType", node->m_scoreType);
@@ -6855,6 +7142,7 @@ devtools::registerNode<GJUserScore>([](GJUserScore* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJWorldNode>) {
 devtools::registerNode<GJWorldNode>([](GJWorldNode* node) {
+    devtools::label("Members for GJWorldNode:");
     devtools::property("m_unlocked", node->m_unlocked);
     devtools::property("m_levelPosition", node->m_levelPosition);
     devtools::property("m_particleColor", node->m_particleColor);
@@ -6870,6 +7158,7 @@ devtools::registerNode<GJWorldNode>([](GJWorldNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJWriteMessagePopup>) {
 devtools::registerNode<GJWriteMessagePopup>([](GJWriteMessagePopup* node) {
+    devtools::label("Members for GJWriteMessagePopup:");
     devtools::property("m_unk298", node->m_unk298);
     devtools::property("m_messageID", node->m_messageID);
     devtools::property("m_accountID", node->m_accountID);
@@ -6886,6 +7175,7 @@ devtools::registerNode<GJWriteMessagePopup>([](GJWriteMessagePopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GooglePlayManager>) {
 devtools::registerNode<GooglePlayManager>([](GooglePlayManager* node) {
+    devtools::label("Members for GooglePlayManager:");
     devtools::label(fmt::format("GooglePlayDelegate* m_delegate1 at {}", (void*)node->m_delegate1).c_str());
     devtools::label(fmt::format("GooglePlayDelegate* m_delegate2 at {}", (void*)node->m_delegate2).c_str());
 });
@@ -6893,6 +7183,7 @@ devtools::registerNode<GooglePlayManager>([](GooglePlayManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GradientTriggerObject>) {
 devtools::registerNode<GradientTriggerObject>([](GradientTriggerObject* node) {
+    devtools::label("Members for GradientTriggerObject:");
     devtools::property("m_blendingLayer", node->m_blendingLayer);
     devtools::property("m_blendingMode", node->m_blendingMode);
     devtools::property("m_gradientID", node->m_gradientID);
@@ -6909,9 +7200,10 @@ devtools::registerNode<GradientTriggerObject>([](GradientTriggerObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GraphicsReloadLayer>) {
 devtools::registerNode<GraphicsReloadLayer>([](GraphicsReloadLayer* node) {
+    devtools::label("Members for GraphicsReloadLayer:");
     devtools::enumerable("m_quality", node->m_quality, {
-        { cocos2d::TextureQuality::kTextureQualityMedium, "cocos2d::TextureQuality::kTextureQualityMedium" },
         { cocos2d::TextureQuality::kTextureQualityLow, "cocos2d::TextureQuality::kTextureQualityLow" },
+        { cocos2d::TextureQuality::kTextureQualityMedium, "cocos2d::TextureQuality::kTextureQualityMedium" },
         { cocos2d::TextureQuality::kTextureQualityHigh, "cocos2d::TextureQuality::kTextureQualityHigh" },
     });
     devtools::property("m_resolution", node->m_resolution);
@@ -6924,6 +7216,7 @@ devtools::registerNode<GraphicsReloadLayer>([](GraphicsReloadLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, HardStreak>) {
 devtools::registerNode<HardStreak>([](HardStreak* node) {
+    devtools::label("Members for HardStreak:");
     devtools::property("m_currentPoint", node->m_currentPoint);
     devtools::property("m_waveSize", node->m_waveSize);
     devtools::property("m_pulseSize", node->m_pulseSize);
@@ -6936,6 +7229,7 @@ devtools::registerNode<HardStreak>([](HardStreak* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, HSVLiveOverlay>) {
 devtools::registerNode<HSVLiveOverlay>([](HSVLiveOverlay* node) {
+    devtools::label("Members for HSVLiveOverlay:");
     devtools::property("m_activeTab", node->m_activeTab);
     devtools::property("m_unkBool1", node->m_unkBool1);
     devtools::property("m_unkBool2", node->m_unkBool2);
@@ -6951,6 +7245,7 @@ devtools::registerNode<HSVLiveOverlay>([](HSVLiveOverlay* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, HSVWidgetPopup>) {
 devtools::registerNode<HSVWidgetPopup>([](HSVWidgetPopup* node) {
+    devtools::label("Members for HSVWidgetPopup:");
     devtools::label(fmt::format("ConfigureHSVWidget* m_widget at {}", (void*)node->m_widget).c_str());
     devtools::label(fmt::format("HSVWidgetDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
 });
@@ -6958,6 +7253,7 @@ devtools::registerNode<HSVWidgetPopup>([](HSVWidgetPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, InfoAlertButton>) {
 devtools::registerNode<InfoAlertButton>([](InfoAlertButton* node) {
+    devtools::label("Members for InfoAlertButton:");
     devtools::property("m_title", node->m_title);
     devtools::property("m_description", node->m_description);
     devtools::property("m_textScale", node->m_textScale);
@@ -6967,6 +7263,7 @@ devtools::registerNode<InfoAlertButton>([](InfoAlertButton* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, InfoLayer>) {
 devtools::registerNode<InfoLayer>([](InfoLayer* node) {
+    devtools::label("Members for InfoLayer:");
     devtools::property("m_commentKey", node->m_commentKey);
     devtools::property("m_itemCount", node->m_itemCount);
     devtools::property("m_pageStartIdx", node->m_pageStartIdx);
@@ -6997,6 +7294,7 @@ devtools::registerNode<InfoLayer>([](InfoLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, InheritanceNode>) {
 devtools::registerNode<InheritanceNode>([](InheritanceNode* node) {
+    devtools::label("Members for InheritanceNode:");
     devtools::property("m_colorID", node->m_colorID);
     devtools::property("m_unk050", node->m_unk050);
     devtools::property("m_unk051", node->m_unk051);
@@ -7007,6 +7305,7 @@ devtools::registerNode<InheritanceNode>([](InheritanceNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ItemInfoPopup>) {
 devtools::registerNode<ItemInfoPopup>([](ItemInfoPopup* node) {
+    devtools::label("Members for ItemInfoPopup:");
     devtools::property("m_itemID", node->m_itemID);
     devtools::enumerable("m_unlockType", node->m_unlockType, {
         { UnlockType::Cube, "UnlockType::Cube" },
@@ -7031,6 +7330,7 @@ devtools::registerNode<ItemInfoPopup>([](ItemInfoPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ItemTriggerGameObject>) {
 devtools::registerNode<ItemTriggerGameObject>([](ItemTriggerGameObject* node) {
+    devtools::label("Members for ItemTriggerGameObject:");
     devtools::property("m_item1Mode", node->m_item1Mode);
     devtools::property("m_item2Mode", node->m_item2Mode);
     devtools::property("m_targetItemMode", node->m_targetItemMode);
@@ -7053,6 +7353,7 @@ devtools::registerNode<ItemTriggerGameObject>([](ItemTriggerGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, KeybindingsLayer>) {
 devtools::registerNode<KeybindingsLayer>([](KeybindingsLayer* node) {
+    devtools::label("Members for KeybindingsLayer:");
     devtools::property("m_page", node->m_page);
     devtools::property("m_keyCount", node->m_keyCount);
     devtools::property("m_maxPage", node->m_maxPage);
@@ -7065,6 +7366,7 @@ devtools::registerNode<KeybindingsLayer>([](KeybindingsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, KeybindingsManager>) {
 devtools::registerNode<KeybindingsManager>([](KeybindingsManager* node) {
+    devtools::label("Members for KeybindingsManager:");
     devtools::label(fmt::format("cocos2d::CCDictionary* m_keyToCommandDict at {}", (void*)node->m_keyToCommandDict).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_commandToKeyDict at {}", (void*)node->m_commandToKeyDict).c_str());
 });
@@ -7072,6 +7374,7 @@ devtools::registerNode<KeybindingsManager>([](KeybindingsManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, KeyframeAnimTriggerObject>) {
 devtools::registerNode<KeyframeAnimTriggerObject>([](KeyframeAnimTriggerObject* node) {
+    devtools::label("Members for KeyframeAnimTriggerObject:");
     devtools::property("m_timeMod", node->m_timeMod);
     devtools::property("m_positionXMod", node->m_positionXMod);
     devtools::property("m_positionYMod", node->m_positionYMod);
@@ -7083,6 +7386,7 @@ devtools::registerNode<KeyframeAnimTriggerObject>([](KeyframeAnimTriggerObject* 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, KeyframeGameObject>) {
 devtools::registerNode<KeyframeGameObject>([](KeyframeGameObject* node) {
+    devtools::label("Members for KeyframeGameObject:");
     devtools::property("m_keyframeGroup", node->m_keyframeGroup);
     devtools::property("m_keyframeIndex", node->m_keyframeIndex);
     devtools::property("m_referenceOnly", node->m_referenceOnly);
@@ -7105,6 +7409,7 @@ devtools::registerNode<KeyframeGameObject>([](KeyframeGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LabelGameObject>) {
 devtools::registerNode<LabelGameObject>([](LabelGameObject* node) {
+    devtools::label("Members for LabelGameObject:");
     devtools::property("m_labelDirty", node->m_labelDirty);
     devtools::property("m_labelString", node->m_labelString);
     devtools::property("m_labelColorLocked", node->m_labelColorLocked);
@@ -7120,6 +7425,7 @@ devtools::registerNode<LabelGameObject>([](LabelGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LeaderboardsLayer>) {
 devtools::registerNode<LeaderboardsLayer>([](LeaderboardsLayer* node) {
+    devtools::label("Members for LeaderboardsLayer:");
     devtools::enumerable("m_state", node->m_state, {
         { LeaderboardState::Default, "LeaderboardState::Default" },
         { LeaderboardState::Top100, "LeaderboardState::Top100" },
@@ -7141,6 +7447,7 @@ devtools::registerNode<LeaderboardsLayer>([](LeaderboardsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelAreaInnerLayer>) {
 devtools::registerNode<LevelAreaInnerLayer>([](LevelAreaInnerLayer* node) {
+    devtools::label("Members for LevelAreaInnerLayer:");
     devtools::property("m_enteringLevel", node->m_enteringLevel);
     devtools::property("m_levelID", node->m_levelID);
     devtools::property("m_exiting", node->m_exiting);
@@ -7150,6 +7457,7 @@ devtools::registerNode<LevelAreaInnerLayer>([](LevelAreaInnerLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelAreaLayer>) {
 devtools::registerNode<LevelAreaLayer>([](LevelAreaLayer* node) {
+    devtools::label("Members for LevelAreaLayer:");
     devtools::property("m_enteringTower", node->m_enteringTower);
     devtools::property("m_exiting", node->m_exiting);
     devtools::label(fmt::format("cocos2d::CCSprite* m_towerSprite at {}", (void*)node->m_towerSprite).c_str());
@@ -7159,6 +7467,7 @@ devtools::registerNode<LevelAreaLayer>([](LevelAreaLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelBrowserLayer>) {
 devtools::registerNode<LevelBrowserLayer>([](LevelBrowserLayer* node) {
+    devtools::label("Members for LevelBrowserLayer:");
     devtools::property("m_unk", node->m_unk);
     devtools::property("m_allSelected", node->m_allSelected);
     devtools::property("m_itemCount", node->m_itemCount);
@@ -7195,6 +7504,7 @@ devtools::registerNode<LevelBrowserLayer>([](LevelBrowserLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelCell>) {
 devtools::registerNode<LevelCell>([](LevelCell* node) {
+    devtools::label("Members for LevelCell:");
     devtools::property("m_cellDrawn", node->m_cellDrawn);
     devtools::property("m_point", node->m_point);
     devtools::property("m_compactView", node->m_compactView);
@@ -7208,6 +7518,7 @@ devtools::registerNode<LevelCell>([](LevelCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelEditorLayer>) {
 devtools::registerNode<LevelEditorLayer>([](LevelEditorLayer* node) {
+    devtools::label("Members for LevelEditorLayer:");
     devtools::property("m_drawTriggerBoxes", node->m_drawTriggerBoxes);
     devtools::property("m_showGrid", node->m_showGrid);
     devtools::property("m_hideGridOnPlay", node->m_hideGridOnPlay);
@@ -7307,6 +7618,7 @@ devtools::registerNode<LevelEditorLayer>([](LevelEditorLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelFeatureLayer>) {
 devtools::registerNode<LevelFeatureLayer>([](LevelFeatureLayer* node) {
+    devtools::label("Members for LevelFeatureLayer:");
     devtools::property("m_levelID", node->m_levelID);
     devtools::property("m_featurePosition", node->m_featurePosition);
     devtools::property("m_epicOnly", node->m_epicOnly);
@@ -7317,6 +7629,7 @@ devtools::registerNode<LevelFeatureLayer>([](LevelFeatureLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelInfoLayer>) {
 devtools::registerNode<LevelInfoLayer>([](LevelInfoLayer* node) {
+    devtools::label("Members for LevelInfoLayer:");
     devtools::property("m_isBusy", node->m_isBusy);
     devtools::enumerable("m_levelType", node->m_levelType, {
         { GJLevelType::Default, "GJLevelType::Default" },
@@ -7362,6 +7675,7 @@ devtools::registerNode<LevelInfoLayer>([](LevelInfoLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelLeaderboard>) {
 devtools::registerNode<LevelLeaderboard>([](LevelLeaderboard* node) {
+    devtools::label("Members for LevelLeaderboard:");
     devtools::enumerable("m_type", node->m_type, {
         { LevelLeaderboardType::Friends, "LevelLeaderboardType::Friends" },
         { LevelLeaderboardType::Global, "LevelLeaderboardType::Global" },
@@ -7385,6 +7699,7 @@ devtools::registerNode<LevelLeaderboard>([](LevelLeaderboard* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelListCell>) {
 devtools::registerNode<LevelListCell>([](LevelListCell* node) {
+    devtools::label("Members for LevelListCell:");
     devtools::property("m_addingLevel", node->m_addingLevel);
     devtools::label(fmt::format("GJLevelList* m_levelList at {}", (void*)node->m_levelList).c_str());
 });
@@ -7392,6 +7707,7 @@ devtools::registerNode<LevelListCell>([](LevelListCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelListLayer>) {
 devtools::registerNode<LevelListLayer>([](LevelListLayer* node) {
+    devtools::label("Members for LevelListLayer:");
     devtools::property("m_searchKey1", node->m_searchKey1);
     devtools::property("m_searchKey2", node->m_searchKey2);
     devtools::property("m_exiting", node->m_exiting);
@@ -7410,12 +7726,14 @@ devtools::registerNode<LevelListLayer>([](LevelListLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelOptionsLayer>) {
 devtools::registerNode<LevelOptionsLayer>([](LevelOptionsLayer* node) {
+    devtools::label("Members for LevelOptionsLayer:");
     devtools::label(fmt::format("LevelSettingsObject* m_settingsObject at {}", (void*)node->m_settingsObject).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelPage>) {
 devtools::registerNode<LevelPage>([](LevelPage* node) {
+    devtools::label("Members for LevelPage:");
     devtools::property("m_isBusy", node->m_isBusy);
     devtools::property("m_progressWidth", node->m_progressWidth);
     devtools::property("m_levelDisplaySize", node->m_levelDisplaySize);
@@ -7441,6 +7759,7 @@ devtools::registerNode<LevelPage>([](LevelPage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelSearchLayer>) {
 devtools::registerNode<LevelSearchLayer>([](LevelSearchLayer* node) {
+    devtools::label("Members for LevelSearchLayer:");
     devtools::property("m_type", node->m_type);
     devtools::label(fmt::format("CCTextInputNode* m_searchInput at {}", (void*)node->m_searchInput).c_str());
     devtools::label(fmt::format("cocos2d::CCSprite* m_starsSprite at {}", (void*)node->m_starsSprite).c_str());
@@ -7454,6 +7773,7 @@ devtools::registerNode<LevelSearchLayer>([](LevelSearchLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelSelectLayer>) {
 devtools::registerNode<LevelSelectLayer>([](LevelSelectLayer* node) {
+    devtools::label("Members for LevelSelectLayer:");
     devtools::property("m_width", node->m_width);
     devtools::property("m_unknown", node->m_unknown);
     devtools::property("m_scrolls", node->m_scrolls);
@@ -7466,6 +7786,7 @@ devtools::registerNode<LevelSelectLayer>([](LevelSelectLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelSettingsLayer>) {
 devtools::registerNode<LevelSettingsLayer>([](LevelSettingsLayer* node) {
+    devtools::label("Members for LevelSettingsLayer:");
     devtools::enumerable("m_speed", node->m_speed, {
         { Speed::Normal, "Speed::Normal" },
         { Speed::Slow, "Speed::Slow" },
@@ -7502,6 +7823,7 @@ devtools::registerNode<LevelSettingsLayer>([](LevelSettingsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelSettingsObject>) {
 devtools::registerNode<LevelSettingsObject>([](LevelSettingsObject* node) {
+    devtools::label("Members for LevelSettingsObject:");
     devtools::property("m_startMode", node->m_startMode);
     devtools::enumerable("m_startSpeed", node->m_startSpeed, {
         { Speed::Normal, "Speed::Normal" },
@@ -7559,6 +7881,7 @@ devtools::registerNode<LevelSettingsObject>([](LevelSettingsObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LikeItemLayer>) {
 devtools::registerNode<LikeItemLayer>([](LikeItemLayer* node) {
+    devtools::label("Members for LikeItemLayer:");
     devtools::enumerable("m_itemType", node->m_itemType, {
         { LikeItemType::Unknown, "LikeItemType::Unknown" },
         { LikeItemType::Level, "LikeItemType::Level" },
@@ -7574,6 +7897,7 @@ devtools::registerNode<LikeItemLayer>([](LikeItemLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ListButtonBar>) {
 devtools::registerNode<ListButtonBar>([](ListButtonBar* node) {
+    devtools::label("Members for ListButtonBar:");
     devtools::property("m_useMoveAnimation", node->m_useMoveAnimation);
     devtools::label(fmt::format("BoomScrollLayer* m_scrollLayer at {}", (void*)node->m_scrollLayer).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_pages at {}", (void*)node->m_pages).c_str());
@@ -7583,12 +7907,14 @@ devtools::registerNode<ListButtonBar>([](ListButtonBar* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ListCell>) {
 devtools::registerNode<ListCell>([](ListCell* node) {
+    devtools::label("Members for ListCell:");
     devtools::property("m_unk230", node->m_unk230);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LoadingCircle>) {
 devtools::registerNode<LoadingCircle>([](LoadingCircle* node) {
+    devtools::label("Members for LoadingCircle:");
     devtools::property("m_fade", node->m_fade);
     devtools::label(fmt::format("cocos2d::CCSprite* m_sprite at {}", (void*)node->m_sprite).c_str());
     devtools::label(fmt::format("cocos2d::CCLayer* m_parentLayer at {}", (void*)node->m_parentLayer).c_str());
@@ -7597,6 +7923,7 @@ devtools::registerNode<LoadingCircle>([](LoadingCircle* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LoadingLayer>) {
 devtools::registerNode<LoadingLayer>([](LoadingLayer* node) {
+    devtools::label("Members for LoadingLayer:");
     devtools::property("m_unknown", node->m_unknown);
     devtools::property("m_unknown2", node->m_unknown2);
     devtools::property("m_loadStep", node->m_loadStep);
@@ -7611,6 +7938,7 @@ devtools::registerNode<LoadingLayer>([](LoadingLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LocalLevelManager>) {
 devtools::registerNode<LocalLevelManager>([](LocalLevelManager* node) {
+    devtools::label("Members for LocalLevelManager:");
     devtools::label(fmt::format("cocos2d::CCArray* m_localLevels at {}", (void*)node->m_localLevels).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_localLists at {}", (void*)node->m_localLists).c_str());
     devtools::label("gd::unordered_map<int, gd::string> m_mainLevels");
@@ -7619,6 +7947,7 @@ devtools::registerNode<LocalLevelManager>([](LocalLevelManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MapPackCell>) {
 devtools::registerNode<MapPackCell>([](MapPackCell* node) {
+    devtools::label("Members for MapPackCell:");
     devtools::label(fmt::format("GJMapPack* m_mapPack at {}", (void*)node->m_mapPack).c_str());
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_viewButton at {}", (void*)node->m_viewButton).c_str());
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_rewardButton at {}", (void*)node->m_rewardButton).c_str());
@@ -7629,6 +7958,7 @@ devtools::registerNode<MapPackCell>([](MapPackCell* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MapSelectLayer>) {
 devtools::registerNode<MapSelectLayer>([](MapSelectLayer* node) {
+    devtools::label("Members for MapSelectLayer:");
     devtools::property("m_unloadTexturesOnExit", node->m_unloadTexturesOnExit);
     devtools::property("m_backPressed", node->m_backPressed);
     devtools::property("m_blockExit", node->m_blockExit);
@@ -7647,12 +7977,13 @@ devtools::registerNode<MapSelectLayer>([](MapSelectLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MenuGameLayer>) {
 devtools::registerNode<MenuGameLayer>([](MenuGameLayer* node) {
+    devtools::label("Members for MenuGameLayer:");
     devtools::property("m_videoOptionsOpen", node->m_videoOptionsOpen);
     devtools::property("m_deltaCount", node->m_deltaCount);
     devtools::property("m_isDestroyingPlayer", node->m_isDestroyingPlayer);
     devtools::property("m_initCount", node->m_initCount);
-    devtools::property("m_unused1", node->m_unused1);
-    devtools::property("m_backgroundSpeed", node->m_backgroundSpeed);
+    devtools::property("m_realBackgroundPosition", node->m_realBackgroundPosition);
+    devtools::property("m_backgroundWrapPosition", node->m_backgroundWrapPosition);
     devtools::label(fmt::format("PlayerObject* m_playerObject at {}", (void*)node->m_playerObject).c_str());
     devtools::label(fmt::format("cocos2d::CCSprite* m_backgroundSprite at {}", (void*)node->m_backgroundSprite).c_str());
     devtools::label(fmt::format("GJGroundLayer* m_groundLayer at {}", (void*)node->m_groundLayer).c_str());
@@ -7661,6 +7992,7 @@ devtools::registerNode<MenuGameLayer>([](MenuGameLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MenuLayer>) {
 devtools::registerNode<MenuLayer>([](MenuLayer* node) {
+    devtools::label("Members for MenuLayer:");
     devtools::property("m_showingTOS", node->m_showingTOS);
     devtools::label(fmt::format("cocos2d::CCSprite* m_gpSprite at {}", (void*)node->m_gpSprite).c_str());
     devtools::label(fmt::format("cocos2d::CCSprite* m_viewProfileSprite at {}", (void*)node->m_viewProfileSprite).c_str());
@@ -7673,6 +8005,7 @@ devtools::registerNode<MenuLayer>([](MenuLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MessagesProfilePage>) {
 devtools::registerNode<MessagesProfilePage>([](MessagesProfilePage* node) {
+    devtools::label("Members for MessagesProfilePage:");
     devtools::property("m_sentMessages", node->m_sentMessages);
     devtools::property("m_messageKey", node->m_messageKey);
     devtools::property("m_itemCount", node->m_itemCount);
@@ -7695,6 +8028,7 @@ devtools::registerNode<MessagesProfilePage>([](MessagesProfilePage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MoreOptionsLayer>) {
 devtools::registerNode<MoreOptionsLayer>([](MoreOptionsLayer* node) {
+    devtools::label("Members for MoreOptionsLayer:");
     devtools::property("m_page", node->m_page);
     devtools::property("m_toggleCount", node->m_toggleCount);
     devtools::property("m_pageCount", node->m_pageCount);
@@ -7711,6 +8045,7 @@ devtools::registerNode<MoreOptionsLayer>([](MoreOptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MoreSearchLayer>) {
 devtools::registerNode<MoreSearchLayer>([](MoreSearchLayer* node) {
+    devtools::label("Members for MoreSearchLayer:");
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_audioTrackName at {}", (void*)node->m_audioTrackName).c_str());
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_songLeftBtn at {}", (void*)node->m_songLeftBtn).c_str());
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_songRightBtn at {}", (void*)node->m_songRightBtn).c_str());
@@ -7725,6 +8060,7 @@ devtools::registerNode<MoreSearchLayer>([](MoreSearchLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MoreVideoOptionsLayer>) {
 devtools::registerNode<MoreVideoOptionsLayer>([](MoreVideoOptionsLayer* node) {
+    devtools::label("Members for MoreVideoOptionsLayer:");
     devtools::property("m_page", node->m_page);
     devtools::property("m_toggleCount", node->m_toggleCount);
     devtools::property("m_pageCount", node->m_pageCount);
@@ -7739,6 +8075,7 @@ devtools::registerNode<MoreVideoOptionsLayer>([](MoreVideoOptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MPLobbyLayer>) {
 devtools::registerNode<MPLobbyLayer>([](MPLobbyLayer* node) {
+    devtools::label("Members for MPLobbyLayer:");
     devtools::property("m_lobbyID", node->m_lobbyID);
     devtools::property("m_lobbyDelay", node->m_lobbyDelay);
     devtools::property("m_awaitingLobby", node->m_awaitingLobby);
@@ -7752,6 +8089,7 @@ devtools::registerNode<MPLobbyLayer>([](MPLobbyLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MultilineBitmapFont>) {
 devtools::registerNode<MultilineBitmapFont>([](MultilineBitmapFont* node) {
+    devtools::label("Members for MultilineBitmapFont:");
     devtools::property("m_unkInt", node->m_unkInt);
     devtools::property("m_unkBool", node->m_unkBool);
     devtools::property("m_height", node->m_height);
@@ -7769,6 +8107,7 @@ devtools::registerNode<MultilineBitmapFont>([](MultilineBitmapFont* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MusicArtistObject>) {
 devtools::registerNode<MusicArtistObject>([](MusicArtistObject* node) {
+    devtools::label("Members for MusicArtistObject:");
     devtools::property("m_artistID", node->m_artistID);
     devtools::property("m_artistName", node->m_artistName);
     devtools::property("m_artistURL", node->m_artistURL);
@@ -7778,6 +8117,7 @@ devtools::registerNode<MusicArtistObject>([](MusicArtistObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MusicBrowser>) {
 devtools::registerNode<MusicBrowser>([](MusicBrowser* node) {
+    devtools::label("Members for MusicBrowser:");
     devtools::enumerable("m_songType", node->m_songType, {
         { GJSongType::Music, "GJSongType::Music" },
         { GJSongType::NCS, "GJSongType::NCS" },
@@ -7807,12 +8147,14 @@ devtools::registerNode<MusicBrowser>([](MusicBrowser* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MusicDelegateHandler>) {
 devtools::registerNode<MusicDelegateHandler>([](MusicDelegateHandler* node) {
+    devtools::label("Members for MusicDelegateHandler:");
     devtools::label(fmt::format("MusicDownloadDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MusicDownloadManager>) {
 devtools::registerNode<MusicDownloadManager>([](MusicDownloadManager* node) {
+    devtools::label("Members for MusicDownloadManager:");
     devtools::property("m_songPriority", node->m_songPriority);
     devtools::property("m_customContentURL", node->m_customContentURL);
     devtools::property("m_sfxLibraryVersion", node->m_sfxLibraryVersion);
@@ -7840,6 +8182,7 @@ devtools::registerNode<MusicDownloadManager>([](MusicDownloadManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MusicSearchResult>) {
 devtools::registerNode<MusicSearchResult>([](MusicSearchResult* node) {
+    devtools::label("Members for MusicSearchResult:");
     devtools::property("m_startIndex", node->m_startIndex);
     devtools::property("m_audioType", node->m_audioType);
     devtools::property("m_searchQuery", node->m_searchQuery);
@@ -7866,18 +8209,21 @@ devtools::registerNode<MusicSearchResult>([](MusicSearchResult* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, NCSInfoLayer>) {
 devtools::registerNode<NCSInfoLayer>([](NCSInfoLayer* node) {
+    devtools::label("Members for NCSInfoLayer:");
     devtools::label(fmt::format("CustomSongLayer* m_songLayer at {}", (void*)node->m_songLayer).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, NodePoint>) {
 devtools::registerNode<NodePoint>([](NodePoint* node) {
+    devtools::label("Members for NodePoint:");
     devtools::property("m_point", node->m_point);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, NumberInputLayer>) {
 devtools::registerNode<NumberInputLayer>([](NumberInputLayer* node) {
+    devtools::label("Members for NumberInputLayer:");
     devtools::property("m_minimum", node->m_minimum);
     devtools::property("m_maximum", node->m_maximum);
     devtools::property("m_inputString", node->m_inputString);
@@ -7889,6 +8235,7 @@ devtools::registerNode<NumberInputLayer>([](NumberInputLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, OBB2D>) {
 devtools::registerNode<OBB2D>([](OBB2D* node) {
+    devtools::label("Members for OBB2D:");
     devtools::property("m_center", node->m_center);
     devtools::label("std::array<cocos2d::CCPoint, 4> m_corners");
     devtools::label("std::array<cocos2d::CCPoint, 4> m_positions");
@@ -7899,6 +8246,7 @@ devtools::registerNode<OBB2D>([](OBB2D* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ObjectManager>) {
 devtools::registerNode<ObjectManager>([](ObjectManager* node) {
+    devtools::label("Members for ObjectManager:");
     devtools::label(fmt::format("cocos2d::CCDictionary* m_objectDefinitions at {}", (void*)node->m_objectDefinitions).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_loadedAnimations at {}", (void*)node->m_loadedAnimations).c_str());
 });
@@ -7906,18 +8254,21 @@ devtools::registerNode<ObjectManager>([](ObjectManager* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ObjectToolbox>) {
 devtools::registerNode<ObjectToolbox>([](ObjectToolbox* node) {
+    devtools::label("Members for ObjectToolbox:");
     devtools::label("gd::map<int, gd::string> m_allKeys");
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, OptionsCell>) {
 devtools::registerNode<OptionsCell>([](OptionsCell* node) {
+    devtools::label("Members for OptionsCell:");
     devtools::label(fmt::format("OptionsObject* m_optionsObject at {}", (void*)node->m_optionsObject).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, OptionsLayer>) {
 devtools::registerNode<OptionsLayer>([](OptionsLayer* node) {
+    devtools::label("Members for OptionsLayer:");
     devtools::property("m_layerChoice", node->m_layerChoice);
     devtools::property("m_recordReplays", node->m_recordReplays);
     devtools::property("m_lastVaultDialog", node->m_lastVaultDialog);
@@ -7930,6 +8281,7 @@ devtools::registerNode<OptionsLayer>([](OptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, OptionsObject>) {
 devtools::registerNode<OptionsObject>([](OptionsObject* node) {
+    devtools::label("Members for OptionsObject:");
     devtools::property("m_optionID", node->m_optionID);
     devtools::property("m_enabled", node->m_enabled);
     devtools::property("m_name", node->m_name);
@@ -7940,6 +8292,7 @@ devtools::registerNode<OptionsObject>([](OptionsObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, OptionsScrollLayer>) {
 devtools::registerNode<OptionsScrollLayer>([](OptionsScrollLayer* node) {
+    devtools::label("Members for OptionsScrollLayer:");
     devtools::property("m_recreateList", node->m_recreateList);
     devtools::property("m_minCount", node->m_minCount);
     devtools::label(fmt::format("cocos2d::CCArray* m_optionObjects at {}", (void*)node->m_optionObjects).c_str());
@@ -7949,6 +8302,7 @@ devtools::registerNode<OptionsScrollLayer>([](OptionsScrollLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ParentalOptionsLayer>) {
 devtools::registerNode<ParentalOptionsLayer>([](ParentalOptionsLayer* node) {
+    devtools::label("Members for ParentalOptionsLayer:");
     devtools::property("m_page", node->m_page);
     devtools::property("m_toggleCount", node->m_toggleCount);
     devtools::property("m_maxPage", node->m_maxPage);
@@ -7961,6 +8315,7 @@ devtools::registerNode<ParentalOptionsLayer>([](ParentalOptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ParticleGameObject>) {
 devtools::registerNode<ParticleGameObject>([](ParticleGameObject* node) {
+    devtools::label("Members for ParticleGameObject:");
     devtools::property("m_particleData", node->m_particleData);
     devtools::property("m_updatedParticleData", node->m_updatedParticleData);
     devtools::property("m_hasUniformObjectColor", node->m_hasUniformObjectColor);
@@ -7975,6 +8330,7 @@ devtools::registerNode<ParticleGameObject>([](ParticleGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ParticlePreviewLayer>) {
 devtools::registerNode<ParticlePreviewLayer>([](ParticlePreviewLayer* node) {
+    devtools::label("Members for ParticlePreviewLayer:");
     devtools::property("m_particleMode", node->m_particleMode);
     devtools::property("m_drawMode", node->m_drawMode);
     devtools::property("m_gravityMode", node->m_gravityMode);
@@ -7984,6 +8340,7 @@ devtools::registerNode<ParticlePreviewLayer>([](ParticlePreviewLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PauseLayer>) {
 devtools::registerNode<PauseLayer>([](PauseLayer* node) {
+    devtools::label("Members for PauseLayer:");
     devtools::property("m_unfocused", node->m_unfocused);
     devtools::property("m_tryingQuit", node->m_tryingQuit);
 });
@@ -7991,6 +8348,7 @@ devtools::registerNode<PauseLayer>([](PauseLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PlayerCheckpoint>) {
 devtools::registerNode<PlayerCheckpoint>([](PlayerCheckpoint* node) {
+    devtools::label("Members for PlayerCheckpoint:");
     devtools::property("m_position", node->m_position);
     devtools::property("m_lastPosition", node->m_lastPosition);
     devtools::property("m_yVelocity", node->m_yVelocity);
@@ -8031,6 +8389,7 @@ devtools::registerNode<PlayerCheckpoint>([](PlayerCheckpoint* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PlayerControlGameObject>) {
 devtools::registerNode<PlayerControlGameObject>([](PlayerControlGameObject* node) {
+    devtools::label("Members for PlayerControlGameObject:");
     devtools::property("m_stopJump", node->m_stopJump);
     devtools::property("m_stopMove", node->m_stopMove);
     devtools::property("m_stopRotation", node->m_stopRotation);
@@ -8040,12 +8399,14 @@ devtools::registerNode<PlayerControlGameObject>([](PlayerControlGameObject* node
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PlayerFireBoostSprite>) {
 devtools::registerNode<PlayerFireBoostSprite>([](PlayerFireBoostSprite* node) {
+    devtools::label("Members for PlayerFireBoostSprite:");
     devtools::property("m_size", node->m_size);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PlayerObject>) {
 devtools::registerNode<PlayerObject>([](PlayerObject* node) {
+    devtools::label("Members for PlayerObject:");
     devtools::property("m_wasTeleported", node->m_wasTeleported);
     devtools::property("m_fixGravityBug", node->m_fixGravityBug);
     devtools::property("m_reverseSync", node->m_reverseSync);
@@ -8354,6 +8715,7 @@ devtools::registerNode<PlayerObject>([](PlayerObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PlayLayer>) {
 devtools::registerNode<PlayLayer>([](PlayLayer* node) {
+    devtools::label("Members for PlayLayer:");
     devtools::property("m_unk36c8", node->m_unk36c8);
     devtools::property("m_unk36cc", node->m_unk36cc);
     devtools::property("m_unk36cd", node->m_unk36cd);
@@ -8459,12 +8821,14 @@ devtools::registerNode<PlayLayer>([](PlayLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PointNode>) {
 devtools::registerNode<PointNode>([](PointNode* node) {
+    devtools::label("Members for PointNode:");
     devtools::property("m_point", node->m_point);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PriceLabel>) {
 devtools::registerNode<PriceLabel>([](PriceLabel* node) {
+    devtools::label("Members for PriceLabel:");
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_priceLabel at {}", (void*)node->m_priceLabel).c_str());
     devtools::label(fmt::format("cocos2d::CCSprite* m_coinSprite at {}", (void*)node->m_coinSprite).c_str());
 });
@@ -8472,6 +8836,7 @@ devtools::registerNode<PriceLabel>([](PriceLabel* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ProfilePage>) {
 devtools::registerNode<ProfilePage>([](ProfilePage* node) {
+    devtools::label("Members for ProfilePage:");
     devtools::property("m_accountID", node->m_accountID);
     devtools::property("m_ownProfile", node->m_ownProfile);
     devtools::property("m_profileKey", node->m_profileKey);
@@ -8498,6 +8863,7 @@ devtools::registerNode<ProfilePage>([](ProfilePage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PromoInterstitial>) {
 devtools::registerNode<PromoInterstitial>([](PromoInterstitial* node) {
+    devtools::label("Members for PromoInterstitial:");
     devtools::property("m_fullVersion", node->m_fullVersion);
     devtools::property("m_promoTouched", node->m_promoTouched);
     devtools::property("m_marketLink", node->m_marketLink);
@@ -8508,6 +8874,7 @@ devtools::registerNode<PromoInterstitial>([](PromoInterstitial* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PurchaseItemPopup>) {
 devtools::registerNode<PurchaseItemPopup>([](PurchaseItemPopup* node) {
+    devtools::label("Members for PurchaseItemPopup:");
     devtools::label(fmt::format("GJStoreItem* m_storeItem at {}", (void*)node->m_storeItem).c_str());
     devtools::label(fmt::format("GJPurchaseDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
 });
@@ -8515,6 +8882,7 @@ devtools::registerNode<PurchaseItemPopup>([](PurchaseItemPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, RateDemonLayer>) {
 devtools::registerNode<RateDemonLayer>([](RateDemonLayer* node) {
+    devtools::label("Members for RateDemonLayer:");
     devtools::property("m_uploadFinished", node->m_uploadFinished);
     devtools::property("m_levelID", node->m_levelID);
     devtools::property("m_demonRate", node->m_demonRate);
@@ -8529,6 +8897,7 @@ devtools::registerNode<RateDemonLayer>([](RateDemonLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, RateLevelLayer>) {
 devtools::registerNode<RateLevelLayer>([](RateLevelLayer* node) {
+    devtools::label("Members for RateLevelLayer:");
     devtools::property("m_levelID", node->m_levelID);
     devtools::property("m_levelRate", node->m_levelRate);
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_submitButton at {}", (void*)node->m_submitButton).c_str());
@@ -8539,6 +8908,7 @@ devtools::registerNode<RateLevelLayer>([](RateLevelLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, RateStarsLayer>) {
 devtools::registerNode<RateStarsLayer>([](RateStarsLayer* node) {
+    devtools::label("Members for RateStarsLayer:");
     devtools::property("m_uploadFinished", node->m_uploadFinished);
     devtools::property("m_moderator", node->m_moderator);
     devtools::property("m_levelID", node->m_levelID);
@@ -8556,6 +8926,7 @@ devtools::registerNode<RateStarsLayer>([](RateStarsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, RetryLevelLayer>) {
 devtools::registerNode<RetryLevelLayer>([](RetryLevelLayer* node) {
+    devtools::label("Members for RetryLevelLayer:");
     devtools::property("m_exitingMenu", node->m_exitingMenu);
     devtools::property("m_unk1e9", node->m_unk1e9);
     devtools::label(fmt::format("cocos2d::CCMenu* m_mainMenu at {}", (void*)node->m_mainMenu).c_str());
@@ -8564,6 +8935,7 @@ devtools::registerNode<RetryLevelLayer>([](RetryLevelLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, RewardsPage>) {
 devtools::registerNode<RewardsPage>([](RewardsPage* node) {
+    devtools::label("Members for RewardsPage:");
     devtools::property("m_leftOpen", node->m_leftOpen);
     devtools::property("m_rightOpen", node->m_rightOpen);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_leftLabel at {}", (void*)node->m_leftLabel).c_str());
@@ -8576,6 +8948,7 @@ devtools::registerNode<RewardsPage>([](RewardsPage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, RewardUnlockLayer>) {
 devtools::registerNode<RewardUnlockLayer>([](RewardUnlockLayer* node) {
+    devtools::label("Members for RewardUnlockLayer:");
     devtools::property("m_chestType", node->m_chestType);
     devtools::property("m_rewardCollected", node->m_rewardCollected);
     devtools::property("m_animationPlayed", node->m_animationPlayed);
@@ -8592,6 +8965,7 @@ devtools::registerNode<RewardUnlockLayer>([](RewardUnlockLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, RotateGameplayGameObject>) {
 devtools::registerNode<RotateGameplayGameObject>([](RotateGameplayGameObject* node) {
+    devtools::label("Members for RotateGameplayGameObject:");
     devtools::property("m_moveDirection", node->m_moveDirection);
     devtools::property("m_groundDirection", node->m_groundDirection);
     devtools::property("m_editVelocity", node->m_editVelocity);
@@ -8608,6 +8982,7 @@ devtools::registerNode<RotateGameplayGameObject>([](RotateGameplayGameObject* no
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ScrollingLayer>) {
 devtools::registerNode<ScrollingLayer>([](ScrollingLayer* node) {
+    devtools::label("Members for ScrollingLayer:");
     devtools::property("m_position", node->m_position);
     devtools::property("m_size", node->m_size);
     devtools::property("m_touchStartPosition", node->m_touchStartPosition);
@@ -8622,6 +8997,7 @@ devtools::registerNode<ScrollingLayer>([](ScrollingLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SearchButton>) {
 devtools::registerNode<SearchButton>([](SearchButton* node) {
+    devtools::label("Members for SearchButton:");
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_label at {}", (void*)node->m_label).c_str());
     devtools::label(fmt::format("cocos2d::CCSprite* m_icon at {}", (void*)node->m_icon).c_str());
 });
@@ -8629,6 +9005,7 @@ devtools::registerNode<SearchButton>([](SearchButton* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetTextPopup>) {
 devtools::registerNode<SetTextPopup>([](SetTextPopup* node) {
+    devtools::label("Members for SetTextPopup:");
     devtools::property("m_disableDelegate", node->m_disableDelegate);
     devtools::property("m_value", node->m_value);
     devtools::label(fmt::format("CCTextInputNode* m_input at {}", (void*)node->m_input).c_str());
@@ -8638,6 +9015,7 @@ devtools::registerNode<SetTextPopup>([](SetTextPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretGame01Layer>) {
 devtools::registerNode<SecretGame01Layer>([](SecretGame01Layer* node) {
+    devtools::label("Members for SecretGame01Layer:");
     devtools::property("m_selectedObject", node->m_selectedObject);
     devtools::property("m_gameDifficulty", node->m_gameDifficulty);
     devtools::property("m_gameActive", node->m_gameActive);
@@ -8652,6 +9030,7 @@ devtools::registerNode<SecretGame01Layer>([](SecretGame01Layer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretLayer>) {
 devtools::registerNode<SecretLayer>([](SecretLayer* node) {
+    devtools::label("Members for SecretLayer:");
     devtools::property("m_basicMessageIndex", node->m_basicMessageIndex);
     devtools::property("m_selectedThread", node->m_selectedThread);
     devtools::property("m_threadMessageIndex", node->m_threadMessageIndex);
@@ -8667,6 +9046,7 @@ devtools::registerNode<SecretLayer>([](SecretLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretLayer2>) {
 devtools::registerNode<SecretLayer2>([](SecretLayer2* node) {
+    devtools::label("Members for SecretLayer2:");
     devtools::property("m_threadTag", node->m_threadTag);
     devtools::property("m_basicMessageIndex", node->m_basicMessageIndex);
     devtools::property("m_selectedThread", node->m_selectedThread);
@@ -8687,6 +9067,7 @@ devtools::registerNode<SecretLayer2>([](SecretLayer2* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretLayer3>) {
 devtools::registerNode<SecretLayer3>([](SecretLayer3* node) {
+    devtools::label("Members for SecretLayer3:");
     devtools::property("m_lockInput", node->m_lockInput);
     devtools::label(fmt::format("DungeonBarsSprite* m_dungeonBars at {}", (void*)node->m_dungeonBars).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_locksArray at {}", (void*)node->m_locksArray).c_str());
@@ -8698,6 +9079,7 @@ devtools::registerNode<SecretLayer3>([](SecretLayer3* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretLayer4>) {
 devtools::registerNode<SecretLayer4>([](SecretLayer4* node) {
+    devtools::label("Members for SecretLayer4:");
     devtools::property("m_threadTag", node->m_threadTag);
     devtools::property("m_basicMessageIndex", node->m_basicMessageIndex);
     devtools::property("m_selectedThread", node->m_selectedThread);
@@ -8714,6 +9096,7 @@ devtools::registerNode<SecretLayer4>([](SecretLayer4* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretLayer5>) {
 devtools::registerNode<SecretLayer5>([](SecretLayer5* node) {
+    devtools::label("Members for SecretLayer5:");
     devtools::property("m_threadTag", node->m_threadTag);
     devtools::property("m_basicMessageIndex", node->m_basicMessageIndex);
     devtools::property("m_selectedThread", node->m_selectedThread);
@@ -8745,12 +9128,14 @@ devtools::registerNode<SecretLayer5>([](SecretLayer5* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretLayer6>) {
 devtools::registerNode<SecretLayer6>([](SecretLayer6* node) {
+    devtools::label("Members for SecretLayer6:");
     devtools::label(fmt::format("SecretGame01Layer* m_gameLayer at {}", (void*)node->m_gameLayer).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretRewardsLayer>) {
 devtools::registerNode<SecretRewardsLayer>([](SecretRewardsLayer* node) {
+    devtools::label("Members for SecretRewardsLayer:");
     devtools::property("m_unkSize4_1", node->m_unkSize4_1);
     devtools::property("m_unkSize4_2", node->m_unkSize4_2);
     devtools::property("m_scratchDialogIndex", node->m_scratchDialogIndex);
@@ -8793,6 +9178,7 @@ devtools::registerNode<SecretRewardsLayer>([](SecretRewardsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SelectArtLayer>) {
 devtools::registerNode<SelectArtLayer>([](SelectArtLayer* node) {
+    devtools::label("Members for SelectArtLayer:");
     devtools::property("m_art", node->m_art);
     devtools::property("m_line", node->m_line);
     devtools::enumerable("m_type", node->m_type, {
@@ -8808,6 +9194,7 @@ devtools::registerNode<SelectArtLayer>([](SelectArtLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SelectEventLayer>) {
 devtools::registerNode<SelectEventLayer>([](SelectEventLayer* node) {
+    devtools::label("Members for SelectEventLayer:");
     devtools::property("m_eventsChanged", node->m_eventsChanged);
     devtools::property("m_unk3b4", node->m_unk3b4);
     devtools::property("m_toggleCount", node->m_toggleCount);
@@ -8820,6 +9207,7 @@ devtools::registerNode<SelectEventLayer>([](SelectEventLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SelectFontLayer>) {
 devtools::registerNode<SelectFontLayer>([](SelectFontLayer* node) {
+    devtools::label("Members for SelectFontLayer:");
     devtools::property("m_font", node->m_font);
     devtools::label(fmt::format("LevelEditorLayer* m_editorLayer at {}", (void*)node->m_editorLayer).c_str());
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_fontLabel at {}", (void*)node->m_fontLabel).c_str());
@@ -8828,6 +9216,7 @@ devtools::registerNode<SelectFontLayer>([](SelectFontLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SelectListIconLayer>) {
 devtools::registerNode<SelectListIconLayer>([](SelectListIconLayer* node) {
+    devtools::label("Members for SelectListIconLayer:");
     devtools::property("m_currentDifficulty", node->m_currentDifficulty);
     devtools::label(fmt::format("cocos2d::CCArray* m_difficulties at {}", (void*)node->m_difficulties).c_str());
     devtools::label(fmt::format("SelectListIconDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
@@ -8836,12 +9225,14 @@ devtools::registerNode<SelectListIconLayer>([](SelectListIconLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SelectPremadeLayer>) {
 devtools::registerNode<SelectPremadeLayer>([](SelectPremadeLayer* node) {
+    devtools::label("Members for SelectPremadeLayer:");
     devtools::label(fmt::format("SelectPremadeDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SelectSettingLayer>) {
 devtools::registerNode<SelectSettingLayer>([](SelectSettingLayer* node) {
+    devtools::label("Members for SelectSettingLayer:");
     devtools::property("m_settingID", node->m_settingID);
     devtools::enumerable("m_type", node->m_type, {
         { SelectSettingType::StartingModeClassic, "SelectSettingType::StartingModeClassic" },
@@ -8855,6 +9246,7 @@ devtools::registerNode<SelectSettingLayer>([](SelectSettingLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SelectSFXSortLayer>) {
 devtools::registerNode<SelectSFXSortLayer>([](SelectSFXSortLayer* node) {
+    devtools::label("Members for SelectSFXSortLayer:");
     devtools::enumerable("m_sortType", node->m_sortType, {
         { AudioSortType::NameAscending, "AudioSortType::NameAscending" },
         { AudioSortType::NameDescending, "AudioSortType::NameDescending" },
@@ -8870,6 +9262,7 @@ devtools::registerNode<SelectSFXSortLayer>([](SelectSFXSortLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SequenceTriggerGameObject>) {
 devtools::registerNode<SequenceTriggerGameObject>([](SequenceTriggerGameObject* node) {
+    devtools::label("Members for SequenceTriggerGameObject:");
     devtools::property("m_minInt", node->m_minInt);
     devtools::property("m_sequenceMode", node->m_sequenceMode);
     devtools::property("m_resetMode", node->m_resetMode);
@@ -8883,6 +9276,7 @@ devtools::registerNode<SequenceTriggerGameObject>([](SequenceTriggerGameObject* 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetFolderPopup>) {
 devtools::registerNode<SetFolderPopup>([](SetFolderPopup* node) {
+    devtools::label("Members for SetFolderPopup:");
     devtools::property("m_isCreated", node->m_isCreated);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_titleLabel at {}", (void*)node->m_titleLabel).c_str());
 });
@@ -8890,6 +9284,7 @@ devtools::registerNode<SetFolderPopup>([](SetFolderPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetGroupIDLayer>) {
 devtools::registerNode<SetGroupIDLayer>([](SetGroupIDLayer* node) {
+    devtools::label("Members for SetGroupIDLayer:");
     devtools::property("m_showChannelOrder", node->m_showChannelOrder);
     devtools::property("m_channelValue", node->m_channelValue);
     devtools::property("m_channelUpdated", node->m_channelUpdated);
@@ -8936,12 +9331,14 @@ devtools::registerNode<SetGroupIDLayer>([](SetGroupIDLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetLevelOrderPopup>) {
 devtools::registerNode<SetLevelOrderPopup>([](SetLevelOrderPopup* node) {
+    devtools::label("Members for SetLevelOrderPopup:");
     devtools::property("m_levelID", node->m_levelID);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetTargetIDLayer>) {
 devtools::registerNode<SetTargetIDLayer>([](SetTargetIDLayer* node) {
+    devtools::label("Members for SetTargetIDLayer:");
     devtools::property("m_objectID", node->m_objectID);
     devtools::property("m_minimumID", node->m_minimumID);
     devtools::property("m_maximumID", node->m_maximumID);
@@ -8950,6 +9347,7 @@ devtools::registerNode<SetTargetIDLayer>([](SetTargetIDLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupAnimationPopup>) {
 devtools::registerNode<SetupAnimationPopup>([](SetupAnimationPopup* node) {
+    devtools::label("Members for SetupAnimationPopup:");
     devtools::property("m_targetID", node->m_targetID);
     devtools::property("m_animationID", node->m_animationID);
     devtools::label(fmt::format("CCTextInputNode* m_targetIDInput at {}", (void*)node->m_targetIDInput).c_str());
@@ -8959,6 +9357,7 @@ devtools::registerNode<SetupAnimationPopup>([](SetupAnimationPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupAreaMoveTriggerPopup>) {
 devtools::registerNode<SetupAreaMoveTriggerPopup>([](SetupAreaMoveTriggerPopup* node) {
+    devtools::label("Members for SetupAreaMoveTriggerPopup:");
     devtools::label(fmt::format("cocos2d::CCArray* m_modeButtons at {}", (void*)node->m_modeButtons).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_targetButtons at {}", (void*)node->m_targetButtons).c_str());
 });
@@ -8966,6 +9365,7 @@ devtools::registerNode<SetupAreaMoveTriggerPopup>([](SetupAreaMoveTriggerPopup* 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupAreaTintTriggerPopup>) {
 devtools::registerNode<SetupAreaTintTriggerPopup>([](SetupAreaTintTriggerPopup* node) {
+    devtools::label("Members for SetupAreaTintTriggerPopup:");
     devtools::property("m_hsvChanged", node->m_hsvChanged);
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_hsvButton at {}", (void*)node->m_hsvButton).c_str());
     devtools::label("cocos2d::ccHSVValue m_hsvValue");
@@ -8974,6 +9374,7 @@ devtools::registerNode<SetupAreaTintTriggerPopup>([](SetupAreaTintTriggerPopup* 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupArtSwitchPopup>) {
 devtools::registerNode<SetupArtSwitchPopup>([](SetupArtSwitchPopup* node) {
+    devtools::label("Members for SetupArtSwitchPopup:");
     devtools::enumerable("m_artType", node->m_artType, {
         { SelectArtType::Background, "SelectArtType::Background" },
         { SelectArtType::Ground, "SelectArtType::Ground" },
@@ -8985,18 +9386,21 @@ devtools::registerNode<SetupArtSwitchPopup>([](SetupArtSwitchPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupAudioLineGuidePopup>) {
 devtools::registerNode<SetupAudioLineGuidePopup>([](SetupAudioLineGuidePopup* node) {
+    devtools::label("Members for SetupAudioLineGuidePopup:");
     devtools::label(fmt::format("cocos2d::CCSprite* m_speedSprite at {}", (void*)node->m_speedSprite).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupAudioTriggerPopup>) {
 devtools::registerNode<SetupAudioTriggerPopup>([](SetupAudioTriggerPopup* node) {
+    devtools::label("Members for SetupAudioTriggerPopup:");
     devtools::label(fmt::format("cocos2d::CCArray* m_proximityButtons at {}", (void*)node->m_proximityButtons).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupCameraEdgePopup>) {
 devtools::registerNode<SetupCameraEdgePopup>([](SetupCameraEdgePopup* node) {
+    devtools::label("Members for SetupCameraEdgePopup:");
     devtools::property("m_targetID", node->m_targetID);
     devtools::property("m_edgeDirection", node->m_edgeDirection);
     devtools::label(fmt::format("CCTextInputNode* m_targetIDInput at {}", (void*)node->m_targetIDInput).c_str());
@@ -9006,6 +9410,7 @@ devtools::registerNode<SetupCameraEdgePopup>([](SetupCameraEdgePopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupCameraModePopup>) {
 devtools::registerNode<SetupCameraModePopup>([](SetupCameraModePopup* node) {
+    devtools::label("Members for SetupCameraModePopup:");
     devtools::property("m_cameraEasing", node->m_cameraEasing);
     devtools::property("m_cameraPadding", node->m_cameraPadding);
     devtools::property("m_freeMode", node->m_freeMode);
@@ -9022,6 +9427,7 @@ devtools::registerNode<SetupCameraModePopup>([](SetupCameraModePopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupCameraOffsetTrigger>) {
 devtools::registerNode<SetupCameraOffsetTrigger>([](SetupCameraOffsetTrigger* node) {
+    devtools::label("Members for SetupCameraOffsetTrigger:");
     devtools::property("m_moveTime", node->m_moveTime);
     devtools::enumerable("m_cameraEasingType", node->m_cameraEasingType, {
         { EasingType::None, "EasingType::None" },
@@ -9064,6 +9470,7 @@ devtools::registerNode<SetupCameraOffsetTrigger>([](SetupCameraOffsetTrigger* no
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupCameraRotatePopup>) {
 devtools::registerNode<SetupCameraRotatePopup>([](SetupCameraRotatePopup* node) {
+    devtools::label("Members for SetupCameraRotatePopup:");
     devtools::property("m_moveTime", node->m_moveTime);
     devtools::enumerable("m_cameraEasingType", node->m_cameraEasingType, {
         { EasingType::None, "EasingType::None" },
@@ -9100,6 +9507,7 @@ devtools::registerNode<SetupCameraRotatePopup>([](SetupCameraRotatePopup* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupCollisionTriggerPopup>) {
 devtools::registerNode<SetupCollisionTriggerPopup>([](SetupCollisionTriggerPopup* node) {
+    devtools::label("Members for SetupCollisionTriggerPopup:");
     devtools::property("m_blockAID", node->m_blockAID);
     devtools::property("m_blockBID", node->m_blockBID);
     devtools::property("m_targetID", node->m_targetID);
@@ -9116,6 +9524,7 @@ devtools::registerNode<SetupCollisionTriggerPopup>([](SetupCollisionTriggerPopup
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupCountTriggerPopup>) {
 devtools::registerNode<SetupCountTriggerPopup>([](SetupCountTriggerPopup* node) {
+    devtools::label("Members for SetupCountTriggerPopup:");
     devtools::property("m_itemID", node->m_itemID);
     devtools::property("m_targetID", node->m_targetID);
     devtools::property("m_targetCount", node->m_targetCount);
@@ -9129,6 +9538,7 @@ devtools::registerNode<SetupCountTriggerPopup>([](SetupCountTriggerPopup* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupEndPopup>) {
 devtools::registerNode<SetupEndPopup>([](SetupEndPopup* node) {
+    devtools::label("Members for SetupEndPopup:");
     devtools::property("m_reversed", node->m_reversed);
     devtools::property("m_lockY", node->m_lockY);
     devtools::property("m_groupID", node->m_groupID);
@@ -9139,6 +9549,7 @@ devtools::registerNode<SetupEndPopup>([](SetupEndPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupEnterEffectPopup>) {
 devtools::registerNode<SetupEnterEffectPopup>([](SetupEnterEffectPopup* node) {
+    devtools::label("Members for SetupEnterEffectPopup:");
     devtools::property("m_objectID", node->m_objectID);
     devtools::property("m_enterType", node->m_enterType);
     devtools::property("m_hsvChanged", node->m_hsvChanged);
@@ -9151,6 +9562,7 @@ devtools::registerNode<SetupEnterEffectPopup>([](SetupEnterEffectPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupEnterTriggerPopup>) {
 devtools::registerNode<SetupEnterTriggerPopup>([](SetupEnterTriggerPopup* node) {
+    devtools::label("Members for SetupEnterTriggerPopup:");
     devtools::property("m_enterType", node->m_enterType);
     devtools::label(fmt::format("CCMenuItemToggler* m_enterOnlyToggler at {}", (void*)node->m_enterOnlyToggler).c_str());
     devtools::label(fmt::format("CCMenuItemToggler* m_exitOnlyToggler at {}", (void*)node->m_exitOnlyToggler).c_str());
@@ -9159,6 +9571,7 @@ devtools::registerNode<SetupEnterTriggerPopup>([](SetupEnterTriggerPopup* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupGradientPopup>) {
 devtools::registerNode<SetupGradientPopup>([](SetupGradientPopup* node) {
+    devtools::label("Members for SetupGradientPopup:");
     devtools::property("m_blendingMode", node->m_blendingMode);
     devtools::property("m_blendingLayer", node->m_blendingLayer);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_blendingLabel at {}", (void*)node->m_blendingLabel).c_str());
@@ -9169,6 +9582,7 @@ devtools::registerNode<SetupGradientPopup>([](SetupGradientPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupGravityModPopup>) {
 devtools::registerNode<SetupGravityModPopup>([](SetupGravityModPopup* node) {
+    devtools::label("Members for SetupGravityModPopup:");
     devtools::property("m_gravityMod", node->m_gravityMod);
     devtools::property("m_gravityTrigger", node->m_gravityTrigger);
     devtools::property("m_minValue", node->m_minValue);
@@ -9185,6 +9599,7 @@ devtools::registerNode<SetupGravityModPopup>([](SetupGravityModPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupInstantCountPopup>) {
 devtools::registerNode<SetupInstantCountPopup>([](SetupInstantCountPopup* node) {
+    devtools::label("Members for SetupInstantCountPopup:");
     devtools::property("m_itemID", node->m_itemID);
     devtools::property("m_targetID", node->m_targetID);
     devtools::property("m_targetCount", node->m_targetCount);
@@ -9201,18 +9616,21 @@ devtools::registerNode<SetupInstantCountPopup>([](SetupInstantCountPopup* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupItemCompareTriggerPopup>) {
 devtools::registerNode<SetupItemCompareTriggerPopup>([](SetupItemCompareTriggerPopup* node) {
+    devtools::label("Members for SetupItemCompareTriggerPopup:");
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_formulaLabel at {}", (void*)node->m_formulaLabel).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupItemEditTriggerPopup>) {
 devtools::registerNode<SetupItemEditTriggerPopup>([](SetupItemEditTriggerPopup* node) {
+    devtools::label("Members for SetupItemEditTriggerPopup:");
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_formulaLabel at {}", (void*)node->m_formulaLabel).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupKeyframePopup>) {
 devtools::registerNode<SetupKeyframePopup>([](SetupKeyframePopup* node) {
+    devtools::label("Members for SetupKeyframePopup:");
     devtools::property("m_groupIDChanged", node->m_groupIDChanged);
     devtools::label(fmt::format("cocos2d::CCArray* m_timeModeToggles at {}", (void*)node->m_timeModeToggles).c_str());
     devtools::label(fmt::format("LevelEditorLayer* m_editorLayer at {}", (void*)node->m_editorLayer).c_str());
@@ -9221,6 +9639,7 @@ devtools::registerNode<SetupKeyframePopup>([](SetupKeyframePopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupMGTrigger>) {
 devtools::registerNode<SetupMGTrigger>([](SetupMGTrigger* node) {
+    devtools::label("Members for SetupMGTrigger:");
     devtools::property("m_moveTime", node->m_moveTime);
     devtools::enumerable("m_mgEasingType", node->m_mgEasingType, {
         { EasingType::None, "EasingType::None" },
@@ -9257,12 +9676,14 @@ devtools::registerNode<SetupMGTrigger>([](SetupMGTrigger* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupMoveCommandPopup>) {
 devtools::registerNode<SetupMoveCommandPopup>([](SetupMoveCommandPopup* node) {
+    devtools::label("Members for SetupMoveCommandPopup:");
     devtools::property("m_smallStep", node->m_smallStep);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupObjectOptionsPopup>) {
 devtools::registerNode<SetupObjectOptionsPopup>([](SetupObjectOptionsPopup* node) {
+    devtools::label("Members for SetupObjectOptionsPopup:");
     devtools::property("m_iceBlock", node->m_iceBlock);
     devtools::property("m_dontFade", node->m_dontFade);
     devtools::property("m_dontEnter", node->m_dontEnter);
@@ -9297,6 +9718,7 @@ devtools::registerNode<SetupObjectOptionsPopup>([](SetupObjectOptionsPopup* node
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupOpacityPopup>) {
 devtools::registerNode<SetupOpacityPopup>([](SetupOpacityPopup* node) {
+    devtools::label("Members for SetupOpacityPopup:");
     devtools::property("m_opacity", node->m_opacity);
     devtools::property("m_fadeTime", node->m_fadeTime);
     devtools::property("m_groupID", node->m_groupID);
@@ -9310,6 +9732,7 @@ devtools::registerNode<SetupOpacityPopup>([](SetupOpacityPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupOptionsTriggerPopup>) {
 devtools::registerNode<SetupOptionsTriggerPopup>([](SetupOptionsTriggerPopup* node) {
+    devtools::label("Members for SetupOptionsTriggerPopup:");
     devtools::property("m_togglePosition", node->m_togglePosition);
     devtools::property("m_togglePage", node->m_togglePage);
 });
@@ -9317,6 +9740,7 @@ devtools::registerNode<SetupOptionsTriggerPopup>([](SetupOptionsTriggerPopup* no
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupPortalPopup>) {
 devtools::registerNode<SetupPortalPopup>([](SetupPortalPopup* node) {
+    devtools::label("Members for SetupPortalPopup:");
     devtools::property("m_cameraEasing", node->m_cameraEasing);
     devtools::property("m_cameraPadding", node->m_cameraPadding);
     devtools::property("m_freeMode", node->m_freeMode);
@@ -9335,6 +9759,7 @@ devtools::registerNode<SetupPortalPopup>([](SetupPortalPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupPulsePopup>) {
 devtools::registerNode<SetupPulsePopup>([](SetupPulsePopup* node) {
+    devtools::label("Members for SetupPulsePopup:");
     devtools::property("m_unk3c0", node->m_unk3c0);
     devtools::property("m_originalColor", node->m_originalColor);
     devtools::property("m_currentColor", node->m_currentColor);
@@ -9387,6 +9812,7 @@ devtools::registerNode<SetupPulsePopup>([](SetupPulsePopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupRandAdvTriggerPopup>) {
 devtools::registerNode<SetupRandAdvTriggerPopup>([](SetupRandAdvTriggerPopup* node) {
+    devtools::label("Members for SetupRandAdvTriggerPopup:");
     devtools::property("m_performedAction", node->m_performedAction);
     devtools::property("m_groupToRemove", node->m_groupToRemove);
     devtools::property("m_removingGroup", node->m_removingGroup);
@@ -9398,6 +9824,7 @@ devtools::registerNode<SetupRandAdvTriggerPopup>([](SetupRandAdvTriggerPopup* no
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupRandTriggerPopup>) {
 devtools::registerNode<SetupRandTriggerPopup>([](SetupRandTriggerPopup* node) {
+    devtools::label("Members for SetupRandTriggerPopup:");
     devtools::property("m_chancePercent", node->m_chancePercent);
     devtools::property("m_groupID1", node->m_groupID1);
     devtools::property("m_groupID2", node->m_groupID2);
@@ -9410,12 +9837,14 @@ devtools::registerNode<SetupRandTriggerPopup>([](SetupRandTriggerPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupReverbPopup>) {
 devtools::registerNode<SetupReverbPopup>([](SetupReverbPopup* node) {
+    devtools::label("Members for SetupReverbPopup:");
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_reverbLabel at {}", (void*)node->m_reverbLabel).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupSequenceTriggerPopup>) {
 devtools::registerNode<SetupSequenceTriggerPopup>([](SetupSequenceTriggerPopup* node) {
+    devtools::label("Members for SetupSequenceTriggerPopup:");
     devtools::property("m_unk3b0", node->m_unk3b0);
     devtools::property("m_unk3b1", node->m_unk3b1);
     devtools::property("m_unk3c0", node->m_unk3c0);
@@ -9427,6 +9856,7 @@ devtools::registerNode<SetupSequenceTriggerPopup>([](SetupSequenceTriggerPopup* 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupSFXPopup>) {
 devtools::registerNode<SetupSFXPopup>([](SetupSFXPopup* node) {
+    devtools::label("Members for SetupSFXPopup:");
     devtools::property("m_sfxID", node->m_sfxID);
     devtools::property("m_sfxLength", node->m_sfxLength);
     devtools::label(fmt::format("CustomSFXWidget* m_sfxWidget at {}", (void*)node->m_sfxWidget).c_str());
@@ -9435,6 +9865,7 @@ devtools::registerNode<SetupSFXPopup>([](SetupSFXPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupShaderEffectPopup>) {
 devtools::registerNode<SetupShaderEffectPopup>([](SetupShaderEffectPopup* node) {
+    devtools::label("Members for SetupShaderEffectPopup:");
     devtools::property("m_zLayerMin", node->m_zLayerMin);
     devtools::property("m_zLayerMax", node->m_zLayerMax);
     devtools::property("m_changeMin", node->m_changeMin);
@@ -9445,6 +9876,7 @@ devtools::registerNode<SetupShaderEffectPopup>([](SetupShaderEffectPopup* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupShakePopup>) {
 devtools::registerNode<SetupShakePopup>([](SetupShakePopup* node) {
+    devtools::label("Members for SetupShakePopup:");
     devtools::property("m_duration", node->m_duration);
     devtools::property("m_strength", node->m_strength);
     devtools::property("m_interval", node->m_interval);
@@ -9459,6 +9891,7 @@ devtools::registerNode<SetupShakePopup>([](SetupShakePopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupSmartBlockLayer>) {
 devtools::registerNode<SetupSmartBlockLayer>([](SetupSmartBlockLayer* node) {
+    devtools::label("Members for SetupSmartBlockLayer:");
     devtools::property("m_referenceOnly", node->m_referenceOnly);
     devtools::property("m_allowRotation", node->m_allowRotation);
     devtools::property("m_allowFlipX", node->m_allowFlipX);
@@ -9474,6 +9907,7 @@ devtools::registerNode<SetupSmartBlockLayer>([](SetupSmartBlockLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupSmartTemplateLayer>) {
 devtools::registerNode<SetupSmartTemplateLayer>([](SetupSmartTemplateLayer* node) {
+    devtools::label("Members for SetupSmartTemplateLayer:");
     devtools::label(fmt::format("GJSmartTemplate* m_smartTemplate at {}", (void*)node->m_smartTemplate).c_str());
     devtools::label(fmt::format("CCTextInputNode* m_nameInput at {}", (void*)node->m_nameInput).c_str());
     devtools::label(fmt::format("cocos2d::CCNode* m_unk298 at {}", (void*)node->m_unk298).c_str());
@@ -9482,12 +9916,14 @@ devtools::registerNode<SetupSmartTemplateLayer>([](SetupSmartTemplateLayer* node
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupSongTriggerPopup>) {
 devtools::registerNode<SetupSongTriggerPopup>([](SetupSongTriggerPopup* node) {
+    devtools::label("Members for SetupSongTriggerPopup:");
     devtools::label(fmt::format("SongSelectNode* m_selectNode at {}", (void*)node->m_selectNode).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupSpawnPopup>) {
 devtools::registerNode<SetupSpawnPopup>([](SetupSpawnPopup* node) {
+    devtools::label("Members for SetupSpawnPopup:");
     devtools::property("m_isBusy", node->m_isBusy);
     devtools::property("m_remapOriginalID", node->m_remapOriginalID);
     devtools::property("m_remapNewID", node->m_remapNewID);
@@ -9498,12 +9934,14 @@ devtools::registerNode<SetupSpawnPopup>([](SetupSpawnPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupTeleportPopup>) {
 devtools::registerNode<SetupTeleportPopup>([](SetupTeleportPopup* node) {
+    devtools::label("Members for SetupTeleportPopup:");
     devtools::label(fmt::format("cocos2d::CCArray* m_teleportGravityToggles at {}", (void*)node->m_teleportGravityToggles).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupTimeWarpPopup>) {
 devtools::registerNode<SetupTimeWarpPopup>([](SetupTimeWarpPopup* node) {
+    devtools::label("Members for SetupTimeWarpPopup:");
     devtools::property("m_timeWarpMod", node->m_timeWarpMod);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_timeWarpLabel at {}", (void*)node->m_timeWarpLabel).c_str());
     devtools::label(fmt::format("Slider* m_timeWarpSlider at {}", (void*)node->m_timeWarpSlider).c_str());
@@ -9512,6 +9950,7 @@ devtools::registerNode<SetupTimeWarpPopup>([](SetupTimeWarpPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupTouchTogglePopup>) {
 devtools::registerNode<SetupTouchTogglePopup>([](SetupTouchTogglePopup* node) {
+    devtools::label("Members for SetupTouchTogglePopup:");
     devtools::property("m_groupID", node->m_groupID);
     devtools::property("m_holdMode", node->m_holdMode);
     devtools::property("m_toggleMode", node->m_toggleMode);
@@ -9527,6 +9966,7 @@ devtools::registerNode<SetupTouchTogglePopup>([](SetupTouchTogglePopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SFXBrowser>) {
 devtools::registerNode<SFXBrowser>([](SFXBrowser* node) {
+    devtools::label("Members for SFXBrowser:");
     devtools::property("m_sfxID", node->m_sfxID);
     devtools::property("m_libraryVersion", node->m_libraryVersion);
     devtools::property("m_cellAmount", node->m_cellAmount);
@@ -9564,6 +10004,7 @@ devtools::registerNode<SFXBrowser>([](SFXBrowser* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SFXInfoObject>) {
 devtools::registerNode<SFXInfoObject>([](SFXInfoObject* node) {
+    devtools::label("Members for SFXInfoObject:");
     devtools::property("m_sfxID", node->m_sfxID);
     devtools::property("m_folderID", node->m_folderID);
     devtools::property("m_size", node->m_size);
@@ -9576,12 +10017,14 @@ devtools::registerNode<SFXInfoObject>([](SFXInfoObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SFXFolderObject>) {
 devtools::registerNode<SFXFolderObject>([](SFXFolderObject* node) {
+    devtools::label("Members for SFXFolderObject:");
     devtools::label(fmt::format("cocos2d::CCArray* m_sfxObjects at {}", (void*)node->m_sfxObjects).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SFXSearchResult>) {
 devtools::registerNode<SFXSearchResult>([](SFXSearchResult* node) {
+    devtools::label("Members for SFXSearchResult:");
     devtools::property("m_folderID", node->m_folderID);
     devtools::label(fmt::format("SFXFolderObject* m_folderObject at {}", (void*)node->m_folderObject).c_str());
 });
@@ -9589,6 +10032,7 @@ devtools::registerNode<SFXSearchResult>([](SFXSearchResult* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SFXTriggerGameObject>) {
 devtools::registerNode<SFXTriggerGameObject>([](SFXTriggerGameObject* node) {
+    devtools::label("Members for SFXTriggerGameObject:");
     devtools::property("m_soundPath", node->m_soundPath);
     devtools::property("m_soundID", node->m_soundID);
     devtools::property("m_pitch", node->m_pitch);
@@ -9661,6 +10105,7 @@ devtools::registerNode<SFXTriggerGameObject>([](SFXTriggerGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ShaderGameObject>) {
 devtools::registerNode<ShaderGameObject>([](ShaderGameObject* node) {
+    devtools::label("Members for ShaderGameObject:");
     devtools::property("m_speed", node->m_speed);
     devtools::property("m_strength", node->m_strength);
     devtools::property("m_outer", node->m_outer);
@@ -9693,6 +10138,7 @@ devtools::registerNode<ShaderGameObject>([](ShaderGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ShaderLayer>) {
 devtools::registerNode<ShaderLayer>([](ShaderLayer* node) {
+    devtools::label("Members for ShaderLayer:");
     devtools::property("m_timesyncShaderActions", node->m_timesyncShaderActions);
     devtools::property("m_antiAlias", node->m_antiAlias);
     devtools::property("m_configuredAntiAlias", node->m_configuredAntiAlias);
@@ -9818,6 +10264,7 @@ devtools::registerNode<ShaderLayer>([](ShaderLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ShardsPage>) {
 devtools::registerNode<ShardsPage>([](ShardsPage* node) {
+    devtools::label("Members for ShardsPage:");
     devtools::property("m_page", node->m_page);
     devtools::label(fmt::format("cocos2d::CCDictionary* m_pages at {}", (void*)node->m_pages).c_str());
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_prevButton at {}", (void*)node->m_prevButton).c_str());
@@ -9828,6 +10275,7 @@ devtools::registerNode<ShardsPage>([](ShardsPage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ShareCommentLayer>) {
 devtools::registerNode<ShareCommentLayer>([](ShareCommentLayer* node) {
+    devtools::label("Members for ShareCommentLayer:");
     devtools::property("m_charLimit", node->m_charLimit);
     devtools::property("m_itemID", node->m_itemID);
     devtools::enumerable("m_commentType", node->m_commentType, {
@@ -9853,6 +10301,7 @@ devtools::registerNode<ShareCommentLayer>([](ShareCommentLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ShareLevelLayer>) {
 devtools::registerNode<ShareLevelLayer>([](ShareLevelLayer* node) {
+    devtools::label("Members for ShareLevelLayer:");
     devtools::property("m_starsRequested", node->m_starsRequested);
     devtools::label(fmt::format("GJGameLevel* m_level at {}", (void*)node->m_level).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_starButtons at {}", (void*)node->m_starButtons).c_str());
@@ -9862,6 +10311,7 @@ devtools::registerNode<ShareLevelLayer>([](ShareLevelLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ShareLevelSettingsLayer>) {
 devtools::registerNode<ShareLevelSettingsLayer>([](ShareLevelSettingsLayer* node) {
+    devtools::label("Members for ShareLevelSettingsLayer:");
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_passwordLabel at {}", (void*)node->m_passwordLabel).c_str());
     devtools::label(fmt::format("GJGameLevel* m_level at {}", (void*)node->m_level).c_str());
     devtools::label(fmt::format("CCMenuItemToggler* m_friendsOnlyToggler at {}", (void*)node->m_friendsOnlyToggler).c_str());
@@ -9871,6 +10321,7 @@ devtools::registerNode<ShareLevelSettingsLayer>([](ShareLevelSettingsLayer* node
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ShareListLayer>) {
 devtools::registerNode<ShareListLayer>([](ShareListLayer* node) {
+    devtools::label("Members for ShareListLayer:");
     devtools::label(fmt::format("GJLevelList* m_list at {}", (void*)node->m_list).c_str());
     devtools::label(fmt::format("CCMenuItemToggler* m_friendsOnlyToggler at {}", (void*)node->m_friendsOnlyToggler).c_str());
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_friendsOnlyLabel at {}", (void*)node->m_friendsOnlyLabel).c_str());
@@ -9879,12 +10330,14 @@ devtools::registerNode<ShareListLayer>([](ShareListLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SimpleObject>) {
 devtools::registerNode<SimpleObject>([](SimpleObject* node) {
+    devtools::label("Members for SimpleObject:");
     devtools::property("m_color", node->m_color);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SimplePlayer>) {
 devtools::registerNode<SimplePlayer>([](SimplePlayer* node) {
+    devtools::label("Members for SimplePlayer:");
     devtools::property("m_unknown", node->m_unknown);
     devtools::property("m_hasGlowOutline", node->m_hasGlowOutline);
     devtools::property("m_iconRequestID", node->m_iconRequestID);
@@ -9903,6 +10356,7 @@ devtools::registerNode<SimplePlayer>([](SimplePlayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SlideInLayer>) {
 devtools::registerNode<SlideInLayer>([](SlideInLayer* node) {
+    devtools::label("Members for SlideInLayer:");
     devtools::property("m_endPosition", node->m_endPosition);
     devtools::property("m_startPosition", node->m_startPosition);
     devtools::property("m_closeOnHide", node->m_closeOnHide);
@@ -9916,6 +10370,7 @@ devtools::registerNode<SlideInLayer>([](SlideInLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SliderThumb>) {
 devtools::registerNode<SliderThumb>([](SliderThumb* node) {
+    devtools::label("Members for SliderThumb:");
     devtools::property("m_length", node->m_length);
     devtools::property("m_vertical", node->m_vertical);
 });
@@ -9923,6 +10378,7 @@ devtools::registerNode<SliderThumb>([](SliderThumb* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SliderTouchLogic>) {
 devtools::registerNode<SliderTouchLogic>([](SliderTouchLogic* node) {
+    devtools::label("Members for SliderTouchLogic:");
     devtools::property("m_unknownUnused", node->m_unknownUnused);
     devtools::property("m_length", node->m_length);
     devtools::property("m_activateThumb", node->m_activateThumb);
@@ -9935,6 +10391,7 @@ devtools::registerNode<SliderTouchLogic>([](SliderTouchLogic* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, Slider>) {
 devtools::registerNode<Slider>([](Slider* node) {
+    devtools::label("Members for Slider:");
     devtools::property("m_width", node->m_width);
     devtools::property("m_height", node->m_height);
     devtools::property("m_enabled", node->m_enabled);
@@ -9947,6 +10404,7 @@ devtools::registerNode<Slider>([](Slider* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SmartGameObject>) {
 devtools::registerNode<SmartGameObject>([](SmartGameObject* node) {
+    devtools::label("Members for SmartGameObject:");
     devtools::property("m_referenceOnly", node->m_referenceOnly);
     devtools::property("m_baseFrame", node->m_baseFrame);
     devtools::property("m_smartFrame", node->m_smartFrame);
@@ -9955,18 +10413,21 @@ devtools::registerNode<SmartGameObject>([](SmartGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SmartTemplateCell>) {
 devtools::registerNode<SmartTemplateCell>([](SmartTemplateCell* node) {
+    devtools::label("Members for SmartTemplateCell:");
     devtools::label(fmt::format("GJSmartTemplate* m_smartTemplate at {}", (void*)node->m_smartTemplate).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SongCell>) {
 devtools::registerNode<SongCell>([](SongCell* node) {
+    devtools::label("Members for SongCell:");
     devtools::label(fmt::format("SongObject* m_songObject at {}", (void*)node->m_songObject).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SongInfoLayer>) {
 devtools::registerNode<SongInfoLayer>([](SongInfoLayer* node) {
+    devtools::label("Members for SongInfoLayer:");
     devtools::property("m_downloadLink", node->m_downloadLink);
     devtools::property("m_newgroundsLink", node->m_newgroundsLink);
     devtools::property("m_youtubeLink", node->m_youtubeLink);
@@ -9978,6 +10439,7 @@ devtools::registerNode<SongInfoLayer>([](SongInfoLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SongInfoObject>) {
 devtools::registerNode<SongInfoObject>([](SongInfoObject* node) {
+    devtools::label("Members for SongInfoObject:");
     devtools::property("m_songID", node->m_songID);
     devtools::property("m_songName", node->m_songName);
     devtools::property("m_artistName", node->m_artistName);
@@ -10007,12 +10469,14 @@ devtools::registerNode<SongInfoObject>([](SongInfoObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SongObject>) {
 devtools::registerNode<SongObject>([](SongObject* node) {
+    devtools::label("Members for SongObject:");
     devtools::property("m_audioID", node->m_audioID);
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SongOptionsLayer>) {
 devtools::registerNode<SongOptionsLayer>([](SongOptionsLayer* node) {
+    devtools::label("Members for SongOptionsLayer:");
     devtools::label(fmt::format("CustomSongDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
     devtools::label(fmt::format("CCTextInputNode* m_offsetInput at {}", (void*)node->m_offsetInput).c_str());
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_playbackButton at {}", (void*)node->m_playbackButton).c_str());
@@ -10021,6 +10485,7 @@ devtools::registerNode<SongOptionsLayer>([](SongOptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SongSelectNode>) {
 devtools::registerNode<SongSelectNode>([](SongSelectNode* node) {
+    devtools::label("Members for SongSelectNode:");
     devtools::property("m_selectedSongID", node->m_selectedSongID);
     devtools::property("m_isCustomSong", node->m_isCustomSong);
     devtools::property("m_songChanged", node->m_songChanged);
@@ -10039,6 +10504,7 @@ devtools::registerNode<SongSelectNode>([](SongSelectNode* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SongTriggerGameObject>) {
 devtools::registerNode<SongTriggerGameObject>([](SongTriggerGameObject* node) {
+    devtools::label("Members for SongTriggerGameObject:");
     devtools::property("m_unk7a9", node->m_unk7a9);
     devtools::property("m_prep", node->m_prep);
     devtools::property("m_loadPrep", node->m_loadPrep);
@@ -10048,6 +10514,7 @@ devtools::registerNode<SongTriggerGameObject>([](SongTriggerGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SpawnParticleGameObject>) {
 devtools::registerNode<SpawnParticleGameObject>([](SpawnParticleGameObject* node) {
+    devtools::label("Members for SpawnParticleGameObject:");
     devtools::property("m_offset", node->m_offset);
     devtools::property("m_offsetVariance", node->m_offsetVariance);
     devtools::property("m_matchRotation", node->m_matchRotation);
@@ -10060,6 +10527,7 @@ devtools::registerNode<SpawnParticleGameObject>([](SpawnParticleGameObject* node
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SpawnTriggerGameObject>) {
 devtools::registerNode<SpawnTriggerGameObject>([](SpawnTriggerGameObject* node) {
+    devtools::label("Members for SpawnTriggerGameObject:");
     devtools::property("m_remapKey", node->m_remapKey);
     devtools::property("m_currentDelay", node->m_currentDelay);
     devtools::property("m_spawnDelay", node->m_spawnDelay);
@@ -10072,6 +10540,7 @@ devtools::registerNode<SpawnTriggerGameObject>([](SpawnTriggerGameObject* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SpecialAnimGameObject>) {
 devtools::registerNode<SpecialAnimGameObject>([](SpecialAnimGameObject* node) {
+    devtools::label("Members for SpecialAnimGameObject:");
     devtools::property("m_skipMainColorUpdate", node->m_skipMainColorUpdate);
     devtools::property("m_skipSecondaryColorUpdate", node->m_skipSecondaryColorUpdate);
 });
@@ -10079,6 +10548,7 @@ devtools::registerNode<SpecialAnimGameObject>([](SpecialAnimGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SpriteAnimationManager>) {
 devtools::registerNode<SpriteAnimationManager>([](SpriteAnimationManager* node) {
+    devtools::label("Members for SpriteAnimationManager:");
     devtools::property("m_queuedAnimation", node->m_queuedAnimation);
     devtools::property("m_speed", node->m_speed);
     devtools::property("m_currentAnimation", node->m_currentAnimation);
@@ -10094,6 +10564,7 @@ devtools::registerNode<SpriteAnimationManager>([](SpriteAnimationManager* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SpriteDescription>) {
 devtools::registerNode<SpriteDescription>([](SpriteDescription* node) {
+    devtools::label("Members for SpriteDescription:");
     devtools::property("m_position", node->m_position);
     devtools::property("m_scale", node->m_scale);
     devtools::property("m_flipped", node->m_flipped);
@@ -10107,12 +10578,14 @@ devtools::registerNode<SpriteDescription>([](SpriteDescription* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, StartPosObject>) {
 devtools::registerNode<StartPosObject>([](StartPosObject* node) {
+    devtools::label("Members for StartPosObject:");
     devtools::label(fmt::format("LevelSettingsObject* m_startSettings at {}", (void*)node->m_startSettings).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, StatsObject>) {
 devtools::registerNode<StatsObject>([](StatsObject* node) {
+    devtools::label("Members for StatsObject:");
     devtools::property("m_value", node->m_value);
     devtools::label(fmt::format("const char* m_key at {}", (void*)node->m_key).c_str());
 });
@@ -10120,12 +10593,14 @@ devtools::registerNode<StatsObject>([](StatsObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SupportLayer>) {
 devtools::registerNode<SupportLayer>([](SupportLayer* node) {
+    devtools::label("Members for SupportLayer:");
     devtools::label(fmt::format("UploadActionPopup* m_uploadPopup at {}", (void*)node->m_uploadPopup).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TableView>) {
 devtools::registerNode<TableView>([](TableView* node) {
+    devtools::label("Members for TableView:");
     devtools::property("m_touchOutOfBoundary", node->m_touchOutOfBoundary);
     devtools::property("m_touchStartPosition2", node->m_touchStartPosition2);
     devtools::property("m_lastCellPos", node->m_lastCellPos);
@@ -10151,6 +10626,7 @@ devtools::registerNode<TableView>([](TableView* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TeleportPortalObject>) {
 devtools::registerNode<TeleportPortalObject>([](TeleportPortalObject* node) {
+    devtools::label("Members for TeleportPortalObject:");
     devtools::property("m_isYellowPortal", node->m_isYellowPortal);
     devtools::property("m_teleportYOffset", node->m_teleportYOffset);
     devtools::property("m_teleportEase", node->m_teleportEase);
@@ -10175,6 +10651,7 @@ devtools::registerNode<TeleportPortalObject>([](TeleportPortalObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TextAlertPopup>) {
 devtools::registerNode<TextAlertPopup>([](TextAlertPopup* node) {
+    devtools::label("Members for TextAlertPopup:");
     devtools::property("m_width", node->m_width);
     devtools::property("m_height", node->m_height);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_label at {}", (void*)node->m_label).c_str());
@@ -10183,6 +10660,7 @@ devtools::registerNode<TextAlertPopup>([](TextAlertPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TextArea>) {
 devtools::registerNode<TextArea>([](TextArea* node) {
+    devtools::label("Members for TextArea:");
     devtools::property("m_disableColor", node->m_disableColor);
     devtools::property("m_width", node->m_width);
     devtools::property("m_unknown", node->m_unknown);
@@ -10205,6 +10683,7 @@ devtools::registerNode<TextArea>([](TextArea* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TextGameObject>) {
 devtools::registerNode<TextGameObject>([](TextGameObject* node) {
+    devtools::label("Members for TextGameObject:");
     devtools::property("m_text", node->m_text);
     devtools::property("m_kerning", node->m_kerning);
 });
@@ -10212,6 +10691,7 @@ devtools::registerNode<TextGameObject>([](TextGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TextStyleSection>) {
 devtools::registerNode<TextStyleSection>([](TextStyleSection* node) {
+    devtools::label("Members for TextStyleSection:");
     devtools::enumerable("m_styleType", node->m_styleType, {
         { TextStyleType::Colored, "TextStyleType::Colored" },
         { TextStyleType::Instant, "TextStyleType::Instant" },
@@ -10230,6 +10710,7 @@ devtools::registerNode<TextStyleSection>([](TextStyleSection* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TimerTriggerGameObject>) {
 devtools::registerNode<TimerTriggerGameObject>([](TimerTriggerGameObject* node) {
+    devtools::label("Members for TimerTriggerGameObject:");
     devtools::property("m_startTime", node->m_startTime);
     devtools::property("m_targetTime", node->m_targetTime);
     devtools::property("m_stopTimeEnabled", node->m_stopTimeEnabled);
@@ -10244,6 +10725,7 @@ devtools::registerNode<TimerTriggerGameObject>([](TimerTriggerGameObject* node) 
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TopArtistsLayer>) {
 devtools::registerNode<TopArtistsLayer>([](TopArtistsLayer* node) {
+    devtools::label("Members for TopArtistsLayer:");
     devtools::property("m_itemCount", node->m_itemCount);
     devtools::property("m_pageStartIdx", node->m_pageStartIdx);
     devtools::property("m_pageEndIdx", node->m_pageEndIdx);
@@ -10261,6 +10743,7 @@ devtools::registerNode<TopArtistsLayer>([](TopArtistsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TransformTriggerGameObject>) {
 devtools::registerNode<TransformTriggerGameObject>([](TransformTriggerGameObject* node) {
+    devtools::label("Members for TransformTriggerGameObject:");
     devtools::property("m_objectScaleX", node->m_objectScaleX);
     devtools::property("m_objectScaleY", node->m_objectScaleY);
     devtools::property("m_property450", node->m_property450);
@@ -10275,6 +10758,7 @@ devtools::registerNode<TransformTriggerGameObject>([](TransformTriggerGameObject
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TriggerControlGameObject>) {
 devtools::registerNode<TriggerControlGameObject>([](TriggerControlGameObject* node) {
+    devtools::label("Members for TriggerControlGameObject:");
     devtools::property("m_triggerControlFrame", node->m_triggerControlFrame);
     devtools::enumerable("m_customTriggerValue", node->m_customTriggerValue, {
         { GJActionCommand::Stop, "GJActionCommand::Stop" },
@@ -10286,6 +10770,7 @@ devtools::registerNode<TriggerControlGameObject>([](TriggerControlGameObject* no
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TutorialLayer>) {
 devtools::registerNode<TutorialLayer>([](TutorialLayer* node) {
+    devtools::label("Members for TutorialLayer:");
     devtools::property("m_page", node->m_page);
     devtools::label(fmt::format("cocos2d::CCLayer* m_tutorialLayer at {}", (void*)node->m_tutorialLayer).c_str());
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_nextButton at {}", (void*)node->m_nextButton).c_str());
@@ -10295,6 +10780,7 @@ devtools::registerNode<TutorialLayer>([](TutorialLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TutorialPopup>) {
 devtools::registerNode<TutorialPopup>([](TutorialPopup* node) {
+    devtools::label("Members for TutorialPopup:");
     devtools::property("m_currentSprite", node->m_currentSprite);
     devtools::property("m_callbackRegistered", node->m_callbackRegistered);
     devtools::label("cocos2d::SEL_MenuHandler m_callbackSelector");
@@ -10305,6 +10791,7 @@ devtools::registerNode<TutorialPopup>([](TutorialPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UILayer>) {
 devtools::registerNode<UILayer>([](UILayer* node) {
+    devtools::label("Members for UILayer:");
     devtools::property("m_bUnknown2", node->m_bUnknown2);
     devtools::property("m_bUnknown3", node->m_bUnknown3);
     devtools::property("m_p1Jumping", node->m_p1Jumping);
@@ -10330,6 +10817,7 @@ devtools::registerNode<UILayer>([](UILayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UIOptionsLayer>) {
 devtools::registerNode<UIOptionsLayer>([](UIOptionsLayer* node) {
+    devtools::label("Members for UIOptionsLayer:");
     devtools::property("m_dual", node->m_dual);
     devtools::property("m_activeUIGroup", node->m_activeUIGroup);
     devtools::label(fmt::format("GJUINode* m_uiNode1 at {}", (void*)node->m_uiNode1).c_str());
@@ -10342,6 +10830,7 @@ devtools::registerNode<UIOptionsLayer>([](UIOptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UIPOptionsLayer>) {
 devtools::registerNode<UIPOptionsLayer>([](UIPOptionsLayer* node) {
+    devtools::label("Members for UIPOptionsLayer:");
     devtools::property("m_touchID", node->m_touchID);
     devtools::property("m_touchPosition", node->m_touchPosition);
     devtools::property("m_touchDelta", node->m_touchDelta);
@@ -10351,12 +10840,14 @@ devtools::registerNode<UIPOptionsLayer>([](UIPOptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UISaveLoadLayer>) {
 devtools::registerNode<UISaveLoadLayer>([](UISaveLoadLayer* node) {
+    devtools::label("Members for UISaveLoadLayer:");
     devtools::label(fmt::format("UIOptionsLayer* m_optionsLayer at {}", (void*)node->m_optionsLayer).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UISettingsGameObject>) {
 devtools::registerNode<UISettingsGameObject>([](UISettingsGameObject* node) {
+    devtools::label("Members for UISettingsGameObject:");
     devtools::property("m_xRef", node->m_xRef);
     devtools::property("m_yRef", node->m_yRef);
     devtools::property("m_xRelative", node->m_xRelative);
@@ -10366,6 +10857,7 @@ devtools::registerNode<UISettingsGameObject>([](UISettingsGameObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UndoObject>) {
 devtools::registerNode<UndoObject>([](UndoObject* node) {
+    devtools::label("Members for UndoObject:");
     devtools::enumerable("m_command", node->m_command, {
         { UndoCommand::Delete, "UndoCommand::Delete" },
         { UndoCommand::New, "UndoCommand::New" },
@@ -10384,6 +10876,7 @@ devtools::registerNode<UndoObject>([](UndoObject* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UpdateAccountSettingsPopup>) {
 devtools::registerNode<UpdateAccountSettingsPopup>([](UpdateAccountSettingsPopup* node) {
+    devtools::label("Members for UpdateAccountSettingsPopup:");
     devtools::property("m_updateSuccess", node->m_updateSuccess);
     devtools::label(fmt::format("GJAccountSettingsLayer* m_settingsLayer at {}", (void*)node->m_settingsLayer).c_str());
     devtools::label(fmt::format("TextArea* m_textArea at {}", (void*)node->m_textArea).c_str());
@@ -10394,6 +10887,7 @@ devtools::registerNode<UpdateAccountSettingsPopup>([](UpdateAccountSettingsPopup
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UploadActionPopup>) {
 devtools::registerNode<UploadActionPopup>([](UploadActionPopup* node) {
+    devtools::label("Members for UploadActionPopup:");
     devtools::property("m_succeeded", node->m_succeeded);
     devtools::label(fmt::format("UploadPopupDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
     devtools::label(fmt::format("TextArea* m_textArea at {}", (void*)node->m_textArea).c_str());
@@ -10404,6 +10898,7 @@ devtools::registerNode<UploadActionPopup>([](UploadActionPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UploadListPopup>) {
 devtools::registerNode<UploadListPopup>([](UploadListPopup* node) {
+    devtools::label("Members for UploadListPopup:");
     devtools::label(fmt::format("GJLevelList* m_levelList at {}", (void*)node->m_levelList).c_str());
     devtools::label(fmt::format("TextArea* m_textArea at {}", (void*)node->m_textArea).c_str());
     devtools::label(fmt::format("LoadingCircle* m_loadingCircle at {}", (void*)node->m_loadingCircle).c_str());
@@ -10413,6 +10908,7 @@ devtools::registerNode<UploadListPopup>([](UploadListPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UploadPopup>) {
 devtools::registerNode<UploadPopup>([](UploadPopup* node) {
+    devtools::label("Members for UploadPopup:");
     devtools::label(fmt::format("GJGameLevel* m_level at {}", (void*)node->m_level).c_str());
     devtools::label(fmt::format("TextArea* m_textArea at {}", (void*)node->m_textArea).c_str());
     devtools::label(fmt::format("LoadingCircle* m_loadingCircle at {}", (void*)node->m_loadingCircle).c_str());
@@ -10422,18 +10918,21 @@ devtools::registerNode<UploadPopup>([](UploadPopup* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, URLCell>) {
 devtools::registerNode<URLCell>([](URLCell* node) {
+    devtools::label("Members for URLCell:");
     devtools::label(fmt::format("CCURLObject* m_urlObject at {}", (void*)node->m_urlObject).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, URLViewLayer>) {
 devtools::registerNode<URLViewLayer>([](URLViewLayer* node) {
+    devtools::label("Members for URLViewLayer:");
     devtools::label(fmt::format("cocos2d::CCArray* m_urlObjects at {}", (void*)node->m_urlObjects).c_str());
 });
 }
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, VideoOptionsLayer>) {
 devtools::registerNode<VideoOptionsLayer>([](VideoOptionsLayer* node) {
+    devtools::label("Members for VideoOptionsLayer:");
     devtools::property("m_textureQuality", node->m_textureQuality);
     devtools::property("m_windowed", node->m_windowed);
     devtools::property("m_borderless", node->m_borderless);
@@ -10454,6 +10953,7 @@ devtools::registerNode<VideoOptionsLayer>([](VideoOptionsLayer* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, WorldLevelPage>) {
 devtools::registerNode<WorldLevelPage>([](WorldLevelPage* node) {
+    devtools::label("Members for WorldLevelPage:");
     devtools::label(fmt::format("GJWorldNode* m_worldNode at {}", (void*)node->m_worldNode).c_str());
     devtools::label(fmt::format("GJGameLevel* m_level at {}", (void*)node->m_level).c_str());
 });
@@ -10461,6 +10961,7 @@ devtools::registerNode<WorldLevelPage>([](WorldLevelPage* node) {
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, WorldSelectLayer>) {
 devtools::registerNode<WorldSelectLayer>([](WorldSelectLayer* node) {
+    devtools::label("Members for WorldSelectLayer:");
     devtools::property("m_cleanupSprites", node->m_cleanupSprites);
     devtools::property("m_enteringLevel", node->m_enteringLevel);
     devtools::property("m_buttonsLocked", node->m_buttonsLocked);
