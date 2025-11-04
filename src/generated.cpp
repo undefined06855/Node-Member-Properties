@@ -1,6 +1,6 @@
 #include <geode.devtools/include/API.hpp>
 
-// compiled at Tue, 04 Nov 2025 23:29:31 +0000
+// compiled at Tue, 04 Nov 2025 23:44:00 +0000
 
 $on_mod(Loaded) {
     devtools::waitForDevTools([] {
@@ -92,7 +92,17 @@ devtools::registerNode<cocos2d::CCSet>([](cocos2d::CCSet* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCParticleSystem>) {
 devtools::registerNode<cocos2d::CCParticleSystem>([](cocos2d::CCParticleSystem* node) {
     devtools::label("Members for cocos2d::CCParticleSystem:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_sPlistFile;
+        if (devtools::property("m_sPlistFile", temp)) {
+            node->m_sPlistFile = temp;
+        }
+    }
+#else
     devtools::property("m_sPlistFile", node->m_sPlistFile);
+#endif
     devtools::property("m_fElapsed", node->m_fElapsed);
     devtools::property("m_fEmitCounter", node->m_fEmitCounter);
     devtools::property("m_uParticleIdx", node->m_uParticleIdx);
@@ -346,8 +356,28 @@ devtools::registerNode<cocos2d::CCSpriteBatchNode>([](cocos2d::CCSpriteBatchNode
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCLabelBMFont>) {
 devtools::registerNode<cocos2d::CCLabelBMFont>([](cocos2d::CCLabelBMFont* node) {
     devtools::label("Members for cocos2d::CCLabelBMFont:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_sFntFile;
+        if (devtools::property("m_sFntFile", temp)) {
+            node->m_sFntFile = temp;
+        }
+    }
+#else
     devtools::property("m_sFntFile", node->m_sFntFile);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_sInitialStringUTF8;
+        if (devtools::property("m_sInitialStringUTF8", temp)) {
+            node->m_sInitialStringUTF8 = temp;
+        }
+    }
+#else
     devtools::property("m_sInitialStringUTF8", node->m_sInitialStringUTF8);
+#endif
     devtools::property("m_fWidth", node->m_fWidth);
     devtools::property("m_bLineBreakWithoutSpaces", node->m_bLineBreakWithoutSpaces);
     devtools::property("m_tImageOffset", node->m_tImageOffset);
@@ -392,7 +422,6 @@ devtools::registerNode<cocos2d::CCArray>([](cocos2d::CCArray* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCDictionary>) {
 devtools::registerNode<cocos2d::CCDictionary>([](cocos2d::CCDictionary* node) {
     devtools::label("Members for cocos2d::CCDictionary:");
-    devtools::property("m_eDictType", node->m_eDictType);
     devtools::label(fmt::format("cocos2d::CCDictElement* m_pElements at {}", (void*)node->m_pElements).c_str());
 });
 }
@@ -419,7 +448,17 @@ devtools::registerNode<cocos2d::CCDrawNode>([](cocos2d::CCDrawNode* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCString>) {
 devtools::registerNode<cocos2d::CCString>([](cocos2d::CCString* node) {
     devtools::label("Members for cocos2d::CCString:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_sString;
+        if (devtools::property("m_sString", temp)) {
+            node->m_sString = temp;
+        }
+    }
+#else
     devtools::property("m_sString", node->m_sString);
+#endif
 });
 }
 
@@ -464,9 +503,28 @@ devtools::registerNode<cocos2d::extension::CCHttpClient>([](cocos2d::extension::
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::extension::CCHttpRequest>) {
 devtools::registerNode<cocos2d::extension::CCHttpRequest>([](cocos2d::extension::CCHttpRequest* node) {
     devtools::label("Members for cocos2d::extension::CCHttpRequest:");
-    devtools::property("_requestType", node->_requestType);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->_url;
+        if (devtools::property("_url", temp)) {
+            node->_url = temp;
+        }
+    }
+#else
     devtools::property("_url", node->_url);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->_tag;
+        if (devtools::property("_tag", temp)) {
+            node->_tag = temp;
+        }
+    }
+#else
     devtools::property("_tag", node->_tag);
+#endif
     devtools::property("_type", node->_type);
     devtools::property("_shouldCancel", node->_shouldCancel);
     devtools::property("_downloadProgress", node->_downloadProgress);
@@ -485,7 +543,17 @@ devtools::registerNode<cocos2d::extension::CCHttpResponse>([](cocos2d::extension
     devtools::label("Members for cocos2d::extension::CCHttpResponse:");
     devtools::property("_succeed", node->_succeed);
     devtools::property("_responseCode", node->_responseCode);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->_errorBuffer;
+        if (devtools::property("_errorBuffer", temp)) {
+            node->_errorBuffer = temp;
+        }
+    }
+#else
     devtools::property("_errorBuffer", node->_errorBuffer);
+#endif
     devtools::label(fmt::format("cocos2d::extension::CCHttpRequest* _pHttpRequest at {}", (void*)node->_pHttpRequest).c_str());
     devtools::label("gd::vector<char> _responseData");
     devtools::label("gd::vector<char> _responseHeader");
@@ -521,7 +589,17 @@ devtools::registerNode<cocos2d::CCLightning>([](cocos2d::CCLightning* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODSound>) {
 devtools::registerNode<FMODSound>([](FMODSound* node) {
     devtools::label("Members for FMODSound:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_filePath;
+        if (devtools::property("m_filePath", temp)) {
+            node->m_filePath = temp;
+        }
+    }
+#else
     devtools::property("m_filePath", node->m_filePath);
+#endif
     devtools::property("m_length", node->m_length);
     devtools::property("m_playCount", node->m_playCount);
     devtools::property("m_playIndex", node->m_playIndex);
@@ -629,8 +707,28 @@ devtools::registerNode<ChanceObject>([](ChanceObject* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SmartPrefabResult>) {
 devtools::registerNode<SmartPrefabResult>([](SmartPrefabResult* node) {
     devtools::label("Members for SmartPrefabResult:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_binaryKey;
+        if (devtools::property("m_binaryKey", temp)) {
+            node->m_binaryKey = temp;
+        }
+    }
+#else
     devtools::property("m_binaryKey", node->m_binaryKey);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_prefabKey;
+        if (devtools::property("m_prefabKey", temp)) {
+            node->m_prefabKey = temp;
+        }
+    }
+#else
     devtools::property("m_prefabKey", node->m_prefabKey);
+#endif
     devtools::property("m_prefabCount", node->m_prefabCount);
     devtools::property("m_unrequired", node->m_unrequired);
     devtools::property("m_rotation", node->m_rotation);
@@ -786,7 +884,17 @@ devtools::registerNode<FMODSoundTween>([](FMODSoundTween* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODQueuedMusic>) {
 devtools::registerNode<FMODQueuedMusic>([](FMODQueuedMusic* node) {
     devtools::label("Members for FMODQueuedMusic:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_filePath;
+        if (devtools::property("m_filePath", temp)) {
+            node->m_filePath = temp;
+        }
+    }
+#else
     devtools::property("m_filePath", node->m_filePath);
+#endif
     devtools::property("m_pitch", node->m_pitch);
     devtools::property("m_unkFloat2", node->m_unkFloat2);
     devtools::property("m_volume", node->m_volume);
@@ -824,7 +932,17 @@ devtools::registerNode<SoundStateContainer>([](SoundStateContainer* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODSoundState>) {
 devtools::registerNode<FMODSoundState>([](FMODSoundState* node) {
     devtools::label("Members for FMODSoundState:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_filePath;
+        if (devtools::property("m_filePath", temp)) {
+            node->m_filePath = temp;
+        }
+    }
+#else
     devtools::property("m_filePath", node->m_filePath);
+#endif
     devtools::property("m_speed", node->m_speed);
     devtools::property("m_unkFloat1", node->m_unkFloat1);
     devtools::property("m_volume", node->m_volume);
@@ -990,8 +1108,28 @@ devtools::registerNode<FLAlertLayer>([](FLAlertLayer* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, AccountLoginLayer>) {
 devtools::registerNode<AccountLoginLayer>([](AccountLoginLayer* node) {
     devtools::label("Members for AccountLoginLayer:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_username;
+        if (devtools::property("m_username", temp)) {
+            node->m_username = temp;
+        }
+    }
+#else
     devtools::property("m_username", node->m_username);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_password;
+        if (devtools::property("m_password", temp)) {
+            node->m_password = temp;
+        }
+    }
+#else
     devtools::property("m_password", node->m_password);
+#endif
     devtools::label(fmt::format("CCTextInputNode* m_usernameInput at {}", (void*)node->m_usernameInput).c_str());
     devtools::label(fmt::format("CCTextInputNode* m_passwordInput at {}", (void*)node->m_passwordInput).c_str());
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_usernameLabel at {}", (void*)node->m_usernameLabel).c_str());
@@ -1044,7 +1182,17 @@ devtools::registerNode<CCIndexPath>([](CCIndexPath* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TableViewCell>) {
 devtools::registerNode<TableViewCell>([](TableViewCell* node) {
     devtools::label("Members for TableViewCell:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_cellIdentifier;
+        if (devtools::property("m_cellIdentifier", temp)) {
+            node->m_cellIdentifier = temp;
+        }
+    }
+#else
     devtools::property("m_cellIdentifier", node->m_cellIdentifier);
+#endif
     devtools::property("m_width", node->m_width);
     devtools::property("m_height", node->m_height);
     devtools::enumerable("m_listType", node->m_listType, {
@@ -1181,7 +1329,17 @@ devtools::registerNode<GameObject>([](GameObject* node) {
     devtools::property("m_hasSpecialChild", node->m_hasSpecialChild);
     devtools::property("m_isActivated", node->m_isActivated);
     devtools::property("m_isDisabled2", node->m_isDisabled2);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_particleString;
+        if (devtools::property("m_particleString", temp)) {
+            node->m_particleString = temp;
+        }
+    }
+#else
     devtools::property("m_particleString", node->m_particleString);
+#endif
     devtools::property("m_hasParticles", node->m_hasParticles);
     devtools::property("m_particleUseObjectColor", node->m_particleUseObjectColor);
     devtools::property("m_hasColorSprite", node->m_hasColorSprite);
@@ -1781,7 +1939,17 @@ devtools::registerNode<AnimatedGameObject>([](AnimatedGameObject* node) {
     devtools::label("Members for AnimatedGameObject:");
     devtools::property("m_finishedAnimating", node->m_finishedAnimating);
     devtools::property("m_playingAnimation", node->m_playingAnimation);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_currentAnimation;
+        if (devtools::property("m_currentAnimation", temp)) {
+            node->m_currentAnimation = temp;
+        }
+    }
+#else
     devtools::property("m_currentAnimation", node->m_currentAnimation);
+#endif
     devtools::property("m_notGrounded", node->m_notGrounded);
     devtools::property("m_animationID", node->m_animationID);
     devtools::label(fmt::format("CCAnimatedSprite* m_animatedSprite at {}", (void*)node->m_animatedSprite).c_str());
@@ -1793,13 +1961,43 @@ devtools::registerNode<AnimatedGameObject>([](AnimatedGameObject* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCAnimatedSprite>) {
 devtools::registerNode<CCAnimatedSprite>([](CCAnimatedSprite* node) {
     devtools::label("Members for CCAnimatedSprite:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_unkString1;
+        if (devtools::property("m_unkString1", temp)) {
+            node->m_unkString1 = temp;
+        }
+    }
+#else
     devtools::property("m_unkString1", node->m_unkString1);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_activeTween;
+        if (devtools::property("m_activeTween", temp)) {
+            node->m_activeTween = temp;
+        }
+    }
+#else
     devtools::property("m_activeTween", node->m_activeTween);
+#endif
     devtools::enumerable("m_spriteMode", node->m_spriteMode, {
         { spriteMode::FrameByFrame, "spriteMode::FrameByFrame" },
         { spriteMode::PartAnim, "spriteMode::PartAnim" },
     });
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_currentAnim;
+        if (devtools::property("m_currentAnim", temp)) {
+            node->m_currentAnim = temp;
+        }
+    }
+#else
     devtools::property("m_currentAnim", node->m_currentAnim);
+#endif
     devtools::label(fmt::format("SpriteAnimationManager* m_animationManager at {}", (void*)node->m_animationManager).c_str());
     devtools::label(fmt::format("cocos2d::CCSprite* m_sprite at {}", (void*)node->m_sprite).c_str());
     devtools::label(fmt::format("cocos2d::CCSprite* m_fbfSprite at {}", (void*)node->m_fbfSprite).c_str());
@@ -2021,7 +2219,17 @@ devtools::registerNode<BrowseSmartTemplateLayer>([](BrowseSmartTemplateLayer* no
 if constexpr (std::is_base_of_v<cocos2d::CCNode, BrowseSmartKeyLayer>) {
 devtools::registerNode<BrowseSmartKeyLayer>([](BrowseSmartKeyLayer* node) {
     devtools::label("Members for BrowseSmartKeyLayer:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_prefabKey;
+        if (devtools::property("m_prefabKey", temp)) {
+            node->m_prefabKey = temp;
+        }
+    }
+#else
     devtools::property("m_prefabKey", node->m_prefabKey);
+#endif
     devtools::property("m_templatePage", node->m_templatePage);
 });
 }
@@ -2037,7 +2245,17 @@ devtools::registerNode<ButtonSprite>([](ButtonSprite* node) {
     devtools::property("m_absolute", node->m_absolute);
     devtools::property("m_textOffset", node->m_textOffset);
     devtools::property("m_spritePosition", node->m_spritePosition);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_caption;
+        if (devtools::property("m_caption", temp)) {
+            node->m_caption = temp;
+        }
+    }
+#else
     devtools::property("m_caption", node->m_caption);
+#endif
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_label at {}", (void*)node->m_label).c_str());
     devtools::label(fmt::format("cocos2d::CCSprite* m_subSprite at {}", (void*)node->m_subSprite).c_str());
     devtools::label(fmt::format("cocos2d::CCSprite* m_subBGSprite at {}", (void*)node->m_subBGSprite).c_str());
@@ -2164,8 +2382,28 @@ devtools::registerNode<CCMenuItemSpriteExtra>([](CCMenuItemSpriteExtra* node) {
     devtools::property("m_animationEnabled", node->m_animationEnabled);
     devtools::property("m_colorEnabled", node->m_colorEnabled);
     devtools::property("m_volume", node->m_volume);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_activateSound;
+        if (devtools::property("m_activateSound", temp)) {
+            node->m_activateSound = temp;
+        }
+    }
+#else
     devtools::property("m_activateSound", node->m_activateSound);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_selectSound;
+        if (devtools::property("m_selectSound", temp)) {
+            node->m_selectSound = temp;
+        }
+    }
+#else
     devtools::property("m_selectSound", node->m_selectSound);
+#endif
     devtools::property("m_colorDip", node->m_colorDip);
     devtools::property("m_offset", node->m_offset);
     devtools::property("m_duration", node->m_duration);
@@ -2287,7 +2525,17 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, CCSpritePart>) {
 devtools::registerNode<CCSpritePart>([](CCSpritePart* node) {
     devtools::label("Members for CCSpritePart:");
     devtools::property("m_isBeingUsed", node->m_isBeingUsed);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_spriteFrameName;
+        if (devtools::property("m_spriteFrameName", temp)) {
+            node->m_spriteFrameName = temp;
+        }
+    }
+#else
     devtools::property("m_spriteFrameName", node->m_spriteFrameName);
+#endif
     devtools::label(fmt::format("SpritePartDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
 });
 }
@@ -2296,14 +2544,34 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, CCTextInputNode>) {
 devtools::registerNode<CCTextInputNode>([](CCTextInputNode* node) {
     devtools::label("Members for CCTextInputNode:");
     devtools::property("m_numberInput", node->m_numberInput);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_caption;
+        if (devtools::property("m_caption", temp)) {
+            node->m_caption = temp;
+        }
+    }
+#else
     devtools::property("m_caption", node->m_caption);
+#endif
     devtools::property("m_unknown1", node->m_unknown1);
     devtools::property("m_selected", node->m_selected);
     devtools::property("m_unknown2", node->m_unknown2);
     devtools::property("m_fontValue1", node->m_fontValue1);
     devtools::property("m_fontValue2", node->m_fontValue2);
     devtools::property("m_isChatFont", node->m_isChatFont);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_allowedChars;
+        if (devtools::property("m_allowedChars", temp)) {
+            node->m_allowedChars = temp;
+        }
+    }
+#else
     devtools::property("m_allowedChars", node->m_allowedChars);
+#endif
     devtools::property("m_maxLabelWidth", node->m_maxLabelWidth);
     devtools::property("m_maxLabelScale", node->m_maxLabelScale);
     devtools::property("m_placeholderScale", node->m_placeholderScale);
@@ -2331,8 +2599,28 @@ devtools::registerNode<CCTextInputNode>([](CCTextInputNode* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCURLObject>) {
 devtools::registerNode<CCURLObject>([](CCURLObject* node) {
     devtools::label("Members for CCURLObject:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_name;
+        if (devtools::property("m_name", temp)) {
+            node->m_name = temp;
+        }
+    }
+#else
     devtools::property("m_name", node->m_name);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_url;
+        if (devtools::property("m_url", temp)) {
+            node->m_url = temp;
+        }
+    }
+#else
     devtools::property("m_url", node->m_url);
+#endif
 });
 }
 
@@ -2362,7 +2650,17 @@ devtools::registerNode<GJChallengeItem>([](GJChallengeItem* node) {
     devtools::property("m_timeLeft", node->m_timeLeft);
     devtools::property("m_canClaim", node->m_canClaim);
     devtools::property("m_position", node->m_position);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_name;
+        if (devtools::property("m_name", temp)) {
+            node->m_name = temp;
+        }
+    }
+#else
     devtools::property("m_name", node->m_name);
+#endif
     devtools::label("geode::SeedValueRSV m_count");
     devtools::label("geode::SeedValueRSV m_reward");
     devtools::label("geode::SeedValueRSV m_goal");
@@ -3411,7 +3709,17 @@ devtools::registerNode<CommunityCreditNode>([](CommunityCreditNode* node) {
     devtools::property("m_unlockType", node->m_unlockType);
     devtools::property("m_iconID", node->m_iconID);
     devtools::property("m_unknown", node->m_unknown);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_author;
+        if (devtools::property("m_author", temp)) {
+            node->m_author = temp;
+        }
+    }
+#else
     devtools::property("m_author", node->m_author);
+#endif
 });
 }
 
@@ -3475,7 +3783,17 @@ devtools::registerNode<CreateGuidelinesLayer>([](CreateGuidelinesLayer* node) {
     devtools::property("m_recording", node->m_recording);
     devtools::property("m_unk2b5", node->m_unk2b5);
     devtools::property("m_guidelines", node->m_guidelines);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_guidelineString;
+        if (devtools::property("m_guidelineString", temp)) {
+            node->m_guidelineString = temp;
+        }
+    }
+#else
     devtools::property("m_guidelineString", node->m_guidelineString);
+#endif
     devtools::label(fmt::format("CustomSongDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
     devtools::label(fmt::format("CCTextInputNode* m_offsetInput at {}", (void*)node->m_offsetInput).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_nonRecordingObjects at {}", (void*)node->m_nonRecordingObjects).c_str());
@@ -3488,7 +3806,17 @@ devtools::registerNode<CreateGuidelinesLayer>([](CreateGuidelinesLayer* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CreateMenuItem>) {
 devtools::registerNode<CreateMenuItem>([](CreateMenuItem* node) {
     devtools::label("Members for CreateMenuItem:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_spriteFileName;
+        if (devtools::property("m_spriteFileName", temp)) {
+            node->m_spriteFileName = temp;
+        }
+    }
+#else
     devtools::property("m_spriteFileName", node->m_spriteFileName);
+#endif
     devtools::property("m_objectID", node->m_objectID);
     devtools::property("m_pageIndex", node->m_pageIndex);
     devtools::property("m_tabIndex", node->m_tabIndex);
@@ -3892,8 +4220,28 @@ devtools::registerNode<DialogLayer>([](DialogLayer* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, DialogObject>) {
 devtools::registerNode<DialogObject>([](DialogObject* node) {
     devtools::label("Members for DialogObject:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_text;
+        if (devtools::property("m_text", temp)) {
+            node->m_text = temp;
+        }
+    }
+#else
     devtools::property("m_text", node->m_text);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_character;
+        if (devtools::property("m_character", temp)) {
+            node->m_character = temp;
+        }
+    }
+#else
     devtools::property("m_character", node->m_character);
+#endif
     devtools::property("m_characterFrame", node->m_characterFrame);
     devtools::property("m_color", node->m_color);
     devtools::property("m_textScale", node->m_textScale);
@@ -3910,7 +4258,17 @@ devtools::registerNode<DrawGridLayer>([](DrawGridLayer* node) {
     devtools::property("m_playbackX", node->m_playbackX);
     devtools::property("m_playbackY", node->m_playbackY);
     devtools::property("m_sortEffects", node->m_sortEffects);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_timeMarkerString;
+        if (devtools::property("m_timeMarkerString", temp)) {
+            node->m_timeMarkerString = temp;
+        }
+    }
+#else
     devtools::property("m_timeMarkerString", node->m_timeMarkerString);
+#endif
     devtools::property("m_unk258", node->m_unk258);
     devtools::property("m_currentSpeed", node->m_currentSpeed);
     devtools::property("m_slowSpeed", node->m_slowSpeed);
@@ -3971,7 +4329,17 @@ devtools::registerNode<EditLevelLayer>([](EditLevelLayer* node) {
         { GJLevelType::Saved, "GJLevelType::Saved" },
         { GJLevelType::SearchResult, "GJLevelType::SearchResult" },
     });
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_levelName;
+        if (devtools::property("m_levelName", temp)) {
+            node->m_levelName = temp;
+        }
+    }
+#else
     devtools::property("m_levelName", node->m_levelName);
+#endif
     devtools::label(fmt::format("cocos2d::CCMenu* m_buttonMenu at {}", (void*)node->m_buttonMenu).c_str());
     devtools::label(fmt::format("GJGameLevel* m_level at {}", (void*)node->m_level).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_textInputs at {}", (void*)node->m_textInputs).c_str());
@@ -4363,7 +4731,17 @@ devtools::registerNode<ExtendedLayer>([](ExtendedLayer* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GManager>) {
 devtools::registerNode<GManager>([](GManager* node) {
     devtools::label("Members for GManager:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_fileName;
+        if (devtools::property("m_fileName", temp)) {
+            node->m_fileName = temp;
+        }
+    }
+#else
     devtools::property("m_fileName", node->m_fileName);
+#endif
     devtools::property("m_setup", node->m_setup);
     devtools::property("m_saved", node->m_saved);
     devtools::property("m_quickSave", node->m_quickSave);
@@ -4413,7 +4791,17 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODMusic>) {
 devtools::registerNode<FMODMusic>([](FMODMusic* node) {
     devtools::label("Members for FMODMusic:");
     devtools::property("m_channelID", node->m_channelID);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_filePath;
+        if (devtools::property("m_filePath", temp)) {
+            node->m_filePath = temp;
+        }
+    }
+#else
     devtools::property("m_filePath", node->m_filePath);
+#endif
     devtools::property("m_ogg", node->m_ogg);
     devtools::property("m_dontReset", node->m_dontReset);
     devtools::label(fmt::format("FMOD::Sound* m_sound at {}", (void*)node->m_sound).c_str());
@@ -4423,7 +4811,17 @@ devtools::registerNode<FMODMusic>([](FMODMusic* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODQueuedEffect>) {
 devtools::registerNode<FMODQueuedEffect>([](FMODQueuedEffect* node) {
     devtools::label("Members for FMODQueuedEffect:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_filePath;
+        if (devtools::property("m_filePath", temp)) {
+            node->m_filePath = temp;
+        }
+    }
+#else
     devtools::property("m_filePath", node->m_filePath);
+#endif
     devtools::property("m_speed", node->m_speed);
     devtools::property("m_unk024", node->m_unk024);
     devtools::property("m_volume", node->m_volume);
@@ -4558,7 +4956,17 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, FRequestProfilePage>) {
 devtools::registerNode<FRequestProfilePage>([](FRequestProfilePage* node) {
     devtools::label("Members for FRequestProfilePage:");
     devtools::property("m_sent", node->m_sent);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_key;
+        if (devtools::property("m_key", temp)) {
+            node->m_key = temp;
+        }
+    }
+#else
     devtools::property("m_key", node->m_key);
+#endif
     devtools::property("m_itemCount", node->m_itemCount);
     devtools::property("m_pageStartIdx", node->m_pageStartIdx);
     devtools::property("m_pageEndIdx", node->m_pageEndIdx);
@@ -4607,7 +5015,17 @@ devtools::registerNode<FriendsProfilePage>([](FriendsProfilePage* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameCell>) {
 devtools::registerNode<GameCell>([](GameCell* node) {
     devtools::label("Members for GameCell:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_gameLink;
+        if (devtools::property("m_gameLink", temp)) {
+            node->m_gameLink = temp;
+        }
+    }
+#else
     devtools::property("m_gameLink", node->m_gameLink);
+#endif
     devtools::label(fmt::format("void* m_unk230 at {}", (void*)node->m_unk230).c_str());
 });
 }
@@ -4631,8 +5049,28 @@ devtools::registerNode<GameLevelManager>([](GameLevelManager* node) {
     devtools::property("m_eventTimeLeft", node->m_eventTimeLeft);
     devtools::property("m_eventID", node->m_eventID);
     devtools::property("m_activeEventID", node->m_activeEventID);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_searchKey;
+        if (devtools::property("m_searchKey", temp)) {
+            node->m_searchKey = temp;
+        }
+    }
+#else
     devtools::property("m_searchKey", node->m_searchKey);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_mapPackKey;
+        if (devtools::property("m_mapPackKey", temp)) {
+            node->m_mapPackKey = temp;
+        }
+    }
+#else
     devtools::property("m_mapPackKey", node->m_mapPackKey);
+#endif
     devtools::enumerable("m_leaderboardState", node->m_leaderboardState, {
         { LeaderboardState::Default, "LeaderboardState::Default" },
         { LeaderboardState::Top100, "LeaderboardState::Top100" },
@@ -4680,7 +5118,17 @@ devtools::registerNode<GameLevelManager>([](GameLevelManager* node) {
         { SearchType::FavouriteLists, "SearchType::FavouriteLists" },
     });
     devtools::property("m_mapPack", node->m_mapPack);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_tempSave;
+        if (devtools::property("m_tempSave", temp)) {
+            node->m_tempSave = temp;
+        }
+    }
+#else
     devtools::property("m_tempSave", node->m_tempSave);
+#endif
     devtools::property("m_testedNetwork", node->m_testedNetwork);
     devtools::label("gd::set<gd::string> m_queuedLists");
     devtools::label(fmt::format("cocos2d::CCDictionary* m_mainLevels at {}", (void*)node->m_mainLevels).c_str());
@@ -4786,15 +5234,45 @@ devtools::registerNode<GameManager>([](GameManager* node) {
     devtools::property("m_unkSize4_3", node->m_unkSize4_3);
     devtools::property("m_loaded", node->m_loaded);
     devtools::property("m_googlePlaySignedIn", node->m_googlePlaySignedIn);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_editorClipboard;
+        if (devtools::property("m_editorClipboard", temp)) {
+            node->m_editorClipboard = temp;
+        }
+    }
+#else
     devtools::property("m_editorClipboard", node->m_editorClipboard);
+#endif
     devtools::property("m_copiedObjectCount", node->m_copiedObjectCount);
     devtools::property("m_inMenuLayer", node->m_inMenuLayer);
     devtools::property("m_firstSetup", node->m_firstSetup);
     devtools::property("m_showedMenu", node->m_showedMenu);
     devtools::property("m_unknownBool4", node->m_unknownBool4);
     devtools::property("m_unknownBool5", node->m_unknownBool5);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_playerUDID;
+        if (devtools::property("m_playerUDID", temp)) {
+            node->m_playerUDID = temp;
+        }
+    }
+#else
     devtools::property("m_playerUDID", node->m_playerUDID);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_playerName;
+        if (devtools::property("m_playerName", temp)) {
+            node->m_playerName = temp;
+        }
+    }
+#else
     devtools::property("m_playerName", node->m_playerName);
+#endif
     devtools::property("m_scoreUpdated", node->m_scoreUpdated);
     devtools::property("m_bgVolume", node->m_bgVolume);
     devtools::property("m_sfxVolume", node->m_sfxVolume);
@@ -4960,12 +5438,72 @@ devtools::registerNode<GameManager>([](GameManager* node) {
         { SearchType::FavouriteLists, "SearchType::FavouriteLists" },
     });
     devtools::property("m_levelSearchType", node->m_levelSearchType);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_dpadLayout1;
+        if (devtools::property("m_dpadLayout1", temp)) {
+            node->m_dpadLayout1 = temp;
+        }
+    }
+#else
     devtools::property("m_dpadLayout1", node->m_dpadLayout1);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_dpadLayout2;
+        if (devtools::property("m_dpadLayout2", temp)) {
+            node->m_dpadLayout2 = temp;
+        }
+    }
+#else
     devtools::property("m_dpadLayout2", node->m_dpadLayout2);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_dpadLayout3;
+        if (devtools::property("m_dpadLayout3", temp)) {
+            node->m_dpadLayout3 = temp;
+        }
+    }
+#else
     devtools::property("m_dpadLayout3", node->m_dpadLayout3);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_dpadLayoutDual1;
+        if (devtools::property("m_dpadLayoutDual1", temp)) {
+            node->m_dpadLayoutDual1 = temp;
+        }
+    }
+#else
     devtools::property("m_dpadLayoutDual1", node->m_dpadLayoutDual1);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_dpadLayoutDual2;
+        if (devtools::property("m_dpadLayoutDual2", temp)) {
+            node->m_dpadLayoutDual2 = temp;
+        }
+    }
+#else
     devtools::property("m_dpadLayoutDual2", node->m_dpadLayoutDual2);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_dpadLayoutDual3;
+        if (devtools::property("m_dpadLayoutDual3", temp)) {
+            node->m_dpadLayoutDual3 = temp;
+        }
+    }
+#else
     devtools::property("m_dpadLayoutDual3", node->m_dpadLayoutDual3);
+#endif
     devtools::property("m_leaderboardLevelID", node->m_leaderboardLevelID);
     devtools::property("m_leaderboardLevelTime", node->m_leaderboardLevelTime);
     devtools::property("m_leaderboardLevelPoints", node->m_leaderboardLevelPoints);
@@ -5355,14 +5893,44 @@ devtools::registerNode<GhostTrailEffect>([](GhostTrailEffect* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJAccountManager>) {
 devtools::registerNode<GJAccountManager>([](GJAccountManager* node) {
     devtools::label("Members for GJAccountManager:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_username;
+        if (devtools::property("m_username", temp)) {
+            node->m_username = temp;
+        }
+    }
+#else
     devtools::property("m_username", node->m_username);
+#endif
     devtools::property("m_accountID", node->m_accountID);
     devtools::property("m_unkInt1", node->m_unkInt1);
     devtools::property("m_unkInt2", node->m_unkInt2);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_GJP2;
+        if (devtools::property("m_GJP2", temp)) {
+            node->m_GJP2 = temp;
+        }
+    }
+#else
     devtools::property("m_GJP2", node->m_GJP2);
+#endif
     devtools::property("m_gameManagerSize", node->m_gameManagerSize);
     devtools::property("m_localLevelsSize", node->m_localLevelsSize);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_password;
+        if (devtools::property("m_password", temp)) {
+            node->m_password = temp;
+        }
+    }
+#else
     devtools::property("m_password", node->m_password);
+#endif
     devtools::label(fmt::format("cocos2d::CCDictionary* m_activeDownloads at {}", (void*)node->m_activeDownloads).c_str());
     devtools::label(fmt::format("GJAccountRegisterDelegate* m_accountRegisterDelegate at {}", (void*)node->m_accountRegisterDelegate).c_str());
     devtools::label(fmt::format("GJAccountLoginDelegate* m_accountLoginDelegate at {}", (void*)node->m_accountLoginDelegate).c_str());
@@ -5380,9 +5948,39 @@ devtools::registerNode<GJAccountSettingsLayer>([](GJAccountSettingsLayer* node) 
     devtools::property("m_messageStatus", node->m_messageStatus);
     devtools::property("m_friendStatus", node->m_friendStatus);
     devtools::property("m_commentHistoryStatus", node->m_commentHistoryStatus);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_youtubeURL;
+        if (devtools::property("m_youtubeURL", temp)) {
+            node->m_youtubeURL = temp;
+        }
+    }
+#else
     devtools::property("m_youtubeURL", node->m_youtubeURL);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_twitterURL;
+        if (devtools::property("m_twitterURL", temp)) {
+            node->m_twitterURL = temp;
+        }
+    }
+#else
     devtools::property("m_twitterURL", node->m_twitterURL);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_twitchURL;
+        if (devtools::property("m_twitchURL", temp)) {
+            node->m_twitchURL = temp;
+        }
+    }
+#else
     devtools::property("m_twitchURL", node->m_twitchURL);
+#endif
     devtools::label(fmt::format("CCTextInputNode* m_youtubeInput at {}", (void*)node->m_youtubeInput).c_str());
     devtools::label(fmt::format("CCTextInputNode* m_twitterInput at {}", (void*)node->m_twitterInput).c_str());
     devtools::label(fmt::format("CCTextInputNode* m_twitchInput at {}", (void*)node->m_twitchInput).c_str());
@@ -5504,7 +6102,17 @@ devtools::registerNode<GJBaseGameLayer>([](GJBaseGameLayer* node) {
     devtools::property("m_unk32a2", node->m_unk32a2);
     devtools::property("m_unk32a3", node->m_unk32a3);
     devtools::property("m_unk32a4", node->m_unk32a4);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_recordString;
+        if (devtools::property("m_recordString", temp)) {
+            node->m_recordString = temp;
+        }
+    }
+#else
     devtools::property("m_recordString", node->m_recordString);
+#endif
     devtools::property("m_unk32d0", node->m_unk32d0);
     devtools::property("m_unk32d4", node->m_unk32d4);
     devtools::property("m_queueInterval", node->m_queueInterval);
@@ -5522,7 +6130,17 @@ devtools::registerNode<GJBaseGameLayer>([](GJBaseGameLayer* node) {
     devtools::property("m_timePlayed", node->m_timePlayed);
     devtools::property("m_levelEndAnimationStarted", node->m_levelEndAnimationStarted);
     devtools::property("m_points", node->m_points);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_pointsString;
+        if (devtools::property("m_pointsString", temp)) {
+            node->m_pointsString = temp;
+        }
+    }
+#else
     devtools::property("m_pointsString", node->m_pointsString);
+#endif
     devtools::property("m_calcNonEffectObjectsSize", node->m_calcNonEffectObjectsSize);
     devtools::property("m_calcCollisionBlockObjectsSize", node->m_calcCollisionBlockObjectsSize);
     devtools::property("m_calcCollisionBlockObjects2Size", node->m_calcCollisionBlockObjects2Size);
@@ -5835,7 +6453,17 @@ devtools::registerNode<GJBigSprite>([](GJBigSprite* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJBigSpriteNode>) {
 devtools::registerNode<GJBigSpriteNode>([](GJBigSpriteNode* node) {
     devtools::label("Members for GJBigSpriteNode:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_spriteName;
+        if (devtools::property("m_spriteName", temp)) {
+            node->m_spriteName = temp;
+        }
+    }
+#else
     devtools::property("m_spriteName", node->m_spriteName);
+#endif
     devtools::property("m_spriteRect", node->m_spriteRect);
     devtools::property("m_spriteVisible", node->m_spriteVisible);
     devtools::label(fmt::format("cocos2d::CCSprite* m_sprite at {}", (void*)node->m_sprite).c_str());
@@ -5878,15 +6506,45 @@ devtools::registerNode<GJColorSetupLayer>([](GJColorSetupLayer* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJComment>) {
 devtools::registerNode<GJComment>([](GJComment* node) {
     devtools::label("Members for GJComment:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_commentString;
+        if (devtools::property("m_commentString", temp)) {
+            node->m_commentString = temp;
+        }
+    }
+#else
     devtools::property("m_commentString", node->m_commentString);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_userName;
+        if (devtools::property("m_userName", temp)) {
+            node->m_userName = temp;
+        }
+    }
+#else
     devtools::property("m_userName", node->m_userName);
+#endif
     devtools::property("m_commentID", node->m_commentID);
     devtools::property("m_userID", node->m_userID);
     devtools::property("m_likeCount", node->m_likeCount);
     devtools::property("m_levelID", node->m_levelID);
     devtools::property("m_isSpam", node->m_isSpam);
     devtools::property("m_accountID", node->m_accountID);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_uploadDate;
+        if (devtools::property("m_uploadDate", temp)) {
+            node->m_uploadDate = temp;
+        }
+    }
+#else
     devtools::property("m_uploadDate", node->m_uploadDate);
+#endif
     devtools::property("m_commentDeleted", node->m_commentDeleted);
     devtools::property("m_percentage", node->m_percentage);
     devtools::property("m_modBadge", node->m_modBadge);
@@ -6018,8 +6676,28 @@ devtools::registerNode<GJFriendRequest>([](GJFriendRequest* node) {
     devtools::property("m_requestID", node->m_requestID);
     devtools::property("m_accountID", node->m_accountID);
     devtools::property("m_unusedToAccountID", node->m_unusedToAccountID);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_message;
+        if (devtools::property("m_message", temp)) {
+            node->m_message = temp;
+        }
+    }
+#else
     devtools::property("m_message", node->m_message);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_uploadDate;
+        if (devtools::property("m_uploadDate", temp)) {
+            node->m_uploadDate = temp;
+        }
+    }
+#else
     devtools::property("m_uploadDate", node->m_uploadDate);
+#endif
     devtools::property("m_isRead", node->m_isRead);
 });
 }
@@ -6027,15 +6705,105 @@ devtools::registerNode<GJFriendRequest>([](GJFriendRequest* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJGameLevel>) {
 devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
     devtools::label("Members for GJGameLevel:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_levelName;
+        if (devtools::property("m_levelName", temp)) {
+            node->m_levelName = temp;
+        }
+    }
+#else
     devtools::property("m_levelName", node->m_levelName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_levelDesc;
+        if (devtools::property("m_levelDesc", temp)) {
+            node->m_levelDesc = temp;
+        }
+    }
+#else
     devtools::property("m_levelDesc", node->m_levelDesc);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_levelString;
+        if (devtools::property("m_levelString", temp)) {
+            node->m_levelString = temp;
+        }
+    }
+#else
     devtools::property("m_levelString", node->m_levelString);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_creatorName;
+        if (devtools::property("m_creatorName", temp)) {
+            node->m_creatorName = temp;
+        }
+    }
+#else
     devtools::property("m_creatorName", node->m_creatorName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_recordString;
+        if (devtools::property("m_recordString", temp)) {
+            node->m_recordString = temp;
+        }
+    }
+#else
     devtools::property("m_recordString", node->m_recordString);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_uploadDate;
+        if (devtools::property("m_uploadDate", temp)) {
+            node->m_uploadDate = temp;
+        }
+    }
+#else
     devtools::property("m_uploadDate", node->m_uploadDate);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_updateDate;
+        if (devtools::property("m_updateDate", temp)) {
+            node->m_updateDate = temp;
+        }
+    }
+#else
     devtools::property("m_updateDate", node->m_updateDate);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_lockedEditorLayers;
+        if (devtools::property("m_lockedEditorLayers", temp)) {
+            node->m_lockedEditorLayers = temp;
+        }
+    }
+#else
     devtools::property("m_lockedEditorLayers", node->m_lockedEditorLayers);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_savedCameraPositions;
+        if (devtools::property("m_savedCameraPositions", temp)) {
+            node->m_savedCameraPositions = temp;
+        }
+    }
+#else
     devtools::property("m_savedCameraPositions", node->m_savedCameraPositions);
+#endif
     devtools::property("m_previewLock", node->m_previewLock);
     devtools::enumerable("m_difficulty", node->m_difficulty, {
         { GJDifficulty::NA, "GJDifficulty::NA" },
@@ -6101,7 +6869,17 @@ devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
     devtools::property("m_demonVotes", node->m_demonVotes);
     devtools::property("m_rateStars", node->m_rateStars);
     devtools::property("m_rateFeature", node->m_rateFeature);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_rateUser;
+        if (devtools::property("m_rateUser", temp)) {
+            node->m_rateUser = temp;
+        }
+    }
+#else
     devtools::property("m_rateUser", node->m_rateUser);
+#endif
     devtools::property("m_dontSave", node->m_dontSave);
     devtools::property("m_levelNotDownloaded", node->m_levelNotDownloaded);
     devtools::property("m_requiredCoins", node->m_requiredCoins);
@@ -6119,21 +6897,91 @@ devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
         { GJLevelType::SearchResult, "GJLevelType::SearchResult" },
     });
     devtools::property("m_M_ID", node->m_M_ID);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_tempName;
+        if (devtools::property("m_tempName", temp)) {
+            node->m_tempName = temp;
+        }
+    }
+#else
     devtools::property("m_tempName", node->m_tempName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_capacityString;
+        if (devtools::property("m_capacityString", temp)) {
+            node->m_capacityString = temp;
+        }
+    }
+#else
     devtools::property("m_capacityString", node->m_capacityString);
+#endif
     devtools::property("m_highObjectsEnabled", node->m_highObjectsEnabled);
     devtools::property("m_unlimitedObjectsEnabled", node->m_unlimitedObjectsEnabled);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_personalBests;
+        if (devtools::property("m_personalBests", temp)) {
+            node->m_personalBests = temp;
+        }
+    }
+#else
     devtools::property("m_personalBests", node->m_personalBests);
+#endif
     devtools::property("m_timestamp", node->m_timestamp);
     devtools::property("m_listPosition", node->m_listPosition);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_songIDs;
+        if (devtools::property("m_songIDs", temp)) {
+            node->m_songIDs = temp;
+        }
+    }
+#else
     devtools::property("m_songIDs", node->m_songIDs);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_sfxIDs;
+        if (devtools::property("m_sfxIDs", temp)) {
+            node->m_sfxIDs = temp;
+        }
+    }
+#else
     devtools::property("m_sfxIDs", node->m_sfxIDs);
+#endif
     devtools::property("m_54", node->m_54);
     devtools::property("m_bestTime", node->m_bestTime);
     devtools::property("m_bestPoints", node->m_bestPoints);
     devtools::property("m_platformerSeed", node->m_platformerSeed);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_localBestTimes;
+        if (devtools::property("m_localBestTimes", temp)) {
+            node->m_localBestTimes = temp;
+        }
+    }
+#else
     devtools::property("m_localBestTimes", node->m_localBestTimes);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_localBestPoints;
+        if (devtools::property("m_localBestPoints", temp)) {
+            node->m_localBestPoints = temp;
+        }
+    }
+#else
     devtools::property("m_localBestPoints", node->m_localBestPoints);
+#endif
     devtools::label(fmt::format("cocos2d::CCDictionary* m_lastBuildSave at {}", (void*)node->m_lastBuildSave).c_str());
     devtools::label("geode::SeedValueRSV m_levelID");
     devtools::label("geode::SeedValueRSV m_userID");
@@ -6238,8 +7086,28 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, GJHttpResult>) {
 devtools::registerNode<GJHttpResult>([](GJHttpResult* node) {
     devtools::label("Members for GJHttpResult:");
     devtools::property("m_success", node->m_success);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_response;
+        if (devtools::property("m_response", temp)) {
+            node->m_response = temp;
+        }
+    }
+#else
     devtools::property("m_response", node->m_response);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_requestTag;
+        if (devtools::property("m_requestTag", temp)) {
+            node->m_requestTag = temp;
+        }
+    }
+#else
     devtools::property("m_requestTag", node->m_requestTag);
+#endif
     devtools::enumerable("m_httpType", node->m_httpType, {
         { GJHttpType::UploadLevel, "GJHttpType::UploadLevel" },
         { GJHttpType::GetOnlineLevels, "GJHttpType::GetOnlineLevels" },
@@ -6359,11 +7227,61 @@ devtools::registerNode<GJLevelList>([](GJLevelList* node) {
     devtools::property("m_favorite", node->m_favorite);
     devtools::property("m_featured", node->m_featured);
     devtools::property("m_onlineLevelsLoaded", node->m_onlineLevelsLoaded);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_creatorName;
+        if (devtools::property("m_creatorName", temp)) {
+            node->m_creatorName = temp;
+        }
+    }
+#else
     devtools::property("m_creatorName", node->m_creatorName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_listName;
+        if (devtools::property("m_listName", temp)) {
+            node->m_listName = temp;
+        }
+    }
+#else
     devtools::property("m_listName", node->m_listName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_unkString;
+        if (devtools::property("m_unkString", temp)) {
+            node->m_unkString = temp;
+        }
+    }
+#else
     devtools::property("m_unkString", node->m_unkString);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_levelsString;
+        if (devtools::property("m_levelsString", temp)) {
+            node->m_levelsString = temp;
+        }
+    }
+#else
     devtools::property("m_levelsString", node->m_levelsString);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_listDesc;
+        if (devtools::property("m_listDesc", temp)) {
+            node->m_listDesc = temp;
+        }
+    }
+#else
     devtools::property("m_listDesc", node->m_listDesc);
+#endif
     devtools::property("m_uploadDate", node->m_uploadDate);
     devtools::property("m_updateDate", node->m_updateDate);
     devtools::enumerable("m_listType", node->m_listType, {
@@ -6449,8 +7367,28 @@ devtools::registerNode<GJMapPack>([](GJMapPack* node) {
     });
     devtools::property("m_stars", node->m_stars);
     devtools::property("m_coins", node->m_coins);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_packName;
+        if (devtools::property("m_packName", temp)) {
+            node->m_packName = temp;
+        }
+    }
+#else
     devtools::property("m_packName", node->m_packName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_levelStrings;
+        if (devtools::property("m_levelStrings", temp)) {
+            node->m_levelStrings = temp;
+        }
+    }
+#else
     devtools::property("m_levelStrings", node->m_levelStrings);
+#endif
     devtools::property("m_textColour", node->m_textColour);
     devtools::property("m_barColour", node->m_barColour);
     devtools::property("m_MId", node->m_MId);
@@ -6577,7 +7515,17 @@ devtools::registerNode<GJPFollowCommandLayer>([](GJPFollowCommandLayer* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJPromoPopup>) {
 devtools::registerNode<GJPromoPopup>([](GJPromoPopup* node) {
     devtools::label("Members for GJPromoPopup:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_promoFrame;
+        if (devtools::property("m_promoFrame", temp)) {
+            node->m_promoFrame = temp;
+        }
+    }
+#else
     devtools::property("m_promoFrame", node->m_promoFrame);
+#endif
 });
 }
 
@@ -6822,9 +7770,39 @@ devtools::registerNode<GJSearchObject>([](GJSearchObject* node) {
         { SearchType::MyLists, "SearchType::MyLists" },
         { SearchType::FavouriteLists, "SearchType::FavouriteLists" },
     });
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_searchQuery;
+        if (devtools::property("m_searchQuery", temp)) {
+            node->m_searchQuery = temp;
+        }
+    }
+#else
     devtools::property("m_searchQuery", node->m_searchQuery);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_difficulty;
+        if (devtools::property("m_difficulty", temp)) {
+            node->m_difficulty = temp;
+        }
+    }
+#else
     devtools::property("m_difficulty", node->m_difficulty);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_length;
+        if (devtools::property("m_length", temp)) {
+            node->m_length = temp;
+        }
+    }
+#else
     devtools::property("m_length", node->m_length);
+#endif
     devtools::property("m_page", node->m_page);
     devtools::property("m_starFilter", node->m_starFilter);
     devtools::property("m_noStarFilter", node->m_noStarFilter);
@@ -6873,7 +7851,17 @@ devtools::registerNode<GJShopLayer>([](GJShopLayer* node) {
         { ShopType::Diamond, "ShopType::Diamond" },
         { ShopType::Paths, "ShopType::Paths" },
     });
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_sheetName;
+        if (devtools::property("m_sheetName", temp)) {
+            node->m_sheetName = temp;
+        }
+    }
+#else
     devtools::property("m_sheetName", node->m_sheetName);
+#endif
     devtools::property("m_videoPlaying", node->m_videoPlaying);
     devtools::property("m_unkBool", node->m_unkBool);
     devtools::property("m_zolgurothDialogIndex", node->m_zolgurothDialogIndex);
@@ -6889,7 +7877,17 @@ devtools::registerNode<GJShopLayer>([](GJShopLayer* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJSmartBlockPreview>) {
 devtools::registerNode<GJSmartBlockPreview>([](GJSmartBlockPreview* node) {
     devtools::label("Members for GJSmartBlockPreview:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_prefabKey;
+        if (devtools::property("m_prefabKey", temp)) {
+            node->m_prefabKey = temp;
+        }
+    }
+#else
     devtools::property("m_prefabKey", node->m_prefabKey);
+#endif
     devtools::property("m_selected", node->m_selected);
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_infoLabel at {}", (void*)node->m_infoLabel).c_str());
     devtools::label(fmt::format("cocos2d::CCSprite* m_selectSprite at {}", (void*)node->m_selectSprite).c_str());
@@ -6899,8 +7897,28 @@ devtools::registerNode<GJSmartBlockPreview>([](GJSmartBlockPreview* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJSmartPrefab>) {
 devtools::registerNode<GJSmartPrefab>([](GJSmartPrefab* node) {
     devtools::label("Members for GJSmartPrefab:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_prefabKey;
+        if (devtools::property("m_prefabKey", temp)) {
+            node->m_prefabKey = temp;
+        }
+    }
+#else
     devtools::property("m_prefabKey", node->m_prefabKey);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_prefabData;
+        if (devtools::property("m_prefabData", temp)) {
+            node->m_prefabData = temp;
+        }
+    }
+#else
     devtools::property("m_prefabData", node->m_prefabData);
+#endif
     devtools::property("m_prefabID", node->m_prefabID);
     devtools::property("m_prefabChance", node->m_prefabChance);
 });
@@ -6913,8 +7931,28 @@ devtools::registerNode<GJSmartTemplate>([](GJSmartTemplate* node) {
     devtools::property("m_allowFlipY", node->m_allowFlipY);
     devtools::property("m_allowRotation", node->m_allowRotation);
     devtools::property("m_ignoreCorners", node->m_ignoreCorners);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_templateName;
+        if (devtools::property("m_templateName", temp)) {
+            node->m_templateName = temp;
+        }
+    }
+#else
     devtools::property("m_templateName", node->m_templateName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_unk0a8;
+        if (devtools::property("m_unk0a8", temp)) {
+            node->m_unk0a8 = temp;
+        }
+    }
+#else
     devtools::property("m_unk0a8", node->m_unk0a8);
+#endif
     devtools::property("m_nameIndex", node->m_nameIndex);
     devtools::property("m_prefabIndex", node->m_prefabIndex);
     devtools::label(fmt::format("cocos2d::CCDictionary* m_prefabArrays at {}", (void*)node->m_prefabArrays).c_str());
@@ -7054,10 +8092,50 @@ devtools::registerNode<GJUserMessage>([](GJUserMessage* node) {
     devtools::property("m_messageID", node->m_messageID);
     devtools::property("m_accountID", node->m_accountID);
     devtools::property("m_userID", node->m_userID);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_title;
+        if (devtools::property("m_title", temp)) {
+            node->m_title = temp;
+        }
+    }
+#else
     devtools::property("m_title", node->m_title);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_content;
+        if (devtools::property("m_content", temp)) {
+            node->m_content = temp;
+        }
+    }
+#else
     devtools::property("m_content", node->m_content);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_username;
+        if (devtools::property("m_username", temp)) {
+            node->m_username = temp;
+        }
+    }
+#else
     devtools::property("m_username", node->m_username);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_uploadDate;
+        if (devtools::property("m_uploadDate", temp)) {
+            node->m_uploadDate = temp;
+        }
+    }
+#else
     devtools::property("m_uploadDate", node->m_uploadDate);
+#endif
     devtools::property("m_read", node->m_read);
     devtools::property("m_outgoing", node->m_outgoing);
     devtools::property("m_toggled", node->m_toggled);
@@ -7067,8 +8145,28 @@ devtools::registerNode<GJUserMessage>([](GJUserMessage* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJUserScore>) {
 devtools::registerNode<GJUserScore>([](GJUserScore* node) {
     devtools::label("Members for GJUserScore:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_userName;
+        if (devtools::property("m_userName", temp)) {
+            node->m_userName = temp;
+        }
+    }
+#else
     devtools::property("m_userName", node->m_userName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_userUDID;
+        if (devtools::property("m_userUDID", temp)) {
+            node->m_userUDID = temp;
+        }
+    }
+#else
     devtools::property("m_userUDID", node->m_userUDID);
+#endif
     devtools::property("m_scoreType", node->m_scoreType);
     devtools::property("m_userID", node->m_userID);
     devtools::property("m_accountID", node->m_accountID);
@@ -7103,9 +8201,39 @@ devtools::registerNode<GJUserScore>([](GJUserScore* node) {
     devtools::property("m_messageState", node->m_messageState);
     devtools::property("m_friendStatus", node->m_friendStatus);
     devtools::property("m_commentHistoryStatus", node->m_commentHistoryStatus);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_youtubeURL;
+        if (devtools::property("m_youtubeURL", temp)) {
+            node->m_youtubeURL = temp;
+        }
+    }
+#else
     devtools::property("m_youtubeURL", node->m_youtubeURL);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_twitterURL;
+        if (devtools::property("m_twitterURL", temp)) {
+            node->m_twitterURL = temp;
+        }
+    }
+#else
     devtools::property("m_twitterURL", node->m_twitterURL);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_twitchURL;
+        if (devtools::property("m_twitchURL", temp)) {
+            node->m_twitchURL = temp;
+        }
+    }
+#else
     devtools::property("m_twitchURL", node->m_twitchURL);
+#endif
     devtools::property("m_playerCube", node->m_playerCube);
     devtools::property("m_playerShip", node->m_playerShip);
     devtools::property("m_playerBall", node->m_playerBall);
@@ -7126,12 +8254,52 @@ devtools::registerNode<GJUserScore>([](GJUserScore* node) {
     devtools::property("m_newFriendCount", node->m_newFriendCount);
     devtools::property("m_newFriendRequest", node->m_newFriendRequest);
     devtools::property("m_toggled", node->m_toggled);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_unkString;
+        if (devtools::property("m_unkString", temp)) {
+            node->m_unkString = temp;
+        }
+    }
+#else
     devtools::property("m_unkString", node->m_unkString);
+#endif
     devtools::property("m_unkInt", node->m_unkInt);
     devtools::property("m_unkInt2", node->m_unkInt2);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_demonInfo;
+        if (devtools::property("m_demonInfo", temp)) {
+            node->m_demonInfo = temp;
+        }
+    }
+#else
     devtools::property("m_demonInfo", node->m_demonInfo);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_starsInfo;
+        if (devtools::property("m_starsInfo", temp)) {
+            node->m_starsInfo = temp;
+        }
+    }
+#else
     devtools::property("m_starsInfo", node->m_starsInfo);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_platformerInfo;
+        if (devtools::property("m_platformerInfo", temp)) {
+            node->m_platformerInfo = temp;
+        }
+    }
+#else
     devtools::property("m_platformerInfo", node->m_platformerInfo);
+#endif
     devtools::property("m_levelMode", node->m_levelMode);
     devtools::enumerable("m_leaderboardMode", node->m_leaderboardMode, {
         { LevelLeaderboardMode::Time, "LevelLeaderboardMode::Time" },
@@ -7162,8 +8330,28 @@ devtools::registerNode<GJWriteMessagePopup>([](GJWriteMessagePopup* node) {
     devtools::property("m_unk298", node->m_unk298);
     devtools::property("m_messageID", node->m_messageID);
     devtools::property("m_accountID", node->m_accountID);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_messageText;
+        if (devtools::property("m_messageText", temp)) {
+            node->m_messageText = temp;
+        }
+    }
+#else
     devtools::property("m_messageText", node->m_messageText);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_subjectText;
+        if (devtools::property("m_subjectText", temp)) {
+            node->m_subjectText = temp;
+        }
+    }
+#else
     devtools::property("m_subjectText", node->m_subjectText);
+#endif
     devtools::property("m_uploadSuccess", node->m_uploadSuccess);
     devtools::label(fmt::format("CCTextInputNode* m_messageInput at {}", (void*)node->m_messageInput).c_str());
     devtools::label(fmt::format("CCTextInputNode* m_subjectInput at {}", (void*)node->m_subjectInput).c_str());
@@ -7203,8 +8391,8 @@ devtools::registerNode<GraphicsReloadLayer>([](GraphicsReloadLayer* node) {
     devtools::label("Members for GraphicsReloadLayer:");
     devtools::enumerable("m_quality", node->m_quality, {
         { cocos2d::TextureQuality::kTextureQualityLow, "cocos2d::TextureQuality::kTextureQualityLow" },
-        { cocos2d::TextureQuality::kTextureQualityMedium, "cocos2d::TextureQuality::kTextureQualityMedium" },
         { cocos2d::TextureQuality::kTextureQualityHigh, "cocos2d::TextureQuality::kTextureQualityHigh" },
+        { cocos2d::TextureQuality::kTextureQualityMedium, "cocos2d::TextureQuality::kTextureQualityMedium" },
     });
     devtools::property("m_resolution", node->m_resolution);
     devtools::property("m_windowed", node->m_windowed);
@@ -7254,8 +8442,28 @@ devtools::registerNode<HSVWidgetPopup>([](HSVWidgetPopup* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, InfoAlertButton>) {
 devtools::registerNode<InfoAlertButton>([](InfoAlertButton* node) {
     devtools::label("Members for InfoAlertButton:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_title;
+        if (devtools::property("m_title", temp)) {
+            node->m_title = temp;
+        }
+    }
+#else
     devtools::property("m_title", node->m_title);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_description;
+        if (devtools::property("m_description", temp)) {
+            node->m_description = temp;
+        }
+    }
+#else
     devtools::property("m_description", node->m_description);
+#endif
     devtools::property("m_textScale", node->m_textScale);
     devtools::property("m_scroll", node->m_scroll);
 });
@@ -7264,7 +8472,17 @@ devtools::registerNode<InfoAlertButton>([](InfoAlertButton* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, InfoLayer>) {
 devtools::registerNode<InfoLayer>([](InfoLayer* node) {
     devtools::label("Members for InfoLayer:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_commentKey;
+        if (devtools::property("m_commentKey", temp)) {
+            node->m_commentKey = temp;
+        }
+    }
+#else
     devtools::property("m_commentKey", node->m_commentKey);
+#endif
     devtools::property("m_itemCount", node->m_itemCount);
     devtools::property("m_pageStartIdx", node->m_pageStartIdx);
     devtools::property("m_pageEndIdx", node->m_pageEndIdx);
@@ -7411,7 +8629,17 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, LabelGameObject>) {
 devtools::registerNode<LabelGameObject>([](LabelGameObject* node) {
     devtools::label("Members for LabelGameObject:");
     devtools::property("m_labelDirty", node->m_labelDirty);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_labelString;
+        if (devtools::property("m_labelString", temp)) {
+            node->m_labelString = temp;
+        }
+    }
+#else
     devtools::property("m_labelString", node->m_labelString);
+#endif
     devtools::property("m_labelColorLocked", node->m_labelColorLocked);
     devtools::property("m_alignment", node->m_alignment);
     devtools::property("m_showSecondsOnly", node->m_showSecondsOnly);
@@ -7561,7 +8789,17 @@ devtools::registerNode<LevelEditorLayer>([](LevelEditorLayer* node) {
     devtools::property("m_updateColorSprites", node->m_updateColorSprites);
     devtools::property("m_previewMode", node->m_previewMode);
     devtools::property("m_alwaysPreviewMode", node->m_alwaysPreviewMode);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_levelString;
+        if (devtools::property("m_levelString", temp)) {
+            node->m_levelString = temp;
+        }
+    }
+#else
     devtools::property("m_levelString", node->m_levelString);
+#endif
     devtools::property("m_previewPosition", node->m_previewPosition);
     devtools::property("m_sessionTime", node->m_sessionTime);
     devtools::property("m_removingAll", node->m_removingAll);
@@ -7708,8 +8946,28 @@ devtools::registerNode<LevelListCell>([](LevelListCell* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelListLayer>) {
 devtools::registerNode<LevelListLayer>([](LevelListLayer* node) {
     devtools::label("Members for LevelListLayer:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_searchKey1;
+        if (devtools::property("m_searchKey1", temp)) {
+            node->m_searchKey1 = temp;
+        }
+    }
+#else
     devtools::property("m_searchKey1", node->m_searchKey1);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_searchKey2;
+        if (devtools::property("m_searchKey2", temp)) {
+            node->m_searchKey2 = temp;
+        }
+    }
+#else
     devtools::property("m_searchKey2", node->m_searchKey2);
+#endif
     devtools::property("m_exiting", node->m_exiting);
     devtools::property("m_editMode", node->m_editMode);
     devtools::property("m_rewardPosition", node->m_rewardPosition);
@@ -7852,7 +9110,17 @@ devtools::registerNode<LevelSettingsObject>([](LevelSettingsObject* node) {
     devtools::property("m_disableStartPos", node->m_disableStartPos);
     devtools::property("m_targetOrder", node->m_targetOrder);
     devtools::property("m_targetChannel", node->m_targetChannel);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_guidelineString;
+        if (devtools::property("m_guidelineString", temp)) {
+            node->m_guidelineString = temp;
+        }
+    }
+#else
     devtools::property("m_guidelineString", node->m_guidelineString);
+#endif
     devtools::property("m_unkBool", node->m_unkBool);
     devtools::property("m_colorPage", node->m_colorPage);
     devtools::property("m_groundLineIndex", node->m_groundLineIndex);
@@ -8007,7 +9275,17 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, MessagesProfilePage>) {
 devtools::registerNode<MessagesProfilePage>([](MessagesProfilePage* node) {
     devtools::label("Members for MessagesProfilePage:");
     devtools::property("m_sentMessages", node->m_sentMessages);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_messageKey;
+        if (devtools::property("m_messageKey", temp)) {
+            node->m_messageKey = temp;
+        }
+    }
+#else
     devtools::property("m_messageKey", node->m_messageKey);
+#endif
     devtools::property("m_itemCount", node->m_itemCount);
     devtools::property("m_pageStartIdx", node->m_pageStartIdx);
     devtools::property("m_pageEndIdx", node->m_pageEndIdx);
@@ -8109,9 +9387,39 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, MusicArtistObject>) {
 devtools::registerNode<MusicArtistObject>([](MusicArtistObject* node) {
     devtools::label("Members for MusicArtistObject:");
     devtools::property("m_artistID", node->m_artistID);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_artistName;
+        if (devtools::property("m_artistName", temp)) {
+            node->m_artistName = temp;
+        }
+    }
+#else
     devtools::property("m_artistName", node->m_artistName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_artistURL;
+        if (devtools::property("m_artistURL", temp)) {
+            node->m_artistURL = temp;
+        }
+    }
+#else
     devtools::property("m_artistURL", node->m_artistURL);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_artistYouTube;
+        if (devtools::property("m_artistYouTube", temp)) {
+            node->m_artistYouTube = temp;
+        }
+    }
+#else
     devtools::property("m_artistYouTube", node->m_artistYouTube);
+#endif
 });
 }
 
@@ -8156,7 +9464,17 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, MusicDownloadManager>) {
 devtools::registerNode<MusicDownloadManager>([](MusicDownloadManager* node) {
     devtools::label("Members for MusicDownloadManager:");
     devtools::property("m_songPriority", node->m_songPriority);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_customContentURL;
+        if (devtools::property("m_customContentURL", temp)) {
+            node->m_customContentURL = temp;
+        }
+    }
+#else
     devtools::property("m_customContentURL", node->m_customContentURL);
+#endif
     devtools::property("m_sfxLibraryVersion", node->m_sfxLibraryVersion);
     devtools::property("m_sfxObjectCount", node->m_sfxObjectCount);
     devtools::property("m_requestedSfxLibraryDownloaded", node->m_requestedSfxLibraryDownloaded);
@@ -8185,7 +9503,17 @@ devtools::registerNode<MusicSearchResult>([](MusicSearchResult* node) {
     devtools::label("Members for MusicSearchResult:");
     devtools::property("m_startIndex", node->m_startIndex);
     devtools::property("m_audioType", node->m_audioType);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_searchQuery;
+        if (devtools::property("m_searchQuery", temp)) {
+            node->m_searchQuery = temp;
+        }
+    }
+#else
     devtools::property("m_searchQuery", node->m_searchQuery);
+#endif
     devtools::enumerable("m_sortType", node->m_sortType, {
         { AudioSortType::NameAscending, "AudioSortType::NameAscending" },
         { AudioSortType::NameDescending, "AudioSortType::NameDescending" },
@@ -8226,7 +9554,17 @@ devtools::registerNode<NumberInputLayer>([](NumberInputLayer* node) {
     devtools::label("Members for NumberInputLayer:");
     devtools::property("m_minimum", node->m_minimum);
     devtools::property("m_maximum", node->m_maximum);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_inputString;
+        if (devtools::property("m_inputString", temp)) {
+            node->m_inputString = temp;
+        }
+    }
+#else
     devtools::property("m_inputString", node->m_inputString);
+#endif
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_inputLabel at {}", (void*)node->m_inputLabel).c_str());
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_okButton at {}", (void*)node->m_okButton).c_str());
     devtools::label(fmt::format("NumberInputDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
@@ -8284,7 +9622,17 @@ devtools::registerNode<OptionsObject>([](OptionsObject* node) {
     devtools::label("Members for OptionsObject:");
     devtools::property("m_optionID", node->m_optionID);
     devtools::property("m_enabled", node->m_enabled);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_name;
+        if (devtools::property("m_name", temp)) {
+            node->m_name = temp;
+        }
+    }
+#else
     devtools::property("m_name", node->m_name);
+#endif
     devtools::property("m_count", node->m_count);
     devtools::label(fmt::format("OptionsObjectDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
 });
@@ -8316,7 +9664,17 @@ devtools::registerNode<ParentalOptionsLayer>([](ParentalOptionsLayer* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, ParticleGameObject>) {
 devtools::registerNode<ParticleGameObject>([](ParticleGameObject* node) {
     devtools::label("Members for ParticleGameObject:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_particleData;
+        if (devtools::property("m_particleData", temp)) {
+            node->m_particleData = temp;
+        }
+    }
+#else
     devtools::property("m_particleData", node->m_particleData);
+#endif
     devtools::property("m_updatedParticleData", node->m_updatedParticleData);
     devtools::property("m_hasUniformObjectColor", node->m_hasUniformObjectColor);
     devtools::property("m_popupPage", node->m_popupPage);
@@ -8632,7 +9990,17 @@ devtools::registerNode<PlayerObject>([](PlayerObject* node) {
     devtools::property("m_playerSpeedAC", node->m_playerSpeedAC);
     devtools::property("m_fixRobotJump", node->m_fixRobotJump);
     devtools::property("m_inputsLocked", node->m_inputsLocked);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_currentRobotAnimation;
+        if (devtools::property("m_currentRobotAnimation", temp)) {
+            node->m_currentRobotAnimation = temp;
+        }
+    }
+#else
     devtools::property("m_currentRobotAnimation", node->m_currentRobotAnimation);
+#endif
     devtools::property("m_gv0123", node->m_gv0123);
     devtools::property("m_iconRequestID", node->m_iconRequestID);
     devtools::property("m_unkUnused", node->m_unkUnused);
@@ -8839,7 +10207,17 @@ devtools::registerNode<ProfilePage>([](ProfilePage* node) {
     devtools::label("Members for ProfilePage:");
     devtools::property("m_accountID", node->m_accountID);
     devtools::property("m_ownProfile", node->m_ownProfile);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_profileKey;
+        if (devtools::property("m_profileKey", temp)) {
+            node->m_profileKey = temp;
+        }
+    }
+#else
     devtools::property("m_profileKey", node->m_profileKey);
+#endif
     devtools::property("m_unk", node->m_unk);
     devtools::property("m_itemCount", node->m_itemCount);
     devtools::property("m_pageStartIdx", node->m_pageStartIdx);
@@ -8866,7 +10244,17 @@ devtools::registerNode<PromoInterstitial>([](PromoInterstitial* node) {
     devtools::label("Members for PromoInterstitial:");
     devtools::property("m_fullVersion", node->m_fullVersion);
     devtools::property("m_promoTouched", node->m_promoTouched);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_marketLink;
+        if (devtools::property("m_marketLink", temp)) {
+            node->m_marketLink = temp;
+        }
+    }
+#else
     devtools::property("m_marketLink", node->m_marketLink);
+#endif
     devtools::property("m_showAdBanner", node->m_showAdBanner);
     devtools::label(fmt::format("cocos2d::CCMenu* m_closeMenu at {}", (void*)node->m_closeMenu).c_str());
 });
@@ -9007,7 +10395,17 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, SetTextPopup>) {
 devtools::registerNode<SetTextPopup>([](SetTextPopup* node) {
     devtools::label("Members for SetTextPopup:");
     devtools::property("m_disableDelegate", node->m_disableDelegate);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_value;
+        if (devtools::property("m_value", temp)) {
+            node->m_value = temp;
+        }
+    }
+#else
     devtools::property("m_value", node->m_value);
+#endif
     devtools::label(fmt::format("CCTextInputNode* m_input at {}", (void*)node->m_input).c_str());
     devtools::label(fmt::format("SetTextPopupDelegate* m_delegate at {}", (void*)node->m_delegate).c_str());
 });
@@ -9106,7 +10504,17 @@ devtools::registerNode<SecretLayer5>([](SecretLayer5* node) {
     devtools::property("m_exiting", node->m_exiting);
     devtools::property("m_loading", node->m_loading);
     devtools::property("m_rewardStatus", node->m_rewardStatus);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_chestID;
+        if (devtools::property("m_chestID", temp)) {
+            node->m_chestID = temp;
+        }
+    }
+#else
     devtools::property("m_chestID", node->m_chestID);
+#endif
     devtools::property("m_uiLocked", node->m_uiLocked);
     devtools::property("m_chatIndex", node->m_chatIndex);
     devtools::label(fmt::format("CCTextInputNode* m_textInput at {}", (void*)node->m_textInput).c_str());
@@ -10011,7 +11419,17 @@ devtools::registerNode<SFXInfoObject>([](SFXInfoObject* node) {
     devtools::property("m_duration", node->m_duration);
     devtools::property("m_folder", node->m_folder);
     devtools::property("m_unk049", node->m_unk049);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_name;
+        if (devtools::property("m_name", temp)) {
+            node->m_name = temp;
+        }
+    }
+#else
     devtools::property("m_name", node->m_name);
+#endif
 });
 }
 
@@ -10033,7 +11451,17 @@ devtools::registerNode<SFXSearchResult>([](SFXSearchResult* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SFXTriggerGameObject>) {
 devtools::registerNode<SFXTriggerGameObject>([](SFXTriggerGameObject* node) {
     devtools::label("Members for SFXTriggerGameObject:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_soundPath;
+        if (devtools::property("m_soundPath", temp)) {
+            node->m_soundPath = temp;
+        }
+    }
+#else
     devtools::property("m_soundPath", node->m_soundPath);
+#endif
     devtools::property("m_soundID", node->m_soundID);
     devtools::property("m_pitch", node->m_pitch);
     devtools::property("m_speed", node->m_speed);
@@ -10286,8 +11714,28 @@ devtools::registerNode<ShareCommentLayer>([](ShareCommentLayer* node) {
         { CommentType::ListDescription, "CommentType::ListDescription" },
         { CommentType::ListDescription2, "CommentType::ListDescription2" },
     });
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_descText;
+        if (devtools::property("m_descText", temp)) {
+            node->m_descText = temp;
+        }
+    }
+#else
     devtools::property("m_descText", node->m_descText);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_placeholderText;
+        if (devtools::property("m_placeholderText", temp)) {
+            node->m_placeholderText = temp;
+        }
+    }
+#else
     devtools::property("m_placeholderText", node->m_placeholderText);
+#endif
     devtools::property("m_uploadSuccess", node->m_uploadSuccess);
     devtools::property("m_percentEnabled", node->m_percentEnabled);
     devtools::property("m_percent", node->m_percent);
@@ -10406,8 +11854,28 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, SmartGameObject>) {
 devtools::registerNode<SmartGameObject>([](SmartGameObject* node) {
     devtools::label("Members for SmartGameObject:");
     devtools::property("m_referenceOnly", node->m_referenceOnly);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_baseFrame;
+        if (devtools::property("m_baseFrame", temp)) {
+            node->m_baseFrame = temp;
+        }
+    }
+#else
     devtools::property("m_baseFrame", node->m_baseFrame);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_smartFrame;
+        if (devtools::property("m_smartFrame", temp)) {
+            node->m_smartFrame = temp;
+        }
+    }
+#else
     devtools::property("m_smartFrame", node->m_smartFrame);
+#endif
 });
 }
 
@@ -10428,10 +11896,50 @@ devtools::registerNode<SongCell>([](SongCell* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SongInfoLayer>) {
 devtools::registerNode<SongInfoLayer>([](SongInfoLayer* node) {
     devtools::label("Members for SongInfoLayer:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_downloadLink;
+        if (devtools::property("m_downloadLink", temp)) {
+            node->m_downloadLink = temp;
+        }
+    }
+#else
     devtools::property("m_downloadLink", node->m_downloadLink);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_newgroundsLink;
+        if (devtools::property("m_newgroundsLink", temp)) {
+            node->m_newgroundsLink = temp;
+        }
+    }
+#else
     devtools::property("m_newgroundsLink", node->m_newgroundsLink);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_youtubeLink;
+        if (devtools::property("m_youtubeLink", temp)) {
+            node->m_youtubeLink = temp;
+        }
+    }
+#else
     devtools::property("m_youtubeLink", node->m_youtubeLink);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_facebookLink;
+        if (devtools::property("m_facebookLink", temp)) {
+            node->m_facebookLink = temp;
+        }
+    }
+#else
     devtools::property("m_facebookLink", node->m_facebookLink);
+#endif
     devtools::property("m_songID", node->m_songID);
     devtools::property("m_musicCustomizerMessageIndex", node->m_musicCustomizerMessageIndex);
 });
@@ -10441,15 +11949,75 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, SongInfoObject>) {
 devtools::registerNode<SongInfoObject>([](SongInfoObject* node) {
     devtools::label("Members for SongInfoObject:");
     devtools::property("m_songID", node->m_songID);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_songName;
+        if (devtools::property("m_songName", temp)) {
+            node->m_songName = temp;
+        }
+    }
+#else
     devtools::property("m_songName", node->m_songName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_artistName;
+        if (devtools::property("m_artistName", temp)) {
+            node->m_artistName = temp;
+        }
+    }
+#else
     devtools::property("m_artistName", node->m_artistName);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_youtubeVideo;
+        if (devtools::property("m_youtubeVideo", temp)) {
+            node->m_youtubeVideo = temp;
+        }
+    }
+#else
     devtools::property("m_youtubeVideo", node->m_youtubeVideo);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_youtubeChannel;
+        if (devtools::property("m_youtubeChannel", temp)) {
+            node->m_youtubeChannel = temp;
+        }
+    }
+#else
     devtools::property("m_youtubeChannel", node->m_youtubeChannel);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_songUrl;
+        if (devtools::property("m_songUrl", temp)) {
+            node->m_songUrl = temp;
+        }
+    }
+#else
     devtools::property("m_songUrl", node->m_songUrl);
+#endif
     devtools::property("m_artistID", node->m_artistID);
     devtools::property("m_fileSize", node->m_fileSize);
     devtools::property("m_nongType", node->m_nongType);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_extraArtists;
+        if (devtools::property("m_extraArtists", temp)) {
+            node->m_extraArtists = temp;
+        }
+    }
+#else
     devtools::property("m_extraArtists", node->m_extraArtists);
+#endif
     devtools::property("m_isUnknownSong", node->m_isUnknownSong);
     devtools::property("m_autoDownload", node->m_autoDownload);
     devtools::property("m_isBlocked", node->m_isBlocked);
@@ -10459,9 +12027,39 @@ devtools::registerNode<SongInfoObject>([](SongInfoObject* node) {
     devtools::property("m_isNew", node->m_isNew);
     devtools::property("m_libraryOrder", node->m_libraryOrder);
     devtools::property("m_songOrder", node->m_songOrder);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_extraArtistNames;
+        if (devtools::property("m_extraArtistNames", temp)) {
+            node->m_extraArtistNames = temp;
+        }
+    }
+#else
     devtools::property("m_extraArtistNames", node->m_extraArtistNames);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_longTagsString;
+        if (devtools::property("m_longTagsString", temp)) {
+            node->m_longTagsString = temp;
+        }
+    }
+#else
     devtools::property("m_longTagsString", node->m_longTagsString);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_shortTagsString;
+        if (devtools::property("m_shortTagsString", temp)) {
+            node->m_shortTagsString = temp;
+        }
+    }
+#else
     devtools::property("m_shortTagsString", node->m_shortTagsString);
+#endif
     devtools::label("gd::unordered_set<int> m_artistIDs");
     devtools::label("gd::set<int> m_tags");
 });
@@ -10549,10 +12147,40 @@ devtools::registerNode<SpecialAnimGameObject>([](SpecialAnimGameObject* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SpriteAnimationManager>) {
 devtools::registerNode<SpriteAnimationManager>([](SpriteAnimationManager* node) {
     devtools::label("Members for SpriteAnimationManager:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_queuedAnimation;
+        if (devtools::property("m_queuedAnimation", temp)) {
+            node->m_queuedAnimation = temp;
+        }
+    }
+#else
     devtools::property("m_queuedAnimation", node->m_queuedAnimation);
+#endif
     devtools::property("m_speed", node->m_speed);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_currentAnimation;
+        if (devtools::property("m_currentAnimation", temp)) {
+            node->m_currentAnimation = temp;
+        }
+    }
+#else
     devtools::property("m_currentAnimation", node->m_currentAnimation);
+#endif
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_nextAnimation;
+        if (devtools::property("m_nextAnimation", temp)) {
+            node->m_nextAnimation = temp;
+        }
+    }
+#else
     devtools::property("m_nextAnimation", node->m_nextAnimation);
+#endif
     devtools::label(fmt::format("CCAnimatedSprite* m_sprite at {}", (void*)node->m_sprite).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_priorityDict at {}", (void*)node->m_priorityDict).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_typeDict at {}", (void*)node->m_typeDict).c_str());
@@ -10664,7 +12292,17 @@ devtools::registerNode<TextArea>([](TextArea* node) {
     devtools::property("m_disableColor", node->m_disableColor);
     devtools::property("m_width", node->m_width);
     devtools::property("m_unknown", node->m_unknown);
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_fontFile;
+        if (devtools::property("m_fontFile", temp)) {
+            node->m_fontFile = temp;
+        }
+    }
+#else
     devtools::property("m_fontFile", node->m_fontFile);
+#endif
     devtools::property("m_height", node->m_height);
     devtools::property("m_unkBool", node->m_unkBool);
     devtools::property("m_anchorPoint", node->m_anchorPoint);
@@ -10684,7 +12322,17 @@ devtools::registerNode<TextArea>([](TextArea* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TextGameObject>) {
 devtools::registerNode<TextGameObject>([](TextGameObject* node) {
     devtools::label("Members for TextGameObject:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_text;
+        if (devtools::property("m_text", temp)) {
+            node->m_text = temp;
+        }
+    }
+#else
     devtools::property("m_text", node->m_text);
+#endif
     devtools::property("m_kerning", node->m_kerning);
 });
 }
@@ -10759,7 +12407,17 @@ devtools::registerNode<TransformTriggerGameObject>([](TransformTriggerGameObject
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TriggerControlGameObject>) {
 devtools::registerNode<TriggerControlGameObject>([](TriggerControlGameObject* node) {
     devtools::label("Members for TriggerControlGameObject:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_triggerControlFrame;
+        if (devtools::property("m_triggerControlFrame", temp)) {
+            node->m_triggerControlFrame = temp;
+        }
+    }
+#else
     devtools::property("m_triggerControlFrame", node->m_triggerControlFrame);
+#endif
     devtools::enumerable("m_customTriggerValue", node->m_customTriggerValue, {
         { GJActionCommand::Stop, "GJActionCommand::Stop" },
         { GJActionCommand::Pause, "GJActionCommand::Pause" },
@@ -10781,7 +12439,17 @@ devtools::registerNode<TutorialLayer>([](TutorialLayer* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TutorialPopup>) {
 devtools::registerNode<TutorialPopup>([](TutorialPopup* node) {
     devtools::label("Members for TutorialPopup:");
+
+#ifdef GEODE_IS_ANDROID
+    {
+        std::string temp = node->m_currentSprite;
+        if (devtools::property("m_currentSprite", temp)) {
+            node->m_currentSprite = temp;
+        }
+    }
+#else
     devtools::property("m_currentSprite", node->m_currentSprite);
+#endif
     devtools::property("m_callbackRegistered", node->m_callbackRegistered);
     devtools::label("cocos2d::SEL_MenuHandler m_callbackSelector");
     devtools::label(fmt::format("cocos2d::CCNode* m_targetNode at {}", (void*)node->m_targetNode).c_str());

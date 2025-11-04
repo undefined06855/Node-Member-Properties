@@ -97,6 +97,19 @@ $on_mod(Loaded) {{
 }}
 """.strip()
 
+std_string_conversion_template = """
+#ifdef GEODE_IS_ANDROID
+    {{
+        std::string temp = node->{field_name};
+        if (devtools::property(\"{field_name}\", temp)) {{
+            node->{field_name} = temp;
+        }}
+    }}
+#else
+    devtools::property(\"{field_name}\", node->{field_name});
+#endif
+"""
+
 class_blacklist = [
     "cocos2d::CCNode"
 ]
@@ -138,7 +151,9 @@ field_blacklist = [
     "m_bToAdd",
     "m_bToRemove",
     "m_pHandlersToAdd",
-    "m_pHandlersToRemove"
+    "m_pHandlersToRemove",
+    "_requestType",
+    "m_eDictType"
 ]
 
 def generate() -> None:
@@ -243,7 +258,11 @@ def generate() -> None:
                 continue
 
             # else it's just a supported type
-            source_output += f"    devtools::property(\"{field_name}\", node->{field_name});\n"
+            # we need to convert gd::string to std::string on android
+            if field_type == "gd::string":
+                source_output += std_string_conversion_template.format(field_name=field_name)
+            else:
+                source_output += f"    devtools::property(\"{field_name}\", node->{field_name});\n"
 
         source_output += queued_output
 
