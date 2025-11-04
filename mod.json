@@ -1,0 +1,24 @@
+{
+    "geode": "4.9.0",
+    "gd": {
+        "win": "2.2074",
+        "android": "2.2074",
+        "mac": "2.2074",
+        "ios": "2.2074"
+    },
+
+    "version": "v1.0.0",
+    "id": "undefined0.node_member_properties",
+    "name": "Node Member Properties",
+    "developer": "undefined0",
+    "description": "See members of vanilla nodes in DevTools!",
+    "tags": [ "developer" ],
+
+    "links": {
+        "source": "https://github.com/undefined06855/node-member-properties"
+    },
+
+    "dependencies": {
+        "geode.devtools": "v1.11.0"
+    }
+}
