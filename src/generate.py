@@ -1,6 +1,7 @@
 import requests
 import json
 import pathlib
+import time
 
 # thanks chatgpt
 integral_types = [
@@ -83,6 +84,8 @@ supported_types = [
 template = """
 #include <geode.devtools/include/API.hpp>
 
+// compiled at {fetch_time}
+
 $on_mod(Loaded) {{
     devtools::waitForDevTools([] {{
 
@@ -137,6 +140,8 @@ field_blacklist = [
 ]
 
 def generate() -> None:
+    fetch_time = time.strftime("%a, %d %b %Y %X +0000", time.gmtime())
+
     print("fetching codegen and enum data...")
     # fetch codegen data
     codegen = json.loads(requests.get("https://prevter.github.io/bindings-meta/CodegenData-2.2074.json").text)
@@ -239,7 +244,16 @@ def generate() -> None:
 
     parent_dir = pathlib.Path(__file__).resolve().parent
     with open(parent_dir / "generated.cpp", "w") as file:
-        file.write(template.format(source_output=source_output))
+        file.write(template.format(source_output=source_output, fetch_time=fetch_time))
+
+    parent_parent_dir = parent_dir.parent
+    with open(parent_parent_dir / "about.md", "r+") as file:
+        data = file.read()
+        data = data[:data.rfind("\n")] # remove last line
+        data += f"\n(Bindings correct as of {fetch_time})"
+        file.seek(0)
+        file.truncate()
+        file.write(data)
 
     print("done!")
 

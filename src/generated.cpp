@@ -1,5 +1,7 @@
 #include <geode.devtools/include/API.hpp>
 
+// compiled at Tue, 04 Nov 2025 22:49:31 +0000
+
 $on_mod(Loaded) {
     devtools::waitForDevTools([] {
 
@@ -6908,9 +6910,9 @@ devtools::registerNode<GradientTriggerObject>([](GradientTriggerObject* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GraphicsReloadLayer>) {
 devtools::registerNode<GraphicsReloadLayer>([](GraphicsReloadLayer* node) {
     devtools::enumerable("m_quality", node->m_quality, {
-        { cocos2d::TextureQuality::kTextureQualityHigh, "cocos2d::TextureQuality::kTextureQualityHigh" },
-        { cocos2d::TextureQuality::kTextureQualityLow, "cocos2d::TextureQuality::kTextureQualityLow" },
         { cocos2d::TextureQuality::kTextureQualityMedium, "cocos2d::TextureQuality::kTextureQualityMedium" },
+        { cocos2d::TextureQuality::kTextureQualityLow, "cocos2d::TextureQuality::kTextureQualityLow" },
+        { cocos2d::TextureQuality::kTextureQualityHigh, "cocos2d::TextureQuality::kTextureQualityHigh" },
     });
     devtools::property("m_resolution", node->m_resolution);
     devtools::property("m_windowed", node->m_windowed);

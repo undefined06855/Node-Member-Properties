@@ -8,7 +8,7 @@
     },
 
     "version": "v1.0.0",
-    "id": "undefined0.node_member_properties",
+    "id": "undefined0.node-member-properties",
     "name": "Node Member Properties",
     "developer": "undefined0",
     "description": "See members of vanilla nodes in DevTools!",
