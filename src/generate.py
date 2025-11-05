@@ -74,7 +74,6 @@ integral_types = [
 supported_types = [
     *integral_types,
     "std::string",
-    "gd::string",
     "cocos2d::ccColor3B",
     "cocos2d::ccColor4B",
     "cocos2d::ccColor4F",
@@ -278,6 +277,11 @@ def generate() -> None:
                 source_output += seed_value_conversion_template.format(field_name=field_name)
                 continue
 
+            # gd::string for androd
+            if field_type == "gd::string":
+                source_output += std_string_conversion_template.format(field_name=field_name)
+                continue
+
             # unsupported type
             if field_type not in supported_types:
                 print(f"skipping unsupported type: {field_type} ({field_name} in {class_name})")
@@ -285,11 +289,7 @@ def generate() -> None:
                 continue
 
             # else it's just a supported type
-            # we need to convert gd::string to std::string on android
-            if field_type == "gd::string":
-                source_output += std_string_conversion_template.format(field_name=field_name)
-            else:
-                source_output += f"    devtools::property(\"{field_name}\", node->{field_name});\n"
+            source_output += f"    devtools::property(\"{field_name}\", node->{field_name});\n"
 
         source_output += queued_output
 
