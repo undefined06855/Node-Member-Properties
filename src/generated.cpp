@@ -1,6 +1,6 @@
 #include <geode.devtools/include/API.hpp>
 
-// compiled at Tue, 04 Nov 2025 23:44:00 +0000
+// compiled at Wed, 05 Nov 2025 00:12:56 +0000
 
 $on_mod(Loaded) {
     devtools::waitForDevTools([] {
@@ -2647,6 +2647,27 @@ devtools::registerNode<GJChallengeItem>([](GJChallengeItem* node) {
         { GJChallengeType::Stars, "GJChallengeType::Stars" },
         { GJChallengeType::Moons, "GJChallengeType::Moons" },
     });
+
+    {
+        int temp = node->m_count;
+        if (devtools::property("m_count", temp)) {
+            node->m_count = temp;
+        }
+    }
+
+    {
+        int temp = node->m_reward;
+        if (devtools::property("m_reward", temp)) {
+            node->m_reward = temp;
+        }
+    }
+
+    {
+        int temp = node->m_goal;
+        if (devtools::property("m_goal", temp)) {
+            node->m_goal = temp;
+        }
+    }
     devtools::property("m_timeLeft", node->m_timeLeft);
     devtools::property("m_canClaim", node->m_canClaim);
     devtools::property("m_position", node->m_position);
@@ -2661,9 +2682,6 @@ devtools::registerNode<GJChallengeItem>([](GJChallengeItem* node) {
 #else
     devtools::property("m_name", node->m_name);
 #endif
-    devtools::label("geode::SeedValueRSV m_count");
-    devtools::label("geode::SeedValueRSV m_reward");
-    devtools::label("geode::SeedValueRSV m_goal");
 });
 }
 
@@ -4844,80 +4862,6 @@ devtools::registerNode<FMODQueuedEffect>([](FMODQueuedEffect* node) {
 });
 }
 
-if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODAudioEngine>) {
-devtools::registerNode<FMODAudioEngine>([](FMODAudioEngine* node) {
-    devtools::label("Members for FMODAudioEngine:");
-    devtools::property("m_musicVolume", node->m_musicVolume);
-    devtools::property("m_sfxVolume", node->m_sfxVolume);
-    devtools::property("m_backgroundMusicFade", node->m_backgroundMusicFade);
-    devtools::property("m_musicFadeStart", node->m_musicFadeStart);
-    devtools::property("m_pulse1", node->m_pulse1);
-    devtools::property("m_pulse2", node->m_pulse2);
-    devtools::property("m_pulse3", node->m_pulse3);
-    devtools::property("m_pulseCounter", node->m_pulseCounter);
-    devtools::property("m_metering", node->m_metering);
-    devtools::property("m_sampleRate", node->m_sampleRate);
-    devtools::property("m_reducedQuality", node->m_reducedQuality);
-    devtools::property("m_allAudioPaused", node->m_allAudioPaused);
-    devtools::property("m_musicOffset", node->m_musicOffset);
-    devtools::property("m_stopped", node->m_stopped);
-    devtools::enumerable("m_reverbPreset", node->m_reverbPreset, {
-        { FMODReverbPreset::Generic, "FMODReverbPreset::Generic" },
-        { FMODReverbPreset::PaddedCell, "FMODReverbPreset::PaddedCell" },
-        { FMODReverbPreset::Room, "FMODReverbPreset::Room" },
-        { FMODReverbPreset::Bathroom, "FMODReverbPreset::Bathroom" },
-        { FMODReverbPreset::Livingroom, "FMODReverbPreset::Livingroom" },
-        { FMODReverbPreset::Stoneroom, "FMODReverbPreset::Stoneroom" },
-        { FMODReverbPreset::Auditorium, "FMODReverbPreset::Auditorium" },
-        { FMODReverbPreset::ConvertHall, "FMODReverbPreset::ConvertHall" },
-        { FMODReverbPreset::Cave, "FMODReverbPreset::Cave" },
-        { FMODReverbPreset::Arena, "FMODReverbPreset::Arena" },
-        { FMODReverbPreset::Hangar, "FMODReverbPreset::Hangar" },
-        { FMODReverbPreset::CarpettedHallway, "FMODReverbPreset::CarpettedHallway" },
-        { FMODReverbPreset::Hallway, "FMODReverbPreset::Hallway" },
-        { FMODReverbPreset::StoneCorridor, "FMODReverbPreset::StoneCorridor" },
-        { FMODReverbPreset::Alley, "FMODReverbPreset::Alley" },
-        { FMODReverbPreset::Forest, "FMODReverbPreset::Forest" },
-        { FMODReverbPreset::City, "FMODReverbPreset::City" },
-        { FMODReverbPreset::Mountains, "FMODReverbPreset::Mountains" },
-        { FMODReverbPreset::Quarry, "FMODReverbPreset::Quarry" },
-        { FMODReverbPreset::Plain, "FMODReverbPreset::Plain" },
-        { FMODReverbPreset::ParkingLot, "FMODReverbPreset::ParkingLot" },
-        { FMODReverbPreset::SewerPipe, "FMODReverbPreset::SewerPipe" },
-        { FMODReverbPreset::Underwater, "FMODReverbPreset::Underwater" },
-    });
-    devtools::property("m_showAudioVisualizer", node->m_showAudioVisualizer);
-    devtools::property("m_musicVisualizerTime", node->m_musicVisualizerTime);
-    devtools::property("m_musicVisualizerPeak", node->m_musicVisualizerPeak);
-    devtools::property("m_musicVisualizerVolume", node->m_musicVisualizerVolume);
-    devtools::property("m_sfxVisualizerTime", node->m_sfxVisualizerTime);
-    devtools::property("m_sfxVisualizerPeak", node->m_sfxVisualizerPeak);
-    devtools::property("m_sfxVisualizerVolume", node->m_sfxVisualizerVolume);
-    devtools::label("gd::unordered_map<int, FMODMusic> m_fmodMusic");
-    devtools::label("gd::unordered_map<gd::string, FMODSound> m_fmodSounds");
-    devtools::label("gd::unordered_set<gd::string> m_temporarySoundPaths");
-    devtools::label(fmt::format("FMOD::ChannelGroup* m_backgroundMusicChannel at {}", (void*)node->m_backgroundMusicChannel).c_str());
-    devtools::label(fmt::format("FMOD::System* m_system at {}", (void*)node->m_system).c_str());
-    devtools::label(fmt::format("FMOD::DSP* m_mainDSP at {}", (void*)node->m_mainDSP).c_str());
-    devtools::label(fmt::format("FMOD::DSP* m_globalChannelDSP at {}", (void*)node->m_globalChannelDSP).c_str());
-    devtools::label(fmt::format("FMOD::ChannelGroup* m_globalChannel at {}", (void*)node->m_globalChannel).c_str());
-    devtools::label(fmt::format("FMOD::ChannelGroup* m_reverbChannel at {}", (void*)node->m_reverbChannel).c_str());
-    devtools::label("FMOD_RESULT m_lastResult");
-    devtools::label("FMODAudioState m_audioState");
-    devtools::label("gd::vector<FMOD::Sound*> m_removedSounds");
-    devtools::label("gd::unordered_map<int, FMOD::DSP*> m_channelIDToDSP");
-    devtools::label("gd::unordered_map<int, FMOD::Channel*> m_channelIDToChannel");
-    devtools::label("gd::unordered_set<int> m_stoppedChannels");
-    devtools::label("gd::unordered_map<int, int> m_channelIDToEffectID");
-    devtools::label("gd::unordered_map<int, int> m_effectIDToChannelID");
-    devtools::label("gd::unordered_map<int, gd::string> m_channelIDToSoundPath");
-    devtools::label("gd::vector<FMODQueuedEffect> m_queuedEffects");
-    devtools::label("gd::unordered_map<gd::string, FMOD::Sound*> m_soundPathToSound");
-    devtools::label("gd::unordered_map<int, FMOD::ChannelGroup*> m_globalChannelGroups");
-    devtools::label("gd::unordered_map<int, FMOD::ChannelGroup*> m_reverbChannelGroups");
-});
-}
-
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FMODLevelVisualizer>) {
 devtools::registerNode<FMODLevelVisualizer>([](FMODLevelVisualizer* node) {
     devtools::label("Members for FMODLevelVisualizer:");
@@ -5215,352 +5159,6 @@ devtools::registerNode<UIButtonConfig>([](UIButtonConfig* node) {
 });
 }
 
-if constexpr (std::is_base_of_v<cocos2d::CCNode, GameManager>) {
-devtools::registerNode<GameManager>([](GameManager* node) {
-    devtools::label("Members for GameManager:");
-    devtools::property("m_switchModes", node->m_switchModes);
-    devtools::property("m_toFullscreen", node->m_toFullscreen);
-    devtools::property("m_reloading", node->m_reloading);
-    devtools::property("m_fix", node->m_fix);
-    devtools::property("m_reloadTextures", node->m_reloadTextures);
-    devtools::property("m_unkBool2", node->m_unkBool2);
-    devtools::property("m_vsyncEnabled", node->m_vsyncEnabled);
-    devtools::property("m_adTimer", node->m_adTimer);
-    devtools::property("m_adCache", node->m_adCache);
-    devtools::property("m_unkBool3", node->m_unkBool3);
-    devtools::property("m_unkSize4_1", node->m_unkSize4_1);
-    devtools::property("m_unkDouble2", node->m_unkDouble2);
-    devtools::property("m_unkSize4_2", node->m_unkSize4_2);
-    devtools::property("m_unkSize4_3", node->m_unkSize4_3);
-    devtools::property("m_loaded", node->m_loaded);
-    devtools::property("m_googlePlaySignedIn", node->m_googlePlaySignedIn);
-
-#ifdef GEODE_IS_ANDROID
-    {
-        std::string temp = node->m_editorClipboard;
-        if (devtools::property("m_editorClipboard", temp)) {
-            node->m_editorClipboard = temp;
-        }
-    }
-#else
-    devtools::property("m_editorClipboard", node->m_editorClipboard);
-#endif
-    devtools::property("m_copiedObjectCount", node->m_copiedObjectCount);
-    devtools::property("m_inMenuLayer", node->m_inMenuLayer);
-    devtools::property("m_firstSetup", node->m_firstSetup);
-    devtools::property("m_showedMenu", node->m_showedMenu);
-    devtools::property("m_unknownBool4", node->m_unknownBool4);
-    devtools::property("m_unknownBool5", node->m_unknownBool5);
-
-#ifdef GEODE_IS_ANDROID
-    {
-        std::string temp = node->m_playerUDID;
-        if (devtools::property("m_playerUDID", temp)) {
-            node->m_playerUDID = temp;
-        }
-    }
-#else
-    devtools::property("m_playerUDID", node->m_playerUDID);
-#endif
-
-#ifdef GEODE_IS_ANDROID
-    {
-        std::string temp = node->m_playerName;
-        if (devtools::property("m_playerName", temp)) {
-            node->m_playerName = temp;
-        }
-    }
-#else
-    devtools::property("m_playerName", node->m_playerName);
-#endif
-    devtools::property("m_scoreUpdated", node->m_scoreUpdated);
-    devtools::property("m_bgVolume", node->m_bgVolume);
-    devtools::property("m_sfxVolume", node->m_sfxVolume);
-    devtools::property("m_timeOffset", node->m_timeOffset);
-    devtools::property("m_ratedGame", node->m_ratedGame);
-    devtools::property("m_clickedFacebook", node->m_clickedFacebook);
-    devtools::property("m_clickedTwitter", node->m_clickedTwitter);
-    devtools::property("m_clickedYouTube", node->m_clickedYouTube);
-    devtools::property("m_clickedTwitch", node->m_clickedTwitch);
-    devtools::property("m_clickedDiscord", node->m_clickedDiscord);
-    devtools::property("m_clickedReddit", node->m_clickedReddit);
-    devtools::property("m_socialsDuration", node->m_socialsDuration);
-    devtools::property("m_showedAd", node->m_showedAd);
-    devtools::property("m_wasHigh", node->m_wasHigh);
-    devtools::property("m_editorEnabled", node->m_editorEnabled);
-    devtools::property("m_sceneEnum", node->m_sceneEnum);
-    devtools::property("m_searchObjectBool", node->m_searchObjectBool);
-    devtools::property("m_playerGlow", node->m_playerGlow);
-    devtools::enumerable("m_playerIconType", node->m_playerIconType, {
-        { IconType::Cube, "IconType::Cube" },
-        { IconType::Ship, "IconType::Ship" },
-        { IconType::Ball, "IconType::Ball" },
-        { IconType::Ufo, "IconType::Ufo" },
-        { IconType::Wave, "IconType::Wave" },
-        { IconType::Robot, "IconType::Robot" },
-        { IconType::Spider, "IconType::Spider" },
-        { IconType::Swing, "IconType::Swing" },
-        { IconType::Jetpack, "IconType::Jetpack" },
-        { IconType::DeathEffect, "IconType::DeathEffect" },
-        { IconType::Special, "IconType::Special" },
-        { IconType::Item, "IconType::Item" },
-        { IconType::ShipFire, "IconType::ShipFire" },
-    });
-    devtools::property("m_everyPlaySetup", node->m_everyPlaySetup);
-    devtools::property("m_showSongMarkers", node->m_showSongMarkers);
-    devtools::property("m_showBPMMarkers", node->m_showBPMMarkers);
-    devtools::property("m_recordGameplay", node->m_recordGameplay);
-    devtools::property("m_showProgressBar", node->m_showProgressBar);
-    devtools::property("m_performanceMode", node->m_performanceMode);
-    devtools::property("m_addGlow", node->m_addGlow);
-    devtools::property("m_clickedGarage", node->m_clickedGarage);
-    devtools::property("m_clickedEditor", node->m_clickedEditor);
-    devtools::property("m_clickedName", node->m_clickedName);
-    devtools::property("m_clickedPractice", node->m_clickedPractice);
-    devtools::property("m_showedEditorGuide", node->m_showedEditorGuide);
-    devtools::property("m_showedRateDiffDialog", node->m_showedRateDiffDialog);
-    devtools::property("m_showedRateStarDialog", node->m_showedRateStarDialog);
-    devtools::property("m_showedLowDetailDialog", node->m_showedLowDetailDialog);
-    devtools::property("m_copiedColor", node->m_copiedColor);
-    devtools::property("m_currentLevelID", node->m_currentLevelID);
-    devtools::property("m_currentColorChannel", node->m_currentColorChannel);
-    devtools::property("m_currentGroupID", node->m_currentGroupID);
-    devtools::property("m_loadedBgID", node->m_loadedBgID);
-    devtools::property("m_loadedGroundID", node->m_loadedGroundID);
-    devtools::property("m_loadedMG", node->m_loadedMG);
-    devtools::property("m_loadedFont", node->m_loadedFont);
-    devtools::property("m_loadedDeathEffect", node->m_loadedDeathEffect);
-    devtools::property("m_loadingBG", node->m_loadingBG);
-    devtools::property("m_loadingG", node->m_loadingG);
-    devtools::property("m_loadingG1", node->m_loadingG1);
-    devtools::property("m_finishedLoadingG1", node->m_finishedLoadingG1);
-    devtools::property("m_shouldLoadG1", node->m_shouldLoadG1);
-    devtools::property("m_finishedLoadingMG1", node->m_finishedLoadingMG1);
-    devtools::property("m_finishedLoadingMG2", node->m_finishedLoadingMG2);
-    devtools::property("m_sessionAttempts", node->m_sessionAttempts);
-    devtools::property("m_sessionAttempts2", node->m_sessionAttempts2);
-    devtools::property("m_sessionNormalAttempts", node->m_sessionNormalAttempts);
-    devtools::property("m_bootups", node->m_bootups);
-    devtools::property("m_hasRatedGame", node->m_hasRatedGame);
-    devtools::property("m_unkBool6", node->m_unkBool6);
-    devtools::property("m_shouldLoadUnlockValueKeeper", node->m_shouldLoadUnlockValueKeeper);
-    devtools::property("m_unkBool7", node->m_unkBool7);
-    devtools::property("m_unkBool8", node->m_unkBool8);
-    devtools::property("m_canGetLevelSaveData", node->m_canGetLevelSaveData);
-    devtools::property("m_resolution", node->m_resolution);
-    devtools::property("m_texQuality", node->m_texQuality);
-    devtools::property("m_somethingInMenuLayer", node->m_somethingInMenuLayer);
-    devtools::property("m_ropeGarageEnter", node->m_ropeGarageEnter);
-    devtools::property("m_currentGauntlet", node->m_currentGauntlet);
-    devtools::property("m_unkSize4_13", node->m_unkSize4_13);
-    devtools::property("m_unkBool10", node->m_unkBool10);
-    devtools::property("m_unkSize4_14", node->m_unkSize4_14);
-    devtools::property("m_disableThumbstick", node->m_disableThumbstick);
-    devtools::property("m_customFPSTarget", node->m_customFPSTarget);
-    devtools::property("m_loadingLevel", node->m_loadingLevel);
-    devtools::property("m_customMenuSongID", node->m_customMenuSongID);
-    devtools::property("m_customPracticeSongID", node->m_customPracticeSongID);
-    devtools::property("m_iconRequestID", node->m_iconRequestID);
-    devtools::enumerable("m_localSearchType", node->m_localSearchType, {
-        { SearchType::Search, "SearchType::Search" },
-        { SearchType::Downloaded, "SearchType::Downloaded" },
-        { SearchType::MostLiked, "SearchType::MostLiked" },
-        { SearchType::Trending, "SearchType::Trending" },
-        { SearchType::Recent, "SearchType::Recent" },
-        { SearchType::UsersLevels, "SearchType::UsersLevels" },
-        { SearchType::Featured, "SearchType::Featured" },
-        { SearchType::Magic, "SearchType::Magic" },
-        { SearchType::Sends, "SearchType::Sends" },
-        { SearchType::MapPack, "SearchType::MapPack" },
-        { SearchType::MapPackOnClick, "SearchType::MapPackOnClick" },
-        { SearchType::Awarded, "SearchType::Awarded" },
-        { SearchType::Followed, "SearchType::Followed" },
-        { SearchType::Friends, "SearchType::Friends" },
-        { SearchType::Users, "SearchType::Users" },
-        { SearchType::LikedGDW, "SearchType::LikedGDW" },
-        { SearchType::HallOfFame, "SearchType::HallOfFame" },
-        { SearchType::FeaturedGDW, "SearchType::FeaturedGDW" },
-        { SearchType::Similar, "SearchType::Similar" },
-        { SearchType::Type19, "SearchType::Type19" },
-        { SearchType::TopListsUnused, "SearchType::TopListsUnused" },
-        { SearchType::DailySafe, "SearchType::DailySafe" },
-        { SearchType::WeeklySafe, "SearchType::WeeklySafe" },
-        { SearchType::EventSafe, "SearchType::EventSafe" },
-        { SearchType::Reported, "SearchType::Reported" },
-        { SearchType::LevelListsOnClick, "SearchType::LevelListsOnClick" },
-        { SearchType::Type26, "SearchType::Type26" },
-        { SearchType::Sent, "SearchType::Sent" },
-        { SearchType::FeaturedLite, "SearchType::FeaturedLite" },
-        { SearchType::Bonus, "SearchType::Bonus" },
-        { SearchType::MyLevels, "SearchType::MyLevels" },
-        { SearchType::SavedLevels, "SearchType::SavedLevels" },
-        { SearchType::FavouriteLevels, "SearchType::FavouriteLevels" },
-        { SearchType::SmartTemplates, "SearchType::SmartTemplates" },
-        { SearchType::MyLists, "SearchType::MyLists" },
-        { SearchType::FavouriteLists, "SearchType::FavouriteLists" },
-    });
-    devtools::enumerable("m_savedSearchType", node->m_savedSearchType, {
-        { SearchType::Search, "SearchType::Search" },
-        { SearchType::Downloaded, "SearchType::Downloaded" },
-        { SearchType::MostLiked, "SearchType::MostLiked" },
-        { SearchType::Trending, "SearchType::Trending" },
-        { SearchType::Recent, "SearchType::Recent" },
-        { SearchType::UsersLevels, "SearchType::UsersLevels" },
-        { SearchType::Featured, "SearchType::Featured" },
-        { SearchType::Magic, "SearchType::Magic" },
-        { SearchType::Sends, "SearchType::Sends" },
-        { SearchType::MapPack, "SearchType::MapPack" },
-        { SearchType::MapPackOnClick, "SearchType::MapPackOnClick" },
-        { SearchType::Awarded, "SearchType::Awarded" },
-        { SearchType::Followed, "SearchType::Followed" },
-        { SearchType::Friends, "SearchType::Friends" },
-        { SearchType::Users, "SearchType::Users" },
-        { SearchType::LikedGDW, "SearchType::LikedGDW" },
-        { SearchType::HallOfFame, "SearchType::HallOfFame" },
-        { SearchType::FeaturedGDW, "SearchType::FeaturedGDW" },
-        { SearchType::Similar, "SearchType::Similar" },
-        { SearchType::Type19, "SearchType::Type19" },
-        { SearchType::TopListsUnused, "SearchType::TopListsUnused" },
-        { SearchType::DailySafe, "SearchType::DailySafe" },
-        { SearchType::WeeklySafe, "SearchType::WeeklySafe" },
-        { SearchType::EventSafe, "SearchType::EventSafe" },
-        { SearchType::Reported, "SearchType::Reported" },
-        { SearchType::LevelListsOnClick, "SearchType::LevelListsOnClick" },
-        { SearchType::Type26, "SearchType::Type26" },
-        { SearchType::Sent, "SearchType::Sent" },
-        { SearchType::FeaturedLite, "SearchType::FeaturedLite" },
-        { SearchType::Bonus, "SearchType::Bonus" },
-        { SearchType::MyLevels, "SearchType::MyLevels" },
-        { SearchType::SavedLevels, "SearchType::SavedLevels" },
-        { SearchType::FavouriteLevels, "SearchType::FavouriteLevels" },
-        { SearchType::SmartTemplates, "SearchType::SmartTemplates" },
-        { SearchType::MyLists, "SearchType::MyLists" },
-        { SearchType::FavouriteLists, "SearchType::FavouriteLists" },
-    });
-    devtools::property("m_levelSearchType", node->m_levelSearchType);
-
-#ifdef GEODE_IS_ANDROID
-    {
-        std::string temp = node->m_dpadLayout1;
-        if (devtools::property("m_dpadLayout1", temp)) {
-            node->m_dpadLayout1 = temp;
-        }
-    }
-#else
-    devtools::property("m_dpadLayout1", node->m_dpadLayout1);
-#endif
-
-#ifdef GEODE_IS_ANDROID
-    {
-        std::string temp = node->m_dpadLayout2;
-        if (devtools::property("m_dpadLayout2", temp)) {
-            node->m_dpadLayout2 = temp;
-        }
-    }
-#else
-    devtools::property("m_dpadLayout2", node->m_dpadLayout2);
-#endif
-
-#ifdef GEODE_IS_ANDROID
-    {
-        std::string temp = node->m_dpadLayout3;
-        if (devtools::property("m_dpadLayout3", temp)) {
-            node->m_dpadLayout3 = temp;
-        }
-    }
-#else
-    devtools::property("m_dpadLayout3", node->m_dpadLayout3);
-#endif
-
-#ifdef GEODE_IS_ANDROID
-    {
-        std::string temp = node->m_dpadLayoutDual1;
-        if (devtools::property("m_dpadLayoutDual1", temp)) {
-            node->m_dpadLayoutDual1 = temp;
-        }
-    }
-#else
-    devtools::property("m_dpadLayoutDual1", node->m_dpadLayoutDual1);
-#endif
-
-#ifdef GEODE_IS_ANDROID
-    {
-        std::string temp = node->m_dpadLayoutDual2;
-        if (devtools::property("m_dpadLayoutDual2", temp)) {
-            node->m_dpadLayoutDual2 = temp;
-        }
-    }
-#else
-    devtools::property("m_dpadLayoutDual2", node->m_dpadLayoutDual2);
-#endif
-
-#ifdef GEODE_IS_ANDROID
-    {
-        std::string temp = node->m_dpadLayoutDual3;
-        if (devtools::property("m_dpadLayoutDual3", temp)) {
-            node->m_dpadLayoutDual3 = temp;
-        }
-    }
-#else
-    devtools::property("m_dpadLayoutDual3", node->m_dpadLayoutDual3);
-#endif
-    devtools::property("m_leaderboardLevelID", node->m_leaderboardLevelID);
-    devtools::property("m_leaderboardLevelTime", node->m_leaderboardLevelTime);
-    devtools::property("m_leaderboardLevelPoints", node->m_leaderboardLevelPoints);
-    devtools::property("m_shouldResetShader", node->m_shouldResetShader);
-    devtools::property("m_practicePos", node->m_practicePos);
-    devtools::property("m_practiceOpacity", node->m_practiceOpacity);
-    devtools::label(fmt::format("cocos2d::CCDictionary* m_mainFramesForAnimation at {}", (void*)node->m_mainFramesForAnimation).c_str());
-    devtools::label(fmt::format("cocos2d::CCDictionary* m_detailFramesForAnimation at {}", (void*)node->m_detailFramesForAnimation).c_str());
-    devtools::label(fmt::format("cocos2d::CCDictionary* m_frameTimeForAnimation at {}", (void*)node->m_frameTimeForAnimation).c_str());
-    devtools::label(fmt::format("cocos2d::CCDictionary* m_framesForAnimation at {}", (void*)node->m_framesForAnimation).c_str());
-    devtools::label(fmt::format("cocos2d::CCDictionary* m_defaultFrames at {}", (void*)node->m_defaultFrames).c_str());
-    devtools::label(fmt::format("cocos2d::CCDictionary* m_valueKeeper at {}", (void*)node->m_valueKeeper).c_str());
-    devtools::label(fmt::format("cocos2d::CCDictionary* m_unlockValueKeeper at {}", (void*)node->m_unlockValueKeeper).c_str());
-    devtools::label(fmt::format("cocos2d::CCDictionary* m_customObjectDict at {}", (void*)node->m_customObjectDict).c_str());
-    devtools::label(fmt::format("PlayLayer* m_playLayer at {}", (void*)node->m_playLayer).c_str());
-    devtools::label(fmt::format("LevelEditorLayer* m_levelEditorLayer at {}", (void*)node->m_levelEditorLayer).c_str());
-    devtools::label(fmt::format("GJBaseGameLayer* m_gameLayer at {}", (void*)node->m_gameLayer).c_str());
-    devtools::label(fmt::format("LevelSelectLayer* m_levelSelectLayer at {}", (void*)node->m_levelSelectLayer).c_str());
-    devtools::label(fmt::format("MenuLayer* m_menuLayer at {}", (void*)node->m_menuLayer).c_str());
-    devtools::label(fmt::format("void* m_premiumPopup at {}", (void*)node->m_premiumPopup).c_str());
-    devtools::label("geode::SeedValueRSV m_playerUserID");
-    devtools::label("geode::SeedValueRSV m_playerFrame");
-    devtools::label("geode::SeedValueRSV m_playerShip");
-    devtools::label("geode::SeedValueRSV m_playerBall");
-    devtools::label("geode::SeedValueRSV m_playerBird");
-    devtools::label("geode::SeedValueRSV m_playerDart");
-    devtools::label("geode::SeedValueRSV m_playerRobot");
-    devtools::label("geode::SeedValueRSV m_playerSpider");
-    devtools::label("geode::SeedValueRSV m_playerSwing");
-    devtools::label("geode::SeedValueRSV m_playerColor");
-    devtools::label("geode::SeedValueRSV m_playerColor2");
-    devtools::label("geode::SeedValueRSV m_playerGlowColor");
-    devtools::label("geode::SeedValueRSV m_playerStreak");
-    devtools::label("geode::SeedValueRSV m_playerShipFire");
-    devtools::label("geode::SeedValueRSV m_playerDeathEffect");
-    devtools::label("geode::SeedValueRSV m_playerJetpack");
-    devtools::label("geode::SeedValueRS m_chk");
-    devtools::label("geode::SeedValueSR m_secretNumber");
-    devtools::label(fmt::format("GameRateDelegate* m_gameRateDelegate1 at {}", (void*)node->m_gameRateDelegate1).c_str());
-    devtools::label(fmt::format("GameRateDelegate* m_gameRateDelegate2 at {}", (void*)node->m_gameRateDelegate2).c_str());
-    devtools::label("geode::SeedValueRSV m_hasRP");
-    devtools::label(fmt::format("DailyLevelPage* m_dailyLevelPage at {}", (void*)node->m_dailyLevelPage).c_str());
-    devtools::label("gd::map<int, int> m_iconLoadCounts");
-    devtools::label("gd::map<int, gd::map<int, int>> m_iconRequests");
-    devtools::label("gd::map<int, bool> m_isIconBeingLoaded");
-    devtools::label("gd::vector<int> m_keyStartForIcon");
-    devtools::label("gd::map<int, gd::vector<cocos2d::CCObject*>> m_iconDelegates");
-    devtools::label(fmt::format("cocos2d::CCArray* m_unkArray at {}", (void*)node->m_unkArray).c_str());
-    devtools::label(fmt::format("RewardedVideoDelegate* m_rewardedVideoDelegate at {}", (void*)node->m_rewardedVideoDelegate).c_str());
-    devtools::label("UIButtonConfig m_dpad1");
-    devtools::label("UIButtonConfig m_dpad2");
-    devtools::label("UIButtonConfig m_dpad3");
-    devtools::label("UIButtonConfig m_dpad4");
-    devtools::label("UIButtonConfig m_dpad5");
-});
-}
-
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GameObjectCopy>) {
 devtools::registerNode<GameObjectCopy>([](GameObjectCopy* node) {
     devtools::label("Members for GameObjectCopy:");
@@ -5660,6 +5258,13 @@ devtools::registerNode<GameStatsManager>([](GameStatsManager* node) {
     devtools::label("Members for GameStatsManager:");
     devtools::property("m_usePlayerStatsCCDictionary", node->m_usePlayerStatsCCDictionary);
     devtools::property("m_challengeTime", node->m_challengeTime);
+
+    {
+        int temp = node->m_bonusKey;
+        if (devtools::property("m_bonusKey", temp)) {
+            node->m_bonusKey = temp;
+        }
+    }
     devtools::property("m_skipIncrementChallenge", node->m_skipIncrementChallenge);
     devtools::property("m_pathBugFixed", node->m_pathBugFixed);
     devtools::property("m_tryFixPathBug", node->m_tryFixPathBug);
@@ -5702,7 +5307,6 @@ devtools::registerNode<GameStatsManager>([](GameStatsManager* node) {
     devtools::label(fmt::format("cocos2d::CCDictionary* m_weeklyChest at {}", (void*)node->m_weeklyChest).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_eventChest at {}", (void*)node->m_eventChest).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_treasureRoomChests at {}", (void*)node->m_treasureRoomChests).c_str());
-    devtools::label("geode::SeedValueRSV m_bonusKey");
     devtools::label(fmt::format("cocos2d::CCDictionary* m_miscChests at {}", (void*)node->m_miscChests).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_enabledItems at {}", (void*)node->m_enabledItems).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_wraithChests at {}", (void*)node->m_wraithChests).c_str());
@@ -6706,6 +6310,13 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, GJGameLevel>) {
 devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
     devtools::label("Members for GJGameLevel:");
 
+    {
+        int temp = node->m_levelID;
+        if (devtools::property("m_levelID", temp)) {
+            node->m_levelID = temp;
+        }
+    }
+
 #ifdef GEODE_IS_ANDROID
     {
         std::string temp = node->m_levelName;
@@ -6805,6 +6416,20 @@ devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
     devtools::property("m_savedCameraPositions", node->m_savedCameraPositions);
 #endif
     devtools::property("m_previewLock", node->m_previewLock);
+
+    {
+        int temp = node->m_userID;
+        if (devtools::property("m_userID", temp)) {
+            node->m_userID = temp;
+        }
+    }
+
+    {
+        int temp = node->m_accountID;
+        if (devtools::property("m_accountID", temp)) {
+            node->m_accountID = temp;
+        }
+    }
     devtools::enumerable("m_difficulty", node->m_difficulty, {
         { GJDifficulty::NA, "GJDifficulty::NA" },
         { GJDifficulty::Auto, "GJDifficulty::Auto" },
@@ -6824,6 +6449,13 @@ devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
     devtools::property("m_levelRev", node->m_levelRev);
     devtools::property("m_unlisted", node->m_unlisted);
     devtools::property("m_friendsOnly", node->m_friendsOnly);
+
+    {
+        int temp = node->m_objectCount;
+        if (devtools::property("m_objectCount", temp)) {
+            node->m_objectCount = temp;
+        }
+    }
     devtools::property("m_levelIndex", node->m_levelIndex);
     devtools::property("m_ratings", node->m_ratings);
     devtools::property("m_ratingsSum", node->m_ratingsSum);
@@ -6839,14 +6471,70 @@ devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
     devtools::property("m_selected", node->m_selected);
     devtools::property("m_localOrSaved", node->m_localOrSaved);
     devtools::property("m_disableShake", node->m_disableShake);
+
+    {
+        int temp = node->m_isVerified;
+        if (devtools::property("m_isVerified", temp)) {
+            node->m_isVerified = temp;
+        }
+    }
     devtools::property("m_isVerifiedRaw", node->m_isVerifiedRaw);
     devtools::property("m_isUploaded", node->m_isUploaded);
     devtools::property("m_hasBeenModified", node->m_hasBeenModified);
     devtools::property("m_levelVersion", node->m_levelVersion);
     devtools::property("m_gameVersion", node->m_gameVersion);
+
+    {
+        int temp = node->m_attempts;
+        if (devtools::property("m_attempts", temp)) {
+            node->m_attempts = temp;
+        }
+    }
+
+    {
+        int temp = node->m_jumps;
+        if (devtools::property("m_jumps", temp)) {
+            node->m_jumps = temp;
+        }
+    }
+
+    {
+        int temp = node->m_clicks;
+        if (devtools::property("m_clicks", temp)) {
+            node->m_clicks = temp;
+        }
+    }
+
+    {
+        int temp = node->m_attemptTime;
+        if (devtools::property("m_attemptTime", temp)) {
+            node->m_attemptTime = temp;
+        }
+    }
     devtools::property("m_chk", node->m_chk);
     devtools::property("m_isChkValid", node->m_isChkValid);
     devtools::property("m_isCompletionLegitimate", node->m_isCompletionLegitimate);
+
+    {
+        int temp = node->m_normalPercent;
+        if (devtools::property("m_normalPercent", temp)) {
+            node->m_normalPercent = temp;
+        }
+    }
+
+    {
+        int temp = node->m_orbCompletion;
+        if (devtools::property("m_orbCompletion", temp)) {
+            node->m_orbCompletion = temp;
+        }
+    }
+
+    {
+        int temp = node->m_newNormalPercent2;
+        if (devtools::property("m_newNormalPercent2", temp)) {
+            node->m_newNormalPercent2 = temp;
+        }
+    }
     devtools::property("m_practicePercent", node->m_practicePercent);
     devtools::property("m_likes", node->m_likes);
     devtools::property("m_dislikes", node->m_dislikes);
@@ -6855,11 +6543,74 @@ devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
     devtools::property("m_isEpic", node->m_isEpic);
     devtools::property("m_levelFavorited", node->m_levelFavorited);
     devtools::property("m_levelFolder", node->m_levelFolder);
+
+    {
+        int temp = node->m_dailyID;
+        if (devtools::property("m_dailyID", temp)) {
+            node->m_dailyID = temp;
+        }
+    }
+
+    {
+        int temp = node->m_demon;
+        if (devtools::property("m_demon", temp)) {
+            node->m_demon = temp;
+        }
+    }
     devtools::property("m_demonDifficulty", node->m_demonDifficulty);
+
+    {
+        int temp = node->m_stars;
+        if (devtools::property("m_stars", temp)) {
+            node->m_stars = temp;
+        }
+    }
     devtools::property("m_autoLevel", node->m_autoLevel);
     devtools::property("m_coins", node->m_coins);
+
+    {
+        int temp = node->m_coinsVerified;
+        if (devtools::property("m_coinsVerified", temp)) {
+            node->m_coinsVerified = temp;
+        }
+    }
+
+    {
+        int temp = node->m_password;
+        if (devtools::property("m_password", temp)) {
+            node->m_password = temp;
+        }
+    }
+
+    {
+        int temp = node->m_originalLevel;
+        if (devtools::property("m_originalLevel", temp)) {
+            node->m_originalLevel = temp;
+        }
+    }
     devtools::property("m_twoPlayerMode", node->m_twoPlayerMode);
     devtools::property("m_failedPasswordAttempts", node->m_failedPasswordAttempts);
+
+    {
+        int temp = node->m_firstCoinVerified;
+        if (devtools::property("m_firstCoinVerified", temp)) {
+            node->m_firstCoinVerified = temp;
+        }
+    }
+
+    {
+        int temp = node->m_secondCoinVerified;
+        if (devtools::property("m_secondCoinVerified", temp)) {
+            node->m_secondCoinVerified = temp;
+        }
+    }
+
+    {
+        int temp = node->m_thirdCoinVerified;
+        if (devtools::property("m_thirdCoinVerified", temp)) {
+            node->m_thirdCoinVerified = temp;
+        }
+    }
     devtools::property("m_starsRequested", node->m_starsRequested);
     devtools::property("m_showedSongWarning", node->m_showedSongWarning);
     devtools::property("m_starRatings", node->m_starRatings);
@@ -6983,27 +6734,6 @@ devtools::registerNode<GJGameLevel>([](GJGameLevel* node) {
     devtools::property("m_localBestPoints", node->m_localBestPoints);
 #endif
     devtools::label(fmt::format("cocos2d::CCDictionary* m_lastBuildSave at {}", (void*)node->m_lastBuildSave).c_str());
-    devtools::label("geode::SeedValueRSV m_levelID");
-    devtools::label("geode::SeedValueRSV m_userID");
-    devtools::label("geode::SeedValueRSV m_accountID");
-    devtools::label("geode::SeedValueRSV m_objectCount");
-    devtools::label("geode::SeedValueRS m_isVerified");
-    devtools::label("geode::SeedValueRSV m_attempts");
-    devtools::label("geode::SeedValueRSV m_jumps");
-    devtools::label("geode::SeedValueRSV m_clicks");
-    devtools::label("geode::SeedValueRSV m_attemptTime");
-    devtools::label("geode::SeedValueVSR m_normalPercent");
-    devtools::label("geode::SeedValueRSV m_orbCompletion");
-    devtools::label("geode::SeedValueRSV m_newNormalPercent2");
-    devtools::label("geode::SeedValueRSV m_dailyID");
-    devtools::label("geode::SeedValueRSV m_demon");
-    devtools::label("geode::SeedValueRSV m_stars");
-    devtools::label("geode::SeedValueRSV m_coinsVerified");
-    devtools::label("geode::SeedValueRS m_password");
-    devtools::label("geode::SeedValueRSV m_originalLevel");
-    devtools::label("geode::SeedValueRSV m_firstCoinVerified");
-    devtools::label("geode::SeedValueRSV m_secondCoinVerified");
-    devtools::label("geode::SeedValueRSV m_thirdCoinVerified");
 });
 }
 
@@ -8007,6 +7737,34 @@ devtools::registerNode<GJSpriteColor>([](GJSpriteColor* node) {
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJStoreItem>) {
 devtools::registerNode<GJStoreItem>([](GJStoreItem* node) {
     devtools::label("Members for GJStoreItem:");
+
+    {
+        int temp = node->m_index;
+        if (devtools::property("m_index", temp)) {
+            node->m_index = temp;
+        }
+    }
+
+    {
+        int temp = node->m_typeID;
+        if (devtools::property("m_typeID", temp)) {
+            node->m_typeID = temp;
+        }
+    }
+
+    {
+        int temp = node->m_unlockType;
+        if (devtools::property("m_unlockType", temp)) {
+            node->m_unlockType = temp;
+        }
+    }
+
+    {
+        int temp = node->m_price;
+        if (devtools::property("m_price", temp)) {
+            node->m_price = temp;
+        }
+    }
     devtools::enumerable("m_shopType", node->m_shopType, {
         { ShopType::Normal, "ShopType::Normal" },
         { ShopType::Secret, "ShopType::Secret" },
@@ -8015,10 +7773,6 @@ devtools::registerNode<GJStoreItem>([](GJStoreItem* node) {
         { ShopType::Diamond, "ShopType::Diamond" },
         { ShopType::Paths, "ShopType::Paths" },
     });
-    devtools::label("geode::SeedValueRSV m_index");
-    devtools::label("geode::SeedValueRSV m_typeID");
-    devtools::label("geode::SeedValueRSV m_unlockType");
-    devtools::label("geode::SeedValueRSV m_price");
 });
 }
 
@@ -8390,8 +8144,8 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, GraphicsReloadLayer>) {
 devtools::registerNode<GraphicsReloadLayer>([](GraphicsReloadLayer* node) {
     devtools::label("Members for GraphicsReloadLayer:");
     devtools::enumerable("m_quality", node->m_quality, {
-        { cocos2d::TextureQuality::kTextureQualityLow, "cocos2d::TextureQuality::kTextureQualityLow" },
         { cocos2d::TextureQuality::kTextureQualityHigh, "cocos2d::TextureQuality::kTextureQualityHigh" },
+        { cocos2d::TextureQuality::kTextureQualityLow, "cocos2d::TextureQuality::kTextureQualityLow" },
         { cocos2d::TextureQuality::kTextureQualityMedium, "cocos2d::TextureQuality::kTextureQualityMedium" },
     });
     devtools::property("m_resolution", node->m_resolution);
@@ -8771,6 +8525,13 @@ devtools::registerNode<LevelEditorLayer>([](LevelEditorLayer* node) {
     devtools::property("m_unk36d4", node->m_unk36d4);
     devtools::property("m_keepEditorLayer", node->m_keepEditorLayer);
     devtools::property("m_unk3751", node->m_unk3751);
+
+    {
+        int temp = node->m_coinCount;
+        if (devtools::property("m_coinCount", temp)) {
+            node->m_coinCount = temp;
+        }
+    }
     devtools::property("m_triggersChanged", node->m_triggersChanged);
     devtools::property("m_colorTriggersChanged", node->m_colorTriggersChanged);
     devtools::property("m_pulseTriggersChanged", node->m_pulseTriggersChanged);
@@ -8786,6 +8547,13 @@ devtools::registerNode<LevelEditorLayer>([](LevelEditorLayer* node) {
     devtools::property("m_trailTimer", node->m_trailTimer);
     devtools::property("m_soloMode", node->m_soloMode);
     devtools::property("m_nonSquareRotation", node->m_nonSquareRotation);
+
+    {
+        int temp = node->m_objectCount;
+        if (devtools::property("m_objectCount", temp)) {
+            node->m_objectCount = temp;
+        }
+    }
     devtools::property("m_updateColorSprites", node->m_updateColorSprites);
     devtools::property("m_previewMode", node->m_previewMode);
     devtools::property("m_alwaysPreviewMode", node->m_alwaysPreviewMode);
@@ -8822,7 +8590,6 @@ devtools::registerNode<LevelEditorLayer>([](LevelEditorLayer* node) {
     devtools::label(fmt::format("ParticleGameObject* m_particleObject at {}", (void*)node->m_particleObject).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_unk3740 at {}", (void*)node->m_unk3740).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_unk3748 at {}", (void*)node->m_unk3748).c_str());
-    devtools::label("geode::SeedValueRSV m_coinCount");
     devtools::label(fmt::format("cocos2d::CCArray* m_spawnOrderObjects at {}", (void*)node->m_spawnOrderObjects).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_unk3778 at {}", (void*)node->m_unk3778).c_str());
     devtools::label(fmt::format("cocos2d::CCDictionary* m_unk3780 at {}", (void*)node->m_unk3780).c_str());
@@ -8831,7 +8598,6 @@ devtools::registerNode<LevelEditorLayer>([](LevelEditorLayer* node) {
     devtools::label(fmt::format("EditorUI* m_editorUI at {}", (void*)node->m_editorUI).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_undoObjects at {}", (void*)node->m_undoObjects).c_str());
     devtools::label(fmt::format("cocos2d::CCArray* m_redoObjects at {}", (void*)node->m_redoObjects).c_str());
-    devtools::label("geode::SeedValueRSV m_objectCount");
     devtools::label(fmt::format("DrawGridLayer* m_drawGridLayer at {}", (void*)node->m_drawGridLayer).c_str());
     devtools::label("gd::vector<GameObject*> m_objectVector");
     devtools::label("gd::vector<GameObject*> m_loadedMoveObjects");
@@ -9887,6 +9653,13 @@ devtools::registerNode<PlayerObject>([](PlayerObject* node) {
     devtools::property("m_touchedCustomRing", node->m_touchedCustomRing);
     devtools::property("m_touchedGravityPortal", node->m_touchedGravityPortal);
     devtools::property("m_maybeTouchedBreakableBlock", node->m_maybeTouchedBreakableBlock);
+
+    {
+        int temp = node->m_jumpRelatedAC2;
+        if (devtools::property("m_jumpRelatedAC2", temp)) {
+            node->m_jumpRelatedAC2 = temp;
+        }
+    }
     devtools::property("m_touchedPad", node->m_touchedPad);
     devtools::property("m_yVelocity", node->m_yVelocity);
     devtools::property("m_fallSpeed", node->m_fallSpeed);
@@ -10064,7 +9837,6 @@ devtools::registerNode<PlayerObject>([](PlayerObject* node) {
     devtools::label(fmt::format("cocos2d::CCParticleSystemQuad* m_swingBurstParticles2 at {}", (void*)node->m_swingBurstParticles2).c_str());
     devtools::label(fmt::format("cocos2d::CCParticleSystemQuad* m_landParticles0 at {}", (void*)node->m_landParticles0).c_str());
     devtools::label(fmt::format("cocos2d::CCParticleSystemQuad* m_landParticles1 at {}", (void*)node->m_landParticles1).c_str());
-    devtools::label("geode::SeedValueRSV m_jumpRelatedAC2");
     devtools::label(fmt::format("cocos2d::CCArray* m_touchingRings at {}", (void*)node->m_touchingRings).c_str());
     devtools::label("gd::unordered_set<int> m_touchedRings");
     devtools::label(fmt::format("GameObject* m_lastActivatedPortal at {}", (void*)node->m_lastActivatedPortal).c_str());
@@ -10089,6 +9861,13 @@ devtools::registerNode<PlayLayer>([](PlayLayer* node) {
     devtools::property("m_unk36cd", node->m_unk36cd);
     devtools::property("m_unk36ce", node->m_unk36ce);
     devtools::property("m_unk36cf", node->m_unk36cf);
+
+    {
+        int temp = node->m_damageVerifiedIndex;
+        if (devtools::property("m_damageVerifiedIndex", temp)) {
+            node->m_damageVerifiedIndex = temp;
+        }
+    }
     devtools::property("m_damageVerified", node->m_damageVerified);
     devtools::property("m_passedIntegrity", node->m_passedIntegrity);
     devtools::property("m_objectsCreated", node->m_objectsCreated);
@@ -10157,7 +9936,6 @@ devtools::registerNode<PlayLayer>([](PlayLayer* node) {
     devtools::property("m_tryPlaceCheckpoint", node->m_tryPlaceCheckpoint);
     devtools::property("m_musicPrepared", node->m_musicPrepared);
     devtools::property("m_endPosition", node->m_endPosition);
-    devtools::label("geode::SeedValueRSV m_damageVerifiedIndex");
     devtools::label("gd::vector<gd::string> m_objectStrings");
     devtools::label(fmt::format("cocos2d::CCArray* m_coinArray at {}", (void*)node->m_coinArray).c_str());
     devtools::label("gd::vector<GameObject*> m_dynamicSaveObjects");

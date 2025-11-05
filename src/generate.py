@@ -83,6 +83,17 @@ supported_types = [
     "cocos2d::CCRect"
 ]
 
+seed_value_types = [
+    "geode::SeedValueRS",
+    "geode::SeedValueRSV",
+    "geode::SeedValueRVS",
+    "geode::SeedValueSR",
+    "geode::SeedValueSRV",
+    "geode::SeedValueSVR",
+    "geode::SeedValueVRS",
+    "geode::SeedValueVSR"
+]
+
 template = """
 #include <geode.devtools/include/API.hpp>
 
@@ -110,8 +121,19 @@ std_string_conversion_template = """
 #endif
 """
 
+seed_value_conversion_template = """
+    {{
+        int temp = node->{field_name};
+        if (devtools::property(\"{field_name}\", temp)) {{
+            node->{field_name} = temp;
+        }}
+    }}
+"""
+
 class_blacklist = [
-    "cocos2d::CCNode"
+    "cocos2d::CCNode",
+    "GameManager",
+    "FMODAudioEngine"
 ]
 
 # not sure why these explicitly error when all others don't but whatever!
@@ -249,6 +271,11 @@ def generate() -> None:
                     source_output += f"        {{ {field_type}::{enum_value}, \"{field_type}::{enum_value}\" }},\n"
 
                 source_output += "    });\n"
+                continue
+
+            # seed value
+            if field_type in seed_value_types:
+                source_output += seed_value_conversion_template.format(field_name=field_name)
                 continue
 
             # unsupported type
