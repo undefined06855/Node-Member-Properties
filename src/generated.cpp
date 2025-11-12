@@ -1,9 +1,13 @@
 #include <geode.devtools/include/API.hpp>
 
-// compiled at Wed, 05 Nov 2025 00:12:56 +0000
+// compiled at Wed, 12 Nov 2025 10:01:25 +0000
 
 $on_mod(Loaded) {
     devtools::waitForDevTools([] {
+
+#ifdef GEODE_IS_MACOS
+#undef CommentType
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, cocos2d::CCObject>) {
 devtools::registerNode<cocos2d::CCObject>([](cocos2d::CCObject* node) {
@@ -2277,12 +2281,14 @@ devtools::registerNode<CameraTriggerGameObject>([](CameraTriggerGameObject* node
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCAlertCircle>) {
 devtools::registerNode<CCAlertCircle>([](CCAlertCircle* node) {
     devtools::label("Members for CCAlertCircle:");
     devtools::label(fmt::format("CCCircleAlert* m_circleAlert at {}", (void*)node->m_circleAlert).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCAnimateFrameCache>) {
 devtools::registerNode<CCAnimateFrameCache>([](CCAnimateFrameCache* node) {
@@ -2321,6 +2327,7 @@ devtools::registerNode<CCCircleWave>([](CCCircleWave* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCCountdown>) {
 devtools::registerNode<CCCountdown>([](CCCountdown* node) {
     devtools::label("Members for CCCountdown:");
@@ -2332,6 +2339,7 @@ devtools::registerNode<CCCountdown>([](CCCountdown* node) {
     devtools::label(fmt::format("cocos2d::CCNode* m_targetNode at {}", (void*)node->m_targetNode).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, CCCounterLabel>) {
 devtools::registerNode<CCCounterLabel>([](CCCounterLabel* node) {
@@ -4766,12 +4774,14 @@ devtools::registerNode<GManager>([](GManager* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FileSaveManager>) {
 devtools::registerNode<FileSaveManager>([](FileSaveManager* node) {
     devtools::label("Members for FileSaveManager:");
     devtools::label(fmt::format("cocos2d::CCDictionary* m_storeData at {}", (void*)node->m_storeData).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, FindBPMLayer>) {
 devtools::registerNode<FindBPMLayer>([](FindBPMLayer* node) {
@@ -6042,6 +6052,7 @@ devtools::registerNode<GJBaseGameLayer>([](GJBaseGameLayer* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJBigSprite>) {
 devtools::registerNode<GJBigSprite>([](GJBigSprite* node) {
     devtools::label("Members for GJBigSprite:");
@@ -6053,7 +6064,9 @@ devtools::registerNode<GJBigSprite>([](GJBigSprite* node) {
     devtools::label(fmt::format("cocos2d::CCArray* m_spriteNodes at {}", (void*)node->m_spriteNodes).c_str());
 });
 }
+#endif
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJBigSpriteNode>) {
 devtools::registerNode<GJBigSpriteNode>([](GJBigSpriteNode* node) {
     devtools::label("Members for GJBigSpriteNode:");
@@ -6073,6 +6086,7 @@ devtools::registerNode<GJBigSpriteNode>([](GJBigSpriteNode* node) {
     devtools::label(fmt::format("cocos2d::CCSprite* m_sprite at {}", (void*)node->m_sprite).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJChestSprite>) {
 devtools::registerNode<GJChestSprite>([](GJChestSprite* node) {
@@ -6155,6 +6169,7 @@ devtools::registerNode<GJComment>([](GJComment* node) {
     devtools::property("m_color", node->m_color);
     devtools::property("m_hasLevelID", node->m_hasLevelID);
     devtools::property("m_unkMultiplayerBool", node->m_unkMultiplayerBool);
+    devtools::property("m_canDelete", node->m_canDelete);
     devtools::label(fmt::format("GJUserScore* m_userScore at {}", (void*)node->m_userScore).c_str());
 });
 }
@@ -6957,6 +6972,7 @@ devtools::registerNode<GJLevelList>([](GJLevelList* node) {
     devtools::property("m_favorite", node->m_favorite);
     devtools::property("m_featured", node->m_featured);
     devtools::property("m_onlineLevelsLoaded", node->m_onlineLevelsLoaded);
+    devtools::property("m_modified", node->m_modified);
 
 #ifdef GEODE_IS_ANDROID
     {
@@ -7363,6 +7379,7 @@ devtools::registerNode<GJRobotSprite>([](GJRobotSprite* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJRotateCommandLayer>) {
 devtools::registerNode<GJRotateCommandLayer>([](GJRotateCommandLayer* node) {
     devtools::label("Members for GJRotateCommandLayer:");
@@ -7412,6 +7429,7 @@ devtools::registerNode<GJRotateCommandLayer>([](GJRotateCommandLayer* node) {
     devtools::label(fmt::format("CCMenuItemToggler* m_followP2Toggler at {}", (void*)node->m_followP2Toggler).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, GJRotationControl>) {
 devtools::registerNode<GJRotationControl>([](GJRotationControl* node) {
@@ -8145,11 +8163,11 @@ devtools::registerNode<GraphicsReloadLayer>([](GraphicsReloadLayer* node) {
     devtools::label("Members for GraphicsReloadLayer:");
     devtools::enumerable("m_quality", node->m_quality, {
         { cocos2d::TextureQuality::kTextureQualityHigh, "cocos2d::TextureQuality::kTextureQualityHigh" },
-        { cocos2d::TextureQuality::kTextureQualityLow, "cocos2d::TextureQuality::kTextureQualityLow" },
         { cocos2d::TextureQuality::kTextureQualityMedium, "cocos2d::TextureQuality::kTextureQualityMedium" },
+        { cocos2d::TextureQuality::kTextureQualityLow, "cocos2d::TextureQuality::kTextureQualityLow" },
     });
     devtools::property("m_resolution", node->m_resolution);
-    devtools::property("m_windowed", node->m_windowed);
+    devtools::property("m_fullscreen", node->m_fullscreen);
     devtools::property("m_borderless", node->m_borderless);
     devtools::property("m_fix", node->m_fix);
     devtools::property("m_changedResolution", node->m_changedResolution);
@@ -8323,6 +8341,7 @@ devtools::registerNode<ItemTriggerGameObject>([](ItemTriggerGameObject* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, KeybindingsLayer>) {
 devtools::registerNode<KeybindingsLayer>([](KeybindingsLayer* node) {
     devtools::label("Members for KeybindingsLayer:");
@@ -8335,6 +8354,7 @@ devtools::registerNode<KeybindingsLayer>([](KeybindingsLayer* node) {
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_nextButton at {}", (void*)node->m_nextButton).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, KeybindingsManager>) {
 devtools::registerNode<KeybindingsManager>([](KeybindingsManager* node) {
@@ -8620,6 +8640,7 @@ devtools::registerNode<LevelEditorLayer>([](LevelEditorLayer* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelFeatureLayer>) {
 devtools::registerNode<LevelFeatureLayer>([](LevelFeatureLayer* node) {
     devtools::label("Members for LevelFeatureLayer:");
@@ -8630,6 +8651,7 @@ devtools::registerNode<LevelFeatureLayer>([](LevelFeatureLayer* node) {
     devtools::label(fmt::format("cocos2d::CCSprite* m_epicSprite at {}", (void*)node->m_epicSprite).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, LevelInfoLayer>) {
 devtools::registerNode<LevelInfoLayer>([](LevelInfoLayer* node) {
@@ -8990,6 +9012,7 @@ devtools::registerNode<MapPackCell>([](MapPackCell* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MapSelectLayer>) {
 devtools::registerNode<MapSelectLayer>([](MapSelectLayer* node) {
     devtools::label("Members for MapSelectLayer:");
@@ -9008,6 +9031,7 @@ devtools::registerNode<MapSelectLayer>([](MapSelectLayer* node) {
     devtools::label(fmt::format("LevelEditorLayer* m_editorLayer at {}", (void*)node->m_editorLayer).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MenuGameLayer>) {
 devtools::registerNode<MenuGameLayer>([](MenuGameLayer* node) {
@@ -9117,6 +9141,7 @@ devtools::registerNode<MoreVideoOptionsLayer>([](MoreVideoOptionsLayer* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MPLobbyLayer>) {
 devtools::registerNode<MPLobbyLayer>([](MPLobbyLayer* node) {
     devtools::label("Members for MPLobbyLayer:");
@@ -9130,6 +9155,7 @@ devtools::registerNode<MPLobbyLayer>([](MPLobbyLayer* node) {
     devtools::label(fmt::format("CCTextInputNode* m_commentInput at {}", (void*)node->m_commentInput).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, MultilineBitmapFont>) {
 devtools::registerNode<MultilineBitmapFont>([](MultilineBitmapFont* node) {
@@ -10017,6 +10043,7 @@ devtools::registerNode<ProfilePage>([](ProfilePage* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PromoInterstitial>) {
 devtools::registerNode<PromoInterstitial>([](PromoInterstitial* node) {
     devtools::label("Members for PromoInterstitial:");
@@ -10037,6 +10064,7 @@ devtools::registerNode<PromoInterstitial>([](PromoInterstitial* node) {
     devtools::label(fmt::format("cocos2d::CCMenu* m_closeMenu at {}", (void*)node->m_closeMenu).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, PurchaseItemPopup>) {
 devtools::registerNode<PurchaseItemPopup>([](PurchaseItemPopup* node) {
@@ -10189,6 +10217,7 @@ devtools::registerNode<SetTextPopup>([](SetTextPopup* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretGame01Layer>) {
 devtools::registerNode<SecretGame01Layer>([](SecretGame01Layer* node) {
     devtools::label("Members for SecretGame01Layer:");
@@ -10203,6 +10232,7 @@ devtools::registerNode<SecretGame01Layer>([](SecretGame01Layer* node) {
     devtools::label(fmt::format("cocos2d::CCSprite* m_timeBarSprite at {}", (void*)node->m_timeBarSprite).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretLayer>) {
 devtools::registerNode<SecretLayer>([](SecretLayer* node) {
@@ -10312,12 +10342,14 @@ devtools::registerNode<SecretLayer5>([](SecretLayer5* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretLayer6>) {
 devtools::registerNode<SecretLayer6>([](SecretLayer6* node) {
     devtools::label("Members for SecretLayer6:");
     devtools::label(fmt::format("SecretGame01Layer* m_gameLayer at {}", (void*)node->m_gameLayer).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SecretRewardsLayer>) {
 devtools::registerNode<SecretRewardsLayer>([](SecretRewardsLayer* node) {
@@ -10654,6 +10686,7 @@ devtools::registerNode<SetupCameraOffsetTrigger>([](SetupCameraOffsetTrigger* no
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupCameraRotatePopup>) {
 devtools::registerNode<SetupCameraRotatePopup>([](SetupCameraRotatePopup* node) {
     devtools::label("Members for SetupCameraRotatePopup:");
@@ -10690,6 +10723,7 @@ devtools::registerNode<SetupCameraRotatePopup>([](SetupCameraRotatePopup* node) 
     devtools::label(fmt::format("Slider* m_degreesSlider at {}", (void*)node->m_degreesSlider).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupCollisionTriggerPopup>) {
 devtools::registerNode<SetupCollisionTriggerPopup>([](SetupCollisionTriggerPopup* node) {
@@ -10766,6 +10800,7 @@ devtools::registerNode<SetupGradientPopup>([](SetupGradientPopup* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupGravityModPopup>) {
 devtools::registerNode<SetupGravityModPopup>([](SetupGravityModPopup* node) {
     devtools::label("Members for SetupGravityModPopup:");
@@ -10782,6 +10817,7 @@ devtools::registerNode<SetupGravityModPopup>([](SetupGravityModPopup* node) {
     devtools::label(fmt::format("CCTextInputNode* m_itemIDInput at {}", (void*)node->m_itemIDInput).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupInstantCountPopup>) {
 devtools::registerNode<SetupInstantCountPopup>([](SetupInstantCountPopup* node) {
@@ -10924,6 +10960,7 @@ devtools::registerNode<SetupOptionsTriggerPopup>([](SetupOptionsTriggerPopup* no
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupPortalPopup>) {
 devtools::registerNode<SetupPortalPopup>([](SetupPortalPopup* node) {
     devtools::label("Members for SetupPortalPopup:");
@@ -10942,6 +10979,7 @@ devtools::registerNode<SetupPortalPopup>([](SetupPortalPopup* node) {
     devtools::label(fmt::format("cocos2d::CCLabelBMFont* m_cameraPaddingLabel at {}", (void*)node->m_cameraPaddingLabel).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SetupPulsePopup>) {
 devtools::registerNode<SetupPulsePopup>([](SetupPulsePopup* node) {
@@ -11490,7 +11528,7 @@ devtools::registerNode<ShareCommentLayer>([](ShareCommentLayer* node) {
         { CommentType::FriendRequest, "CommentType::FriendRequest" },
         { CommentType::Multiplayer, "CommentType::Multiplayer" },
         { CommentType::ListDescription, "CommentType::ListDescription" },
-        { CommentType::ListDescription2, "CommentType::ListDescription2" },
+        { CommentType::ListName, "CommentType::ListName" },
     });
 
 #ifdef GEODE_IS_ANDROID
@@ -11580,6 +11618,7 @@ devtools::registerNode<SimplePlayer>([](SimplePlayer* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SlideInLayer>) {
 devtools::registerNode<SlideInLayer>([](SlideInLayer* node) {
     devtools::label("Members for SlideInLayer:");
@@ -11593,6 +11632,7 @@ devtools::registerNode<SlideInLayer>([](SlideInLayer* node) {
     devtools::label(fmt::format("void* m_delegate at {}", (void*)node->m_delegate).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, SliderThumb>) {
 devtools::registerNode<SliderThumb>([](SliderThumb* node) {
@@ -12214,6 +12254,7 @@ devtools::registerNode<TutorialLayer>([](TutorialLayer* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, TutorialPopup>) {
 devtools::registerNode<TutorialPopup>([](TutorialPopup* node) {
     devtools::label("Members for TutorialPopup:");
@@ -12234,6 +12275,7 @@ devtools::registerNode<TutorialPopup>([](TutorialPopup* node) {
     devtools::label(fmt::format("CCMenuItemSpriteExtra* m_closeButton at {}", (void*)node->m_closeButton).c_str());
 });
 }
+#endif
 
 if constexpr (std::is_base_of_v<cocos2d::CCNode, UILayer>) {
 devtools::registerNode<UILayer>([](UILayer* node) {
@@ -12380,7 +12422,7 @@ if constexpr (std::is_base_of_v<cocos2d::CCNode, VideoOptionsLayer>) {
 devtools::registerNode<VideoOptionsLayer>([](VideoOptionsLayer* node) {
     devtools::label("Members for VideoOptionsLayer:");
     devtools::property("m_textureQuality", node->m_textureQuality);
-    devtools::property("m_windowed", node->m_windowed);
+    devtools::property("m_fullscreen", node->m_fullscreen);
     devtools::property("m_borderless", node->m_borderless);
     devtools::property("m_fix", node->m_fix);
     devtools::property("m_currentResolution", node->m_currentResolution);
@@ -12397,6 +12439,7 @@ devtools::registerNode<VideoOptionsLayer>([](VideoOptionsLayer* node) {
 });
 }
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, WorldLevelPage>) {
 devtools::registerNode<WorldLevelPage>([](WorldLevelPage* node) {
     devtools::label("Members for WorldLevelPage:");
@@ -12404,7 +12447,9 @@ devtools::registerNode<WorldLevelPage>([](WorldLevelPage* node) {
     devtools::label(fmt::format("GJGameLevel* m_level at {}", (void*)node->m_level).c_str());
 });
 }
+#endif
 
+#ifndef GEODE_IS_IOS
 if constexpr (std::is_base_of_v<cocos2d::CCNode, WorldSelectLayer>) {
 devtools::registerNode<WorldSelectLayer>([](WorldSelectLayer* node) {
     devtools::label("Members for WorldSelectLayer:");
@@ -12418,6 +12463,7 @@ devtools::registerNode<WorldSelectLayer>([](WorldSelectLayer* node) {
     devtools::label(fmt::format("GJWorldNode* m_worldNode at {}", (void*)node->m_worldNode).c_str());
 });
 }
+#endif
 
 
 
