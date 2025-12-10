@@ -8,4 +8,4 @@ For up-to-date bindings, it is recommended to clone the mod repository, run the 
 
 This mod is also entirely for developers, you will likely not have to download this mod!
 
-(Bindings correct as of Wed, 12 Nov 2025 10:01:25 +0000)
+(Bindings correct as of Wed, 10 Dec 2025 14:46:30 +0000)
