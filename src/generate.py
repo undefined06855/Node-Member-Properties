@@ -101,6 +101,10 @@ template = """
 $on_mod(Loaded) {{
     devtools::waitForDevTools([] {{
 
+#ifdef GEODE_IS_MACOS
+#undef CommentType
+#endif
+
 {source_output}
 
     }});
@@ -241,6 +245,15 @@ def generate() -> None:
 
         queued_output = "" # stuff to put at end (pointers)
 
+        not_on_ios = False
+        for function in class_data["functions"]:
+            if function["virtual"] and function["bindings"]["ios"] is None:
+                not_on_ios = True
+                break
+
+        if not_on_ios:
+            source_output += "#ifndef GEODE_IS_IOS\n"
+
         source_output += f"if constexpr (std::is_base_of_v<cocos2d::CCNode, {class_name}>) {{\n"
 
         source_output += f"devtools::registerNode<{class_name}>([]({class_name}* node) {{\n"
@@ -295,7 +308,12 @@ def generate() -> None:
 
         source_output += "});\n" # devtools registerNode close
 
-        source_output += "}\n\n" # constexpr if close
+        source_output += "}\n" # constexpr if close
+
+        if not_on_ios:
+            source_output += "#endif\n"
+
+        source_output += "\n"
 
     print("writing...")
 
