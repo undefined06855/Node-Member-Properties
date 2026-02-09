@@ -76,10 +76,14 @@ do_not_generate_definitions_for = [*namespace_blacklist, *devtools_builtin_types
 # templates something?
 evil_blacklist = ["type-parameter-", "value-parameter-"]
 
-file_location_blacklist = [ location for location in [
-    *os.environ["OS_HEADER_LOCATIONS"].split(","),
-    *os.environ["STL_HEADER_LOCATIONS"].split(","),
-] if location != "" ]
+file_location_blacklist = [
+    location
+    for location in [
+        *os.environ["OS_HEADER_LOCATIONS"].split(","),
+        *os.environ["STL_HEADER_LOCATIONS"].split(","),
+    ]
+    if location != ""
+]
 
 
 def generate_headers_cpp():
@@ -380,8 +384,9 @@ def generate_cpp_for_blacklisted_member(type: str, spelling: str, snippet_to_acc
 
     return f'devtools::label("(unknown stl type {type})!!");\n'
 
+
 def count_fields(type: Type):
-    return len([ c for c in type.get_declaration().get_children() if c.kind == CursorKind.FIELD_DECL ])
+    return len([c for c in type.get_declaration().get_children() if c.kind == CursorKind.FIELD_DECL])
 
 
 def generate_cpp_for_member(member: Cursor, access: str, force_pointer_arithmetic: bool) -> str:
@@ -541,18 +546,18 @@ def generate_cpp_for_class(type: Type) -> str:
         # use IsBadReadPtr on windows
         ret += f"    if (IsBadReadPtr(self, {type.get_size()})) {{\n"
         ret += '        devtools::label("(nullptr!)");\n'
-        ret += '        return;\n'
+        ret += "        return;\n"
         ret += "    }\n\n"
     else:
         ret += "    if ((uintptr_t)self < 0x10000) {\n"
         ret += '        devtools::label("(nullptr!)");\n'
-        ret += '        return;\n'
+        ret += "        return;\n"
         ret += "    }\n\n"
 
     # recursion check
-    ret += '    if (std::find(g_pointerStack.begin(), g_pointerStack.end(), (void*)self) != g_pointerStack.end()) {\n'
+    ret += "    if (std::find(g_pointerStack.begin(), g_pointerStack.end(), (void*)self) != g_pointerStack.end()) {\n"
     ret += '        devtools::label("(recursive)");\n'
-    ret += '        return;\n'
+    ret += "        return;\n"
     ret += "    }\n\n"
 
     ret += "    g_pointerStack.push_back((void*)self);\n"
@@ -678,6 +683,7 @@ def generate_all():
 # to use this just open a python shell and run
 # > from generate import *
 # > profile_self()
+
 
 def profile_self():
     import cProfile
