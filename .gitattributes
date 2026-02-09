@@ -1,1 +1,2 @@
 src/generated-*.cpp linguist-generated
+src/headers.cpp linguist-generated
