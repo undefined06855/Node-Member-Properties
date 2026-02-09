@@ -62,3 +62,8 @@ build-*/
 # CLion
 .idea/
 /cmake-build-*/
+
+# Python (added)
+__pycache__/
+venv/
+.env
